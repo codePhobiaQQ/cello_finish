@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/gallery-page-fields",
+      "handler": "gallery-page-fields.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/gallery-page-fields",
+      "handler": "gallery-page-fields.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/gallery-page-fields",
+      "handler": "gallery-page-fields.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

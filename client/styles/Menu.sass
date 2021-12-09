@@ -1,0 +1,198 @@
+@import './styles/mixins/vars'
+
+$width: 300px !default
+@media screen and (max-width: $small)
+  $width: 200px
+
+.Menu
+  position: fixed
+  height: 100vh
+  width: $width
+  right: -$width
+  top: 0
+  background-color: #eee1d6
+  z-index: 1000
+  transition: all .4s ease
+  color: $textColor
+  font-family: $secondFF
+  font-size: $normalSize
+
+  display: flex
+  justify-content: center
+  align-items: center
+  min-height: 100vh
+  margin: 0 auto
+  padding: 3em 2em
+  
+  &.active
+    right: 0
+
+  .menu 
+    position: relative
+    z-index: 10
+
+
+  .menu__item
+    line-height: 1
+    position: relative
+    display: block
+    outline: none
+
+
+  .menu__item-name,
+  .menu__item-label
+    position: relative
+    display: block
+
+  .menu__item-label
+    font-size: 15px
+
+
+//---------------------------------
+
+.menu--adsila 
+  font-size: 1.15em
+  font-family: 'Nunito', sans-serif
+
+
+.menu--adsila a
+  color: #272727
+
+.menu--adsila .menu__item
+  margin: 0 0 1.2em
+  cursor: pointer
+
+.menu--adsila .menu__item-name 
+  font-weight: bold
+  line-height: 1.4
+  transition: color 0.5s
+  transition-timing-function: cubic-bezier(0.2,1,0.3,1)
+
+.menu--adsila .menu__item-name::before 
+  content: ''
+  position: absolute
+  z-index: -1
+  width: 100%
+  height: 50%
+  left: 0
+  bottom: 0
+  opacity: 0.3
+  transform: scale3d(0,1,1)
+  transform-origin: 0% 50%
+  transition: transform 0.5s
+  transition-timing-function: cubic-bezier(0.2,1,0.3,1)
+
+.menu--adsila .menu__item-label 
+  letter-spacing: 0.05em
+  transform: translate3d(0,0,0)
+  margin-top: 3px
+  transition: transform 0.5s, color 0.5s
+  transition-timing-function: cubic-bezier(0.2,1,0.3,1)
+
+.menu--adsila .menu__item-label::before 
+  content: ''
+  position: absolute
+  z-index: -1
+  width: 25%
+  height: 1px
+  left: 0.05em
+  top: 1.25em
+  opacity: 0.3
+  transform: scale3d(0,1,1)
+  transform-origin: 100% 50%
+  transition: transform 0.5s
+  transition-timing-function: cubic-bezier(0.2,1,0.3,1)
+
+.menu--adsila .menu__item:nth-child(odd) .menu__item-name::before,
+.menu--adsila .menu__item:nth-child(odd) .menu__item-label::before 
+  background: #cb3c18
+
+/* Hover */
+
+.menu--adsila .menu__item:nth-child(odd):hover,
+.menu--adsila .menu__item:nth-child(odd):focus 
+  color: #cb3c18
+
+.menu--adsila .menu__item:hover .menu__item-name::before,
+.menu--adsila .menu__item:focus .menu__item-name::before,
+.menu--adsila .menu__item:hover .menu__item-label::before,
+.menu--adsila .menu__item:focus .menu__item-label::before 
+  transform: scale3d(1,1,1)
+
+
+.menu--adsila .menu__item:hover .menu__item-label,
+.menu--adsila .menu__item:focus .menu__item-label 
+  transform: translate3d(0.5em,0,0)
+
+
+.menu--adsila .menu__item:hover .menu__item-label::before,
+.menu--adsila .menu__item:focus .menu__item-label::before 
+  transition-timing-function: ease
+  transform-origin: 0% 50%
+    
+
+//-------------- Menu -------------
+    
+
+.sectionsWrapper
+  position: relative
+  transition: right .4s ease
+  right: 0
+  &.active
+   right: $width
+
+//Header
+
+.header
+  position: fixed
+  width: 100vw
+  z-index: 10
+  padding: 8px 0
+  background-color: rgba(0, 0, 0, .2)
+  transition: all .4s ease
+  right: 0
+  font-size: $normalSize
+  font-family: $secondFF
+  &.active
+    right: $width
+  .container
+    display: flex
+    align-items: center
+    position: relative
+    .language
+      margin-left: auto
+      cursor: pointer
+      margin-right: 30px
+      display: flex
+      align-items: center
+      position: relative
+      svg
+        margin-left: 8px
+        transition: transform .3s ease
+      .languageList
+        display: flex
+        flex-direction: column
+        align-items: center
+        position: absolute
+        bottom: -108px
+        li
+          margin-bottom: 8px
+          position: relative
+          width: 100%
+          &:before
+            content: ''
+            position: absolute
+            left: -8px
+            display: block
+            height: 2px
+            width: 2px
+            top: calc(50% - 1px)
+            border-radius: 50%
+            background-color: #fff
+      &.active
+        svg
+          transform: rotate(180deg)
+
+// --------- LayoutForClose -----------
+
+

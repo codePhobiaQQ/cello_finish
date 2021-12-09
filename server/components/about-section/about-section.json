@@ -1,0 +1,77 @@
+{
+  "collectionName": "components_about_section_about_sections",
+  "info": {
+    "name": "AboutSection",
+    "icon": "angle-double-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "FirstTextRu": {
+      "type": "text"
+    },
+    "FirstTextEn": {
+      "type": "text"
+    },
+    "FirstTextGe": {
+      "type": "text"
+    },
+    "SecondTextRu": {
+      "type": "text"
+    },
+    "SecondTextEn": {
+      "type": "text"
+    },
+    "SecondTextGe": {
+      "type": "text"
+    },
+    "ThirdTextRu": {
+      "type": "text"
+    },
+    "ThirdTextEn": {
+      "type": "text"
+    },
+    "ThirdTextGe": {
+      "type": "text"
+    },
+    "FirstImg": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "SecondImg": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "ThirdImg": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "SectionTitleRu": {
+      "type": "string"
+    },
+    "SectionTitleEn": {
+      "type": "string"
+    },
+    "SectionTitleGe": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "video_page_fields",
+  "info": {
+    "name": "VideoPageFields"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "VideoComponent": {
+      "type": "component",
+      "repeatable": true,
+      "component": "video-section.video-component"
+    }
+  }
+}

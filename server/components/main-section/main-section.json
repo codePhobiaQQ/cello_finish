@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_main_section_main_sections",
+  "info": {
+    "name": "MainSection",
+    "icon": "align-justify",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "BackgroundImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "TitleRu": {
+      "type": "string"
+    },
+    "TitleEn": {
+      "type": "string"
+    },
+    "TitleGe": {
+      "type": "string"
+    },
+    "SubtitleRu": {
+      "type": "string"
+    },
+    "SubtitleEn": {
+      "type": "string"
+    },
+    "SubtitleGe": {
+      "type": "string"
+    }
+  }
+}

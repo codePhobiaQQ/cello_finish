@@ -1,0 +1,71 @@
+@import '../../../styles/mixins/vars.sass'
+
+.AboutSection
+  position: relative
+  height: 100vh
+  padding-top: 100px
+  color: $textColor
+  font-family: $secondFF
+  .container
+    position: relative
+    height: 100%
+    .contentWrapper
+      position: absolute
+      top: 0
+      height: 100%
+      width: 100%
+      display: flex
+      align-items: center
+      .contentText
+        width: 45%
+        p
+          font-size: $normalText
+      .imageContent
+        width: 45%
+        margin-left: auto
+        height: 100%
+        display: flex
+        align-items: center
+        justify-content: center
+        img
+          max-height: 75%
+          max-width: 85%
+
+@media screen and (max-width: $medium)
+  .AboutSection
+    padding-top: 50px
+    height: 150vh
+    .container
+      .contentWrapper
+        .contentText
+          p
+            font-size: $mdNormalText
+
+@media screen and (max-width: $small)
+  .AboutSection
+    height: inherit
+    margin-bottom: 50px
+    .container
+      h2
+        margin-bottom: 50px
+      .contentWrapper
+        position: relative
+        flex-direction: column
+        .contentText
+          width: 100%
+          p
+            font-size: $mdNormalText
+            width: 85%
+            min-width: 320px
+            //margin: auto
+        .imageContent
+          width: 100%
+          order: 2 !important
+          margin-top: 30px !important
+          img
+            width: 80%
+            height: auto
+
+
+
+

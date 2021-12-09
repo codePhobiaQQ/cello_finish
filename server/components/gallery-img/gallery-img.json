@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_gallery_img_gallery_imgs",
+  "info": {
+    "name": "GalleryImg",
+    "icon": "angle-double-right"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "bigImg": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "textRu": {
+      "type": "string"
+    },
+    "textEn": {
+      "type": "string"
+    },
+    "textGe": {
+      "type": "string"
+    }
+  }
+}

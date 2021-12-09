@@ -1,0 +1,57 @@
+{
+  "collectionName": "components_video_section_video_components",
+  "info": {
+    "name": "VideoComponent",
+    "icon": "angle-right"
+  },
+  "options": {},
+  "attributes": {
+    "TitleRu": {
+      "type": "string"
+    },
+    "TitleEn": {
+      "type": "string"
+    },
+    "TitleGe": {
+      "type": "string"
+    },
+    "locationRu": {
+      "type": "string"
+    },
+    "descriptionRu": {
+      "type": "text"
+    },
+    "descriptionEn": {
+      "type": "text"
+    },
+    "descriptionGe": {
+      "type": "text"
+    },
+    "preview": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "src": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "locationEn": {
+      "type": "string"
+    },
+    "locationGe": {
+      "type": "string"
+    }
+  }
+}
