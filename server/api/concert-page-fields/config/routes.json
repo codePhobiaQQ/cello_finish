@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/concert-page-fields",
+      "handler": "concert-page-fields.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/concert-page-fields",
+      "handler": "concert-page-fields.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/concert-page-fields",
+      "handler": "concert-page-fields.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

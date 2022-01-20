@@ -1,0 +1,57 @@
+{
+  "kind": "singleType",
+  "collectionName": "concert_page_fields",
+  "info": {
+    "name": "ConcertPageFields",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "LocationRu": {
+      "type": "string"
+    },
+    "LocationEn": {
+      "type": "string"
+    },
+    "LocationGe": {
+      "type": "string"
+    },
+    "TimeRu": {
+      "type": "string"
+    },
+    "TimeEn": {
+      "type": "string"
+    },
+    "TimeGe": {
+      "type": "string"
+    },
+    "DescriptionRu": {
+      "type": "text"
+    },
+    "DescriptionEn": {
+      "type": "text"
+    },
+    "DescriptionGe": {
+      "type": "text"
+    },
+    "ConcertSection": {
+      "type": "component",
+      "repeatable": true,
+      "component": "concert-section.concert-section"
+    },
+    "SectionTitleRu": {
+      "type": "string"
+    },
+    "SectionTitleEn": {
+      "type": "string"
+    },
+    "SectionTitleGe": {
+      "type": "string"
+    }
+  }
+}

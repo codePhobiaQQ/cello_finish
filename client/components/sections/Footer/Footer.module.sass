@@ -1,0 +1,26 @@
+@import "./../../../styles/mixins/vars"
+
+.footer
+  margin-top: 100px
+  padding: 50px 0 35px
+  background-color: darken(#eee1d6, 7)
+  font-family: $secondFF
+  color: $textColor
+  .menu
+    display: flex
+    li
+      margin-left: 35px
+      font-size: 21px
+      text-decoration: none
+      background-image: linear-gradient($textColor, $textColor)
+      background-position: 0% 100%
+      background-repeat: no-repeat
+      background-size: 0% 2px
+      transition: background-size .3s
+      &:hover
+        background-size: 100% 2px
+  .rights
+    margin-top: 40px
+    opacity: .5
+    text-align: center
+

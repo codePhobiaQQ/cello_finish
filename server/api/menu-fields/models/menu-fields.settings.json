@@ -1,0 +1,141 @@
+{
+  "kind": "singleType",
+  "collectionName": "menu_fields",
+  "info": {
+    "name": "MenuFields"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "HomeTextRu": {
+      "type": "string"
+    },
+    "HomeTextEn": {
+      "type": "string"
+    },
+    "HomeTextGe": {
+      "type": "string"
+    },
+    "BiographyTextRu": {
+      "type": "string"
+    },
+    "BiographyTextEn": {
+      "type": "string"
+    },
+    "BiographyTextGe": {
+      "type": "string"
+    },
+    "GalleryTextRu": {
+      "type": "string"
+    },
+    "GalleryTextEn": {
+      "type": "string"
+    },
+    "GalleryTextGe": {
+      "type": "string"
+    },
+    "VideosTextRu": {
+      "type": "string"
+    },
+    "VideosTextEn": {
+      "type": "string"
+    },
+    "VideosTextGe": {
+      "type": "string"
+    },
+    "ConcertsTextRu": {
+      "type": "string"
+    },
+    "ConcertsTextEn": {
+      "type": "string"
+    },
+    "ConcertsTextGe": {
+      "type": "string"
+    },
+    "NewsTextRu": {
+      "type": "string"
+    },
+    "NewsTextEn": {
+      "type": "string"
+    },
+    "NewsTextGe": {
+      "type": "string"
+    },
+    "ContactsTextRu": {
+      "type": "string"
+    },
+    "ContactsTextEn": {
+      "type": "string"
+    },
+    "ContactsTextGe": {
+      "type": "string"
+    },
+    "HomeSubtitleRu": {
+      "type": "string"
+    },
+    "HomeSubtitleEn": {
+      "type": "string"
+    },
+    "HomeSubtitleGe": {
+      "type": "string"
+    },
+    "BiographySubtitleRu": {
+      "type": "string"
+    },
+    "BiographySubtitleEn": {
+      "type": "string"
+    },
+    "BiographySubtitleGe": {
+      "type": "string"
+    },
+    "GallerySubtitleRu": {
+      "type": "string"
+    },
+    "GallerySubtitleEn": {
+      "type": "string"
+    },
+    "GallerySubtitleGe": {
+      "type": "string"
+    },
+    "VideosSubtitleRu": {
+      "type": "string"
+    },
+    "VideosSubtitleEn": {
+      "type": "string"
+    },
+    "VideosSubtitleGe": {
+      "type": "string"
+    },
+    "ConcertsSubtitleRu": {
+      "type": "string"
+    },
+    "ConcertsSubtitleEn": {
+      "type": "string"
+    },
+    "ConcertsSubtitleGe": {
+      "type": "string"
+    },
+    "NewsSubtitleRu": {
+      "type": "string"
+    },
+    "NewsSubtitleEn": {
+      "type": "string"
+    },
+    "NewsSubtitleGe": {
+      "type": "string"
+    },
+    "ContactsSubtitleRu": {
+      "type": "string"
+    },
+    "ContactsSubtitleEn": {
+      "type": "string"
+    },
+    "ContactsSubtitleGe": {
+      "type": "string"
+    }
+  }
+}

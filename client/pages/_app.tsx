@@ -4,10 +4,9 @@ import "../styles/main.sass";
 import "../styles/hamburger.sass";
 import "../styles/Menu.sass";
 import "../styles/SliderNews.css";
-import "../styles/FormSection.sass";
+import "../styles/FormSection.css";
 import "../styles/Concert.sass";
 import "video-react/dist/video-react.css";
-
 import type { AppProps } from "next/app";
 import React, { FC, useEffect, useState } from "react";
 import withRedux from "next-redux-wrapper";

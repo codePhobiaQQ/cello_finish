@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_concert_section_concert_sections",
+  "info": {
+    "name": "ConcertSection",
+    "icon": "angle-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "LocationRu": {
+      "type": "string"
+    },
+    "LocationEn": {
+      "type": "string"
+    },
+    "LocationGe": {
+      "type": "string"
+    },
+    "Time": {
+      "type": "string"
+    },
+    "DescriptionRu": {
+      "type": "text"
+    },
+    "DescriptionEn": {
+      "type": "text"
+    },
+    "DescriptionGe": {
+      "type": "text"
+    },
+    "LinkMore": {
+      "type": "string"
+    },
+    "Date": {
+      "type": "string"
+    }
+  }
+}

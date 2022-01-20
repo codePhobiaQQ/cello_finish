@@ -3,6 +3,9 @@ import {Dispatch, SetStateAction} from "react";
 import {Container} from "reactstrap";
 import Arrow from "../components/svg/arrow";
 import Language from "../components/Menu/Language/Language";
+import Footer from "../components/sections/Footer/Footer";
+import Logo from "../public/assets/img/Logo.svg";
+import LogoWhite from "../public/assets/img/LogoWhite.svg";
 
 interface IHeader {
   isMenuOpen: boolean;
@@ -18,7 +21,7 @@ const Header = ({ children, isMenuOpen, setMenuOpen }: IHeader) => {
           <div className="logo">
             <Link href="/#home">
               <a>
-                Logo
+                <img style={{ height: "70px" }} src={Logo.src} alt="Logo"/>
               </a>
             </Link>
           </div>
@@ -38,6 +41,7 @@ const Header = ({ children, isMenuOpen, setMenuOpen }: IHeader) => {
         </Container>
       </div>
       {children}
+      <Footer />
     </>
   );
 };

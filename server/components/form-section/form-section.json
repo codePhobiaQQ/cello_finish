@@ -1,0 +1,59 @@
+{
+  "collectionName": "components_form_section_form_sections",
+  "info": {
+    "name": "FormSection",
+    "icon": "align-left"
+  },
+  "options": {},
+  "attributes": {
+    "Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "TitleRu": {
+      "type": "string"
+    },
+    "TitleEn": {
+      "type": "string"
+    },
+    "TitleGe": {
+      "type": "string"
+    },
+    "TextRu": {
+      "type": "text"
+    },
+    "TextEn": {
+      "type": "text"
+    },
+    "TextGe": {
+      "type": "text"
+    },
+    "email": {
+      "type": "email"
+    },
+    "ButtonTextRu": {
+      "type": "string"
+    },
+    "ButtonTextEn": {
+      "type": "string"
+    },
+    "ButtonTextGe": {
+      "type": "string"
+    },
+    "placeholderRu": {
+      "type": "string"
+    },
+    "placeholderEn": {
+      "type": "string"
+    },
+    "placeholderGe": {
+      "type": "string"
+    }
+  }
+}

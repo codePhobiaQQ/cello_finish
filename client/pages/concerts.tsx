@@ -1,69 +1,44 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Header from "../hoc/Header";
 import Menu from "../components/Menu/Menu";
 import {Container} from "reactstrap";
 import Concert from "../components/sections/ConcertSection/Concert";
+import useTypedSelector from "../hooks/useTypedSelector";
+import languageFunction, {chooseLanguage} from "../functions/LanguageFunction";
+import {log} from "util";
 
-const Concerts = () => {
+export interface IConcert {
+  Date: string;
+  DescriptionRu: string;
+  DescriptionEn: string;
+  DescriptionGe: string;
+  LinkMore: string;
+  LocationRu: string;
+  LocationEn: string;
+  LocationGe: string
+  Time: string;
+}
+
+interface IConcerts {
+  data: {
+    ConcertSection: IConcert[];
+    DescriptionRu: string;
+    DescriptionEn: string;
+    DescriptionGe: string;
+    LocationRu: string;
+    LocationEn: string;
+    LocationGe: string;
+    SectionTitleRu: string;
+    SectionTitleEn: string;
+    SectionTitleGe: string;
+  };
+}
+
+const Concerts = ({ data }: IConcerts) => {
   const [authVisible, setAuthVisible] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
-
-  const concerts = [
-    {
-      date: "07.11.2021",
-      time: "17:00",
-      location: "Zaryadye Concert Hall, Moscow, Russia",
-      description: "Józef Hofmann: Character Sketches op. 40\n" +
-        "Joseph Holbrooke: from 10 Rhapsodie-Études op. 42 - No 4 La fantastique, No 5 Une nuit ténébreuse\n" +
-        "Alexander Skjabin: Fantasy in B minor op. 28, Mazurka in G sharp minor op. 3 No. 9\n" +
-        "Franz Liszt: Spanish Rhapsody\n" +
-        "Igor Stravinsky: Three pieces from the ballet \"Petrushka\".",
-    },
-    {
-      date: "07.11.2021",
-      time: "17:00",
-      location: "Zaryadye Concert Hall, Moscow, Russia",
-      description: "Scriabin Piano Concerto with Tula Philharmonic Orchestra under Vladislav Lavrik",
-    },
-    {
-      date: "07.11.2021",
-      time: "17:00",
-      location: "Zaryadye Concert Hall, Moscow, Russia",
-      description: "Shor “Childhood memories” with Kazan Chamber Orchestra “La Primavera” & Marius Stravinsky",
-    },
-    {
-      date: "07.11.2021",
-      time: "17:00",
-      location: "Zaryadye Concert Hall, Moscow, Russia",
-      description: "Józef Hofmann: Character Sketches op. 40\n" +
-        "Joseph Holbrooke: from 10 Rhapsodie-Études op. 42 - No 4 La fantastique, No 5 Une nuit ténébreuse\n" +
-        "Alexander Skjabin: Fantasy in B minor op. 28, Mazurka in G sharp minor op. 3 No. 9\n" +
-        "Franz Liszt: Spanish Rhapsody\n" +
-        "Igor Stravinsky: Three pieces from the ballet \"Petrushka\".",
-    },
-    {
-      date: "07.11.2021",
-      time: "17:00",
-      location: "Zaryadye Concert Hall, Moscow, Russia",
-      description: "Scriabin Piano Concerto with Tula Philharmonic Orchestra under Vladislav Lavrik",
-    },
-    {
-      date: "07.11.2021",
-      time: "17:00",
-      location: "Zaryadye Concert Hall, Moscow, Russia",
-      description: "Shor “Childhood memories” with Kazan Chamber Orchestra “La Primavera” & Marius Stravinsky",
-    },
-    {
-      date: "07.11.2021",
-      time: "17:00",
-      location: "Zaryadye Concert Hall, Moscow, Russia",
-      description: "Józef Hofmann: Character Sketches op. 40\n" +
-        "Joseph Holbrooke: from 10 Rhapsodie-Études op. 42 - No 4 La fantastique, No 5 Une nuit ténébreuse\n" +
-        "Alexander Skjabin: Fantasy in B minor op. 28, Mazurka in G sharp minor op. 3 No. 9\n" +
-        "Franz Liszt: Spanish Rhapsody\n" +
-        "Igor Stravinsky: Three pieces from the ballet \"Petrushka\".",
-    },
-  ]
+  const languageStart = useTypedSelector(state => state.app.language);
+  const language = languageFunction(languageStart);
 
   return (
     <Header
@@ -75,13 +50,27 @@ const Concerts = () => {
         <section className="concertSection">
           <Container>
             <h2>Concerts</h2>
-            {concerts.map((concert, index) => (
+            {data.ConcertSection.map((concert, index) => (
               <Concert
-                date={concert.date}
-                time={concert.time}
-                location={concert.location}
-                description={concert.description}
-                index={index}
+                location={
+                  chooseLanguage(
+                    language,
+                    concert.LocationRu,
+                    concert.LocationEn,
+                    concert.LocationGe,
+                  )
+                }
+                description={
+                  chooseLanguage(
+                    language,
+                    concert.DescriptionRu,
+                    concert.DescriptionEn,
+                    concert.DescriptionGe,
+                  )
+                }
+                Date={concert.Date}
+                Time={concert.Time}
+                LinkMore={concert.LinkMore}
               />
             ))}
           </Container>
@@ -92,3 +81,19 @@ const Concerts = () => {
 };
 
 export default Concerts;
+
+export const getStaticProps: any = async (context: any) => {
+  try {
+    const data = await fetch('http://localhost:1337/concert-page-fields').then((data) => {
+      return data.json();
+    });
+    return {
+      props: {
+        data
+      }
+    }
+  } catch (error) {
+    console.log(error.message)
+    return {data: {}};
+  }
+}

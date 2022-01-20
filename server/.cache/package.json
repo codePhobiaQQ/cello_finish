@@ -1,41 +1,18 @@
 {
-  "_args": [
-    [
-      "strapi-admin@3.6.8",
-      "/Users/vitalik/Documents/sayti/cello/cello/server"
-    ]
-  ],
-  "_from": "strapi-admin@3.6.8",
-  "_id": "strapi-admin@3.6.8",
-  "_inBundle": false,
-  "_integrity": "sha512-LqOzAE27eJZAfCgW1KQipESfL2PMumej5CS8dBdu+PHMsn270gKdZceA4vLBYix5OkkNnsKcioTzK1/uyWYpdg==",
-  "_location": "/strapi-admin",
-  "_phantomChildren": {
-    "is-docker": "2.2.1",
-    "side-channel": "1.0.4"
+  "name": "strapi-admin",
+  "version": "3.6.8",
+  "description": "Strapi Admin",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/strapi/strapi.git"
   },
-  "_requested": {
-    "type": "version",
-    "registry": true,
-    "raw": "strapi-admin@3.6.8",
-    "name": "strapi-admin",
-    "escapedName": "strapi-admin",
-    "rawSpec": "3.6.8",
-    "saveSpec": null,
-    "fetchSpec": "3.6.8"
+  "scripts": {
+    "test": "echo \"no tests yet\"",
+    "develop": "webpack-dev-server --config webpack.config.dev.js",
+    "develop:ce": "STRAPI_DISABLE_EE=true webpack-dev-server --config webpack.config.dev.js",
+    "analyze:bundle": "ANALYZE_BUNDLE=true webpack --config webpack.config.dev.js"
   },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/strapi-admin/-/strapi-admin-3.6.8.tgz",
-  "_spec": "3.6.8",
-  "_where": "/Users/vitalik/Documents/sayti/cello/cello/server",
-  "author": {
-    "name": "Strapi"
-  },
-  "bugs": {
-    "url": "https://github.com/strapi/strapi/issues"
-  },
+  "main": "index.js",
   "dependencies": {
     "@babel/core": "^7.14.0",
     "@babel/plugin-proposal-async-generator-functions": "^7.13.15",
@@ -137,33 +114,25 @@
     "webpackbar": "^4.0.0",
     "yup": "^0.32.9"
   },
-  "description": "Strapi Admin",
-  "devDependencies": {
-    "webpack-bundle-analyzer": "4.4.0"
+  "author": {
+    "name": "Strapi",
+    "email": "",
+    "url": ""
   },
+  "maintainers": [
+    {
+      "name": "Strapi",
+      "email": "",
+      "url": ""
+    }
+  ],
   "engines": {
     "node": ">=10.16.0 <=14.x.x",
     "npm": ">=6.0.0"
   },
-  "gitHead": "8972d78e8d1783ded6089d0318bfb62aff8e6962",
-  "homepage": "https://github.com/strapi/strapi#readme",
   "license": "SEE LICENSE IN LICENSE",
-  "main": "index.js",
-  "maintainers": [
-    {
-      "name": "Strapi"
-    }
-  ],
-  "name": "strapi-admin",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/strapi/strapi.git"
-  },
-  "scripts": {
-    "analyze:bundle": "ANALYZE_BUNDLE=true webpack --config webpack.config.dev.js",
-    "develop": "webpack-dev-server --config webpack.config.dev.js",
-    "develop:ce": "STRAPI_DISABLE_EE=true webpack-dev-server --config webpack.config.dev.js",
-    "test": "echo \"no tests yet\""
-  },
-  "version": "3.6.8"
+  "gitHead": "8972d78e8d1783ded6089d0318bfb62aff8e6962",
+  "devDependencies": {
+    "webpack-bundle-analyzer": "4.4.0"
+  }
 }

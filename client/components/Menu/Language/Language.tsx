@@ -15,8 +15,23 @@ const Language = () => {
 
   const clickLanguageHandler = (index: number) => {
     setWhatLanguageActive(index);
+    localStorage.setItem('language', languages[index]);
     dispatch(setLanguage(languages[index]))
   }
+
+  useEffect(() => {
+    const language = localStorage.getItem('language');
+    let indexLang = -1;
+    languages.forEach((elem, index: number) => {
+      if (elem == language) {
+        indexLang = index;
+      }
+    })
+    if (!!language) {
+      setWhatLanguageActive(indexLang);
+      dispatch(setLanguage(language));
+    }
+  }, [])
 
   return (
     <div

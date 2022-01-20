@@ -4,8 +4,9 @@ import {Container} from "reactstrap";
 import {useInView} from "react-intersection-observer";
 import {Parallax} from 'react-scroll-parallax';
 import {motion} from 'framer-motion';
-
-
+import {log} from "util";
+import {chooseLanguage} from "../../../functions/LanguageFunction";
+import {Main} from "next/document";
 
 interface IMainSection {
   language: string;
@@ -54,15 +55,15 @@ const MainSection = ({MainSection, language}: IMainSection) => {
       className={styles.MainSection}
       id={"home"}
     >
-      <img src={"http://localhost:1337" + MainSection.BackgroundImage.url || bg.src} alt="bg"/>
+      <img src={MainSection.BackgroundImage.url ? "http://localhost:1337" + MainSection.BackgroundImage.url : bg.src} alt="bg"/>
       <Container>
         <div className={styles.contentTextWrapper}>
           <motion.div variants={variantsMain} initial="hidden" animate="visible">
             <motion.h1 variants={textVariant}>
-              {MainSection[`TitleRu`]}
+              {chooseLanguage(language, MainSection.TitleRu, MainSection.TitleEn, MainSection.TitleGe)}
             </motion.h1>
             <motion.span variants={textVariant}>
-              {MainSection[`SubtitleRu`]}
+              {chooseLanguage(language, MainSection.SubtitleRu, MainSection.SubtitleEn, MainSection.SubtitleGe)}
             </motion.span>
           </motion.div>
         </div>

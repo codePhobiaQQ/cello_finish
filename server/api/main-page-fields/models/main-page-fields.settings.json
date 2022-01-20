@@ -21,6 +21,11 @@
       "type": "component",
       "repeatable": false,
       "component": "about-section.about-section"
+    },
+    "FormSection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "form-section.form-section"
     }
   }
 }

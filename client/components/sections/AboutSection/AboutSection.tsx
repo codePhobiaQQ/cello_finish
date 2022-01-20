@@ -3,8 +3,8 @@ import {Container} from "reactstrap";
 import { useInView } from 'react-intersection-observer';
 import {useEffect, useState} from "react";
 import {motion, useAnimation} from "framer-motion";
-import LeftRightVariants from "../../../variants/LeftRightVariants";
 import {Parallax} from "react-scroll-parallax/cjs";
+import IVariantClass from "../../../variants/VariantClass";
 
 interface IAboutSection {
   header?: string;
@@ -14,7 +14,6 @@ interface IAboutSection {
 }
 
 const AboutSection = ({ header, text, leftPositionText, photo }: IAboutSection) => {
-  let threshold;
   const [isMobile, setIsMobile] = useState<boolean>(false);
   useEffect(() => {
     setIsMobile(true);
@@ -25,11 +24,17 @@ const AboutSection = ({ header, text, leftPositionText, photo }: IAboutSection) 
     triggerOnce: true,
   });
 
-  const variants = new LeftRightVariants(0.7, 0.7);
-  const wrapperVariant = variants.wrapperVariant;
-  const textVariantLeft = variants.textVariantLeft;
-  const textVariantRight = variants.textVariantRight;
-  const photoVariant = variants.photoVariant;
+  const wrapperVariant: IVariantClass =
+    { visible: { transition: { staggerChildren: .3 }}};
+  const textVariantLeft: IVariantClass = {
+    hidden: { opacity: 0, x: -100 },
+    visible: { opacity: 1, x: 0, transition: { duration: .7 }}};
+  const textVariantRight: IVariantClass = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { opacity: 1, x: 0, transition: { duration: .7 }}};
+  const photoVariant: IVariantClass = {
+    hidden: { opacity: 0, scale: .95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: .7 }}};
 
   return (
     <section id="biography" ref={ref} className={styles.AboutSection}>
@@ -38,8 +43,7 @@ const AboutSection = ({ header, text, leftPositionText, photo }: IAboutSection) 
         <motion.div
           className={styles.contentWrapper}
           variants={wrapperVariant}
-          initial="hidden"
-          animate={inView ? "visible" : ""}
+          animate={inView ? "visible" : "hidden"}
         >
           <motion.div
             style={{ order: leftPositionText ? 0 : 1 }}

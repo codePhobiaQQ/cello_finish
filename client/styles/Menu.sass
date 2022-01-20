@@ -1,6 +1,7 @@
 @import './styles/mixins/vars'
 
 $width: 300px !default
+$transiton: all .4s ease
 @media screen and (max-width: $small)
   $width: 200px
 
@@ -12,11 +13,10 @@ $width: 300px !default
   top: 0
   background-color: #eee1d6
   z-index: 1000
-  transition: all .4s ease
+  transition: $transiton
   color: $textColor
   font-family: $secondFF
   font-size: $normalSize
-
   display: flex
   justify-content: center
   align-items: center
@@ -54,7 +54,6 @@ $width: 300px !default
   font-size: 1.15em
   font-family: 'Nunito', sans-serif
 
-
 .menu--adsila a
   color: #272727
 
@@ -86,7 +85,7 @@ $width: 300px !default
   letter-spacing: 0.05em
   transform: translate3d(0,0,0)
   margin-top: 3px
-  transition: transform 0.5s, color 0.5s
+  transition: transform 0.2s, color 0.5s
   transition-timing-function: cubic-bezier(0.2,1,0.3,1)
 
 .menu--adsila .menu__item-label::before 
@@ -119,11 +118,9 @@ $width: 300px !default
 .menu--adsila .menu__item:focus .menu__item-label::before 
   transform: scale3d(1,1,1)
 
-
 .menu--adsila .menu__item:hover .menu__item-label,
 .menu--adsila .menu__item:focus .menu__item-label 
   transform: translate3d(0.5em,0,0)
-
 
 .menu--adsila .menu__item:hover .menu__item-label::before,
 .menu--adsila .menu__item:focus .menu__item-label::before 
@@ -136,7 +133,7 @@ $width: 300px !default
 
 .sectionsWrapper
   position: relative
-  transition: right .4s ease
+  transition: $transiton
   right: 0
   &.active
    right: $width
@@ -149,10 +146,11 @@ $width: 300px !default
   z-index: 10
   padding: 8px 0
   background-color: rgba(0, 0, 0, .2)
-  transition: all .4s ease
+  transition: all .2s ease
   right: 0
   font-size: $normalSize
   font-family: $secondFF
+  color: $textColor
   &.active
     right: $width
   .container
@@ -169,6 +167,8 @@ $width: 300px !default
       svg
         margin-left: 8px
         transition: transform .3s ease
+        stroke: $textColor
+        fill: $textColor
       .languageList
         display: flex
         flex-direction: column
@@ -188,10 +188,11 @@ $width: 300px !default
             width: 2px
             top: calc(50% - 1px)
             border-radius: 50%
-            background-color: #fff
+            background-color: $textColor
       &.active
         svg
           transform: rotate(180deg)
+
 
 // --------- LayoutForClose -----------
 

@@ -5,6 +5,17 @@ import {Container} from "reactstrap";
 import CustomVideo from "../components/videoplayer/CustomVideo";
 // @ts-ignore
 import Tilt from "react-parallax-tilt";
+import useTypedSelector from "../hooks/useTypedSelector";
+import languageFunction, {chooseLanguage} from "../functions/LanguageFunction";
+
+interface IVideos {
+  data: {
+    TitleRu: string;
+    TitleEn: string;
+    TitleGe: string;
+    VideoComponent: IVideo[];
+  }
+}
 
 export interface IVideo {
   src: {
@@ -24,13 +35,15 @@ export interface IVideo {
   descriptionGe?: string;
 }
 
-const Videos = (props: any) => {
+const Videos = ({data}: IVideos) => {
   const [authVisible, setAuthVisible] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
+  const languageStart = useTypedSelector(state => state.app.language);
+  const language = languageFunction(languageStart);
 
-  console.log(props.data.VideoComponent[0]);
+  console.log(data);
 
-  const videos: IVideo[] = props.data.VideoComponent;
+  const videos: IVideo[] = data.VideoComponent;
 
   return (
     <Header
@@ -41,10 +54,16 @@ const Videos = (props: any) => {
       <div className={isMenuOpen ? "sectionsWrapper active" : "sectionsWrapper"}>
         <section className="videoSection">
           <Container>
-            <h2>Videos</h2>
+            <h2>{chooseLanguage(
+              language,
+              data.TitleRu,
+              data.TitleEn,
+              data.TitleGe,
+            )}</h2>
             <div className="videos">
               {videos.map((video, index) => (
                 <CustomVideo
+                  language={language}
                   index={index}
                   video={video}
                   key={"video" + index}

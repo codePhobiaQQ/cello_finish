@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import {useInView} from "react-intersection-observer";
-import LeftRightVariants from "../../../variants/LeftRightVariants";
 import { motion } from "framer-motion";
 import Close from "../../UI/Close";
 import bg from "../../../public/assets/img/AboutSection/about1.jpg"
 import { Container } from "reactstrap";
+import {ImageType} from "../../../types/types";
+import IVariantClass from "../../../variants/VariantClass";
 
 interface IImages {
-  image: string;
+  image: ImageType;
   textRu: string;
   textEn: string;
   textGe: string;
@@ -32,9 +33,12 @@ const GallerySection = ({ PropsImages }: IGallery) => {
     triggerOnce: true,
   });
 
-  const variants = new LeftRightVariants(0.7, 0.7);
-  const fadeInBlock = variants.fadeInBlock;
-  const fadeIn = variants.fadeIn;
+  const fadeIn: IVariantClass = {
+    hidden: { opacity: 0, scale: .97 },
+    visible: { opacity: 1, scale: 1, transition: { duration: .7 }}};
+  const fadeInBig: IVariantClass = {
+    hidden: { opacity: 0, pointerEvents: "none" },
+    visible: { opacity: 1, pointerEvents: "auto", transition: { duration: .7 }}};
 
   const arrToColumns = (size: number) => {
     for (let i = 0; i < Math.ceil(Images.length/size); i++) {
@@ -78,20 +82,20 @@ const GallerySection = ({ PropsImages }: IGallery) => {
 
   return (
     <>
-      <motion.div
+      <div
         className="gallery"
         ref={ref}
-        variants={fadeIn}
-        initial="hidden"
-        animate={inView ? "visible" : ""}
       >
         {result.map((column, index) => (
           <div key={index + "gallery__column"} className="gallery__column">
             {column.map((photo, indexPhoto, column) => (
               <div className="gallery__link" onClick={() => clickHandler(photo.bigImg, indexPhoto, index)}>
                 <figure key={"photoIndex" + indexPhoto} className="gallery__thumb">
-                  <img src={"http://localhost:1337" + photo.image.url} alt={photo.textRu}
-                       className="gallery__image" />
+                  <img
+                    src={photo.image?.url ? "http://localhost:1337" + photo.image.url : bg.src}
+                    alt={photo.textRu}
+                    className="gallery__image"
+                  />
                   <figcaption className="gallery__caption">{photo.textRu}</figcaption>
                 </figure>
               </div>
@@ -99,14 +103,14 @@ const GallerySection = ({ PropsImages }: IGallery) => {
             )}
           </div>
         ))}
-      </motion.div>
+      </div>
 
       <motion.div
         className="openGallery"
         ref={ref}
-        initial="hidden"
         animate={isOpen ? "visible" : ""}
-        variants={fadeInBlock}
+        initial={"hidden"}
+        variants={fadeInBig}
       >
         <Container>
           <Close CloseClick={setIsOpen} />
