@@ -1,5 +1,11 @@
+import Header from "../hoc/Header/Header";
+
 const MainPage = () => {
-  return <div>hello</div>;
+  return (
+    <Header>
+      <div>{/* hello*/}</div>
+    </Header>
+  );
 };
 
 export default MainPage;
