@@ -68,59 +68,58 @@ export default function Home(props: IHomeInterface) {
     >
       <Menu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
       <div className={isMenuOpen ? "sectionsWrapper active" : "sectionsWrapper"}>
-        <div style={{ height: "100vh" }}></div>
-        {/*<MainSection MainSection={props.data.MainSection} language={language} />*/}
-        {/*<AboutSection leftPositionText={true}*/}
-        {/*              photo={props.data.AboutSection.FirstImg.url ? "http://localhost:1337" + props.data.AboutSection.FirstImg.url : about1.src}*/}
-        {/*              header={chooseLanguage(*/}
-        {/*                language,*/}
-        {/*                props.data.AboutSection.SectionTitleRu,*/}
-        {/*                props.data.AboutSection.SectionTitleEn,*/}
-        {/*                props.data.AboutSection.SectionTitleGe,*/}
-        {/*              )}*/}
-        {/*              text={chooseLanguage(*/}
-        {/*                language,*/}
-        {/*                props.data.AboutSection.FirstTextRu,*/}
-        {/*                props.data.AboutSection.FirstTextEn,*/}
-        {/*                props.data.AboutSection.FirstTextGe,*/}
-        {/*              )}*/}
-        {/*/>*/}
-        {/*<AboutSection*/}
-        {/*              photo={props.data.AboutSection.SecondImg.url ? "http://localhost:1337" + props.data.AboutSection.SecondImg.url : about1.src}*/}
-        {/*              text={chooseLanguage(*/}
-        {/*                language,*/}
-        {/*                props.data.AboutSection.SecondTextRu,*/}
-        {/*                props.data.AboutSection.SecondTextEn,*/}
-        {/*                props.data.AboutSection.SecondTextGe,*/}
-        {/*              )}*/}
-        {/*/>*/}
-        {/*<AboutSection leftPositionText={true}*/}
-        {/*              photo={props.data.AboutSection.ThirdImg.url ? "http://localhost:1337" + props.data.AboutSection.ThirdImg.url : about1.src}*/}
-        {/*              text={chooseLanguage(*/}
-        {/*                language,*/}
-        {/*                props.data.AboutSection.ThirdTextRu,*/}
-        {/*                props.data.AboutSection.ThirdTextEn,*/}
-        {/*                props.data.AboutSection.ThirdTextGe,*/}
-        {/*              )}*/}
-        {/*/>*/}
-        {/*<FormSection language={language} data={props.data.FormSection} />*/}
+        <MainSection MainSection={props.data.MainSection} language={language} />
+        <AboutSection leftPositionText={true}
+                      photo={props.data.AboutSection.FirstImg.url ? "http://localhost:1337" + props.data.AboutSection.FirstImg.url : about1.src}
+                      header={chooseLanguage(
+                        language,
+                        props.data.AboutSection.SectionTitleRu,
+                        props.data.AboutSection.SectionTitleEn,
+                        props.data.AboutSection.SectionTitleGe,
+                      )}
+                      text={chooseLanguage(
+                        language,
+                        props.data.AboutSection.FirstTextRu,
+                        props.data.AboutSection.FirstTextEn,
+                        props.data.AboutSection.FirstTextGe,
+                      )}
+        />
+        <AboutSection
+                      photo={props.data.AboutSection.SecondImg.url ? "http://localhost:1337" + props.data.AboutSection.SecondImg.url : about1.src}
+                      text={chooseLanguage(
+                        language,
+                        props.data.AboutSection.SecondTextRu,
+                        props.data.AboutSection.SecondTextEn,
+                        props.data.AboutSection.SecondTextGe,
+                      )}
+        />
+        <AboutSection leftPositionText={true}
+                      photo={props.data.AboutSection.ThirdImg.url ? "http://localhost:1337" + props.data.AboutSection.ThirdImg.url : about1.src}
+                      text={chooseLanguage(
+                        language,
+                        props.data.AboutSection.ThirdTextRu,
+                        props.data.AboutSection.ThirdTextEn,
+                        props.data.AboutSection.ThirdTextGe,
+                      )}
+        />
+        <FormSection language={language} data={props.data.FormSection} />
       </div>
     </Header>
   );
 }
 
-// export const getStaticProps: any = async (context: any) => {
-  // try {
-  //   const data = await fetch('http://localhost:1337/main-page-fields').then((data) => {
-  //     return data.json();
-  //   });
-  //   return {
-  //     props: {
-  //       data
-  //     }
-  //   }
-  // } catch (error) {
-  //   console.log(error.message)
-  //   return {data: {}};
-  // }
-// }
+export const getStaticProps: any = async (context: any) => {
+  try {
+    const data = await fetch('http://localhost:1337/main-page-fields').then((data) => {
+      return data.json();
+    });
+    return {
+      props: {
+        data
+      }
+    }
+  } catch (error) {
+    console.log(error.message)
+    return {data: {}};
+  }
+}

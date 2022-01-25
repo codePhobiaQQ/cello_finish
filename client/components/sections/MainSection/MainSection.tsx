@@ -28,25 +28,11 @@ const MainSection = ({MainSection, language}: IMainSection) => {
 
   const variantsMain = {
     hidden: {},
-    visible: {
-      transition: {
-        delay: 1.5,
-        staggerChildren: 0.5,
-      }
-    }
+    visible: {transition: { delay: 1.5, staggerChildren: 0.5,}}
   };
   const textVariant = {
-    hidden: {
-      y: -30,
-      opacity: 0
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      }
-    }
+    hidden: { y: -30, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5 }}
   }
 
   return (

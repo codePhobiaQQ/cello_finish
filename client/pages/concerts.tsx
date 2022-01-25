@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 import Header from "../hoc/Header";
+import { v4 as uuidv4 } from 'uuid';
 import Menu from "../components/Menu/Menu";
 import {Container} from "reactstrap";
 import Concert from "../components/sections/ConcertSection/Concert";
 import useTypedSelector from "../hooks/useTypedSelector";
 import languageFunction, {chooseLanguage} from "../functions/LanguageFunction";
-import {log} from "util";
 
 export interface IConcert {
   Date: string;
@@ -52,6 +52,7 @@ const Concerts = ({ data }: IConcerts) => {
             <h2>Concerts</h2>
             {data.ConcertSection.map((concert, index) => (
               <Concert
+                key={uuidv4() + index}
                 location={
                   chooseLanguage(
                     language,

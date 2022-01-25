@@ -1,6 +1,7 @@
 import styles from "./Footer.module.sass";
 import {Container} from "reactstrap";
 import Link from "next/link";
+import Logo from "../../../public/assets/img/Logo.svg";
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
       <Container style={{display: "flex", justifyContent: "space-between"}}>
         <Link href="/">
           <a>
-            logo
+            <img style={{ height: "100px" }} src={Logo.src} alt="Logo"/>
           </a>
         </Link>
         <ul className={styles.menu}>
