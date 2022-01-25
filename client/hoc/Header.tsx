@@ -1,8 +1,6 @@
 import Link from "next/link";
 import {Dispatch, SetStateAction} from "react";
 import {Container} from "reactstrap";
-import Language from "../components/Menu/Language/Language";
-import Footer from "../components/sections/Footer/Footer";
 import Logo from "../public/assets/img/Logo.svg";
 import Head from 'next/head'
 
@@ -28,7 +26,6 @@ const Header = ({ children, isMenuOpen, setMenuOpen }: IHeader) => {
               </a>
             </Link>
           </div>
-          <Language />
           <div className="hamburger">
             <div className="box">
               <div
@@ -44,7 +41,6 @@ const Header = ({ children, isMenuOpen, setMenuOpen }: IHeader) => {
         </Container>
       </div>
       {children}
-      <Footer />
     </>
   );
 };
