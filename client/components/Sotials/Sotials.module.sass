@@ -1,21 +1,18 @@
-.sotialsWrapper
+.sotialsInner
   position: fixed
-  right: 0
+  right: 48px
   z-index: 10
   bottom: 200px
-  transform: rotate(90deg)
-  .sotialsInner
-    display: flex
-    box-sizing: border-box
-    li
-      display: block
-      &:nth-child(2)
-        margin: 0 70px
-      a
-        display: block
-        text-transform: capitalize
-        font-size: 13px
-        line-height: 16px
-        text-decoration: none
-        color: #FFFFFF
+  box-sizing: border-box
+  li
+    display: block
+    &:nth-child(2)
+      margin: 70px 0
+    svg
+      path
+        fill: darken(#fff, 40)
+      &:hover
+        path
+          transition: fill .3s ease-in-out
+          fill: #fff
 

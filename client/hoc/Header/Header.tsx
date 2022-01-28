@@ -2,6 +2,8 @@ import styles from "./Header.module.sass";
 import Languages from "../../components/Languages/Languages";
 import Hamburger from "../../components/Hamburger/Hamburger";
 import logo from "../../public/assets/svg/Logo.svg";
+import Menu from "../../components/Menu/Menu";
+import { useState } from "react";
 import Sotials from "../../components/Sotials/Sotials";
 
 interface IHeader {
@@ -9,6 +11,8 @@ interface IHeader {
 }
 
 const Header = ({ children }: IHeader) => {
+  const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
+
   return (
     <>
       <div className={styles.header}>
@@ -21,11 +25,12 @@ const Header = ({ children }: IHeader) => {
         </div>
         <div className={styles.rightElements}>
           <Languages />
-          <Hamburger />
+          <Hamburger isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
         </div>
       </div>
       {children}
-      {/* <Sotials />*/}
+      {isMenuOpen && <Menu isMenuOpen={isMenuOpen} />}
+      <Sotials />
     </>
   );
 };

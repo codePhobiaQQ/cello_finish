@@ -1,0 +1,73 @@
+.Biography
+  height: 100vh
+  min-height: 630px
+  position: relative
+  padding: 50px 0
+  z-index: 1
+  .accent
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 30%
+    z-index: -1
+    display: flex
+    align-items: center
+    justify-content: center
+    background-color: #0C0C0C
+    span
+      font-family: 'Libre Baskerville', serif
+      font-size: 120px
+      transform: rotate(-90deg)
+      text-transform: uppercase
+      display: block
+      position: relative
+      left: -50px
+      -webkit-text-stroke: 1px #232323
+      -webkit-text-fill-color: #0C0C0C
+  :global(.container)
+    display: flex
+    align-items: center
+    flex-direction: column
+    height: 100%
+    justify-content: center
+    .dowloadButton
+      margin-top: 50px
+      display: flex
+      align-items: center
+      &:hover
+        :global(.arrowRight)
+          transition: transform .4s ease
+          transform: translateX(calc(50% - 33px))
+      span
+        margin-right: 55px
+    .biographyWrapper
+      display: flex
+      .imageWrapper
+        img
+          position: relative
+          top: -70px
+          width: 370px
+          height: 555px
+      .textWrapper
+        margin-left: 40px
+        position: relative
+        svg
+          position: absolute
+          bottom: -140px
+          right: -50px
+          //width: 394px
+          height: 461px
+          fill: #232323
+        p
+          line-height: 140%
+          margin-bottom: 40px
+          &:first-child
+            margin-top: 60px
+          &:nth-child(4)
+            margin-bottom: 0
+          &:nth-child(2)
+            width: 70%
+          &:nth-child(3)
+            width: 65%

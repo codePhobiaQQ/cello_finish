@@ -1,11 +1,17 @@
 import styles from "./Hamburger.module.sass";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-const Hamburger = () => {
+interface IHamburger {
+  isMenuOpen: boolean;
+  setMenuOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+const Hamburger = ({ isMenuOpen, setMenuOpen }: IHamburger) => {
   const [isActive, setIsActive] = useState(false);
 
   const clickHandler = () => {
     setIsActive(!isActive);
+    setMenuOpen(!isMenuOpen);
   };
 
   return (
