@@ -32,6 +32,9 @@ const Menu = ({ isMenuOpen }: IMenu) => {
         duration: 0.5,
       },
     },
+    exit: {
+      opacity: 0.5,
+    },
   };
 
   return (
@@ -39,10 +42,11 @@ const Menu = ({ isMenuOpen }: IMenu) => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            // variants={fadeIn}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            // exit={{ opacity: 1 }}
+            key={"modal"}
+            variants={fadeIn}
+            initial={"hidden"}
+            animate={isMenuOpen ? "visible" : "exit"}
+            // exit={{ opacity: 0.3, backgroundColor: "red" }}
             className={styles.Menu}
           >
             <motion.img

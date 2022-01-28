@@ -1,27 +1,20 @@
 import styles from "./BiographySection.module.sass";
 import ivan from "../../public/assets/img/ivan.jpg";
 import Viol from "../../components/svg/viol";
-import { useRef } from "react";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
 import { motion } from "framer-motion";
 
 const BiographySection = () => {
-  const scrollRef = useRef(null);
-
   return (
-    <section
-      ref={scrollRef}
-      id={"BiographySection"}
-      className={styles.Biography}
-    >
+    <section id={"BiographySection"} className={styles.Biography}>
       <div className={styles.accent}>
         <span>Biography</span>
       </div>
       <div className="container">
         <div className={styles.biographyWrapper}>
-          <motion.div className={styles.imageWrapper} initial={{ opacity: 0 }}>
+          <div className={styles.imageWrapper}>
             <img src={ivan.src} alt="Ivan" />
-          </motion.div>
+          </div>
           <div className={styles.textWrapper}>
             <p>
               Иван Сканави родился в 1996 году в Москве в семье музыкантов.
