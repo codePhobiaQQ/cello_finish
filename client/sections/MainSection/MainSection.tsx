@@ -1,5 +1,5 @@
 import styles from "./MainSection.module.sass";
-import bg from "./../../public/assets/img/bgMain.png";
+import bg from "./../../public/assets/img/bgMain1.jpg";
 import ArrowDown from "../../components/ArrowDown/ArrowDown";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 

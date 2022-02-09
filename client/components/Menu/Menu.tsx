@@ -1,5 +1,5 @@
 import styles from "./Menu.module.sass";
-import menuBg from "../../public/assets/img/menuBg.jpg";
+import menuBg from "../../public/assets/img/menuBg1.jpg";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
