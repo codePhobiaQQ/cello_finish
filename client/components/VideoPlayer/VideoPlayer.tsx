@@ -6,6 +6,7 @@ import { Player } from "video-react";
 const VideoPlayer = () => {
   return (
     <div className={styles.VideoPlayerWrapper}>
+      <span>S. Rachmaninov - Sonata for cello and piano...</span>
       <Player
         // playsInline
         poster={poster.src}
