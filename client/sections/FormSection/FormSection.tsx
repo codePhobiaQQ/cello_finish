@@ -51,25 +51,30 @@ const FormSection = () => {
             className={styles.formSectionVertical}
             onSubmit={formik.handleSubmit}
           >
-            <label htmlFor="name">Ваше Имя*</label>
-            <input
-              id="name"
-              name="name"
-              className={formik.errors.name ? "errorInput" : ""}
-              type="string"
-              onChange={formik.handleChange}
-              value={formik.values.name}
-            />
+            <div className={styles.inputWrapper}>
+              <label htmlFor="name">Ваше Имя*</label>
+              <input
+                id="name"
+                name="name"
+                className={formik.errors.name ? "errorInput" : ""}
+                type="string"
+                onChange={formik.handleChange}
+                value={formik.values.name}
+              />
+              <span>select</span>
+            </div>
 
-            <label htmlFor="email">Ваш E-mail*</label>
-            <input
-              id="email"
-              name="email"
-              className={formik.errors.email ? "errorInput" : ""}
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-            />
+            <div className={styles.inputWrapper}>
+              <label htmlFor="email">Ваш E-mail*</label>
+              <input
+                id="email"
+                name="email"
+                className={formik.errors.email ? "errorInput" : ""}
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.email}
+              />
+            </div>
 
             <label htmlFor="name">Ваше сообщение</label>
             <div className={styles.submitWrapper}>
