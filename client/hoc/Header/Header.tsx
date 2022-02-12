@@ -5,6 +5,7 @@ import logo from "../../public/assets/svg/Logo.svg";
 import Menu from "../../components/Menu/Menu";
 import { useState } from "react";
 import Sotials from "../../components/Sotials/Sotials";
+import Link from "next/link";
 
 interface IHeader {
   children: React.ReactNode;
@@ -17,11 +18,15 @@ const Header = ({ children }: IHeader) => {
     <>
       <div className={styles.header}>
         <div className={styles.logo}>
-          <img src={logo.src} alt="Logo" />
-          <span>
-            Ivan <br />
-            Skanavi
-          </span>
+          <Link href="/">
+            <a>
+              <img src={logo.src} alt="Logo" />
+              <span>
+                Ivan <br />
+                Skanavi
+              </span>
+            </a>
+          </Link>
         </div>
         <div className={styles.rightElements}>
           <Languages />

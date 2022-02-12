@@ -17,7 +17,29 @@
         margin-bottom: 0
       &:hover
         color: #fff
-  //.centerSide
+
+  .centerSide
+    display: flex
+    ul
+      height: 100%
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      &:first-child
+        margin-right: 73px
+      &:last-child
+        li
+          a:hover
+            color: #fff
+      li
+        a
+          font-size: 18px
+          color: #5C5C5C
+          transition: color .3s ease
+          &.active
+            color: #fff
+
+
   .rightSide
     display: flex
     flex-direction: column

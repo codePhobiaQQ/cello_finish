@@ -3,9 +3,13 @@ import poster from "../../public/assets/img/videoImg.jpg";
 // @ts-ignore
 import { Player } from "video-react";
 
-const VideoPlayer = () => {
+interface IVideoPlayer {
+  styling?: any;
+}
+
+const VideoPlayer = ({ styling }: IVideoPlayer) => {
   return (
-    <div className={styles.VideoPlayerWrapper}>
+    <div className={styles.VideoPlayerWrapper} style={styling}>
       <span>S. Rachmaninov - Sonata for cello and piano...</span>
       <Player
         // playsInline

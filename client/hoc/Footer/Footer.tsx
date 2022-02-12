@@ -10,12 +10,51 @@ import telegram from "./../../public/assets/svg/sotials/Telegram.svg";
 import insp from "./../../public/assets/svg/insp.svg";
 import Link from "next/link";
 import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
+import { useRouter } from "next/router";
+import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
 interface IFooter {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+}
+
+interface IMenu {
+  title: string;
+  link: string;
 }
 
 const Footer = ({ children }: IFooter) => {
+  const router = useRouter();
+  const currentLink = router.asPath;
+
+  console.log(currentLink);
+
+  const footerMenu: IMenu[] = [
+    {
+      title: "Biography",
+      link: "/biography",
+    },
+    {
+      title: "Gallery",
+      link: "/gallery",
+    },
+    {
+      title: "Videos",
+      link: "/videos",
+    },
+    {
+      title: "Concerts",
+      link: "/concerts",
+    },
+    {
+      title: "News",
+      link: "/news",
+    },
+    {
+      title: "Contacts",
+      link: "/contacts",
+    },
+  ];
+
   const sotials: ISotial[] = [
     {
       icon: spotify.src,
@@ -53,7 +92,48 @@ const Footer = ({ children }: IFooter) => {
             <span>Защита персональных данных</span>
             <span>Политика конфиденциальности</span>
           </div>
-          <div className={styles.centerSide}>center</div>
+          <div className={styles.centerSide}>
+            <ul>
+              {footerMenu.map((link, index) => (
+                <li key={uuidv4() + index}>
+                  <Link href={link.link}>
+                    <a
+                      className={currentLink == link.link ? styles.active : ""}
+                    >
+                      {link.title}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <ul>
+              <li>
+                <VideoPlayer
+                  styling={{
+                    position: "relative",
+                    right: "inherit",
+                    bottom: "inherit",
+                    top: "inherit",
+                  }}
+                />
+              </li>
+              <li>
+                <a href="#" target="_blank">
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank">
+                  YouTube
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank">
+                  Facebook
+                </a>
+              </li>
+            </ul>
+          </div>
 
           <div className={styles.rightSide}>
             <div className={styles.sotials}>
@@ -65,12 +145,12 @@ const Footer = ({ children }: IFooter) => {
                 />
               ))}
             </div>
-            <div className={styles.contact}>
-              <span className={styles.name}>Phone:</span>
-              <a href="#" className={styles.value}>
-                8-800-123-45-67
-              </a>
-            </div>
+            {/* <div className={styles.contact}>*/}
+            {/*  <span className={styles.name}>Phone:</span>*/}
+            {/*  <a href="#" className={styles.value}>*/}
+            {/*    8-800-123-45-67*/}
+            {/*  </a>*/}
+            {/* </div>*/}
             <div className={styles.contact}>
               <span className={styles.name}>Email:</span>
               <a href="#" className={styles.value}>
