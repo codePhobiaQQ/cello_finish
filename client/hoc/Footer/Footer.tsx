@@ -6,7 +6,6 @@ import SotialIconFooter, {
 import { v4 as uuidv4 } from "uuid";
 import spotify from "./../../public/assets/svg/sotials/Spotify.svg";
 import spotifyActive from "./../../public/assets/svg/sotials/SpotifyActive.svg";
-import telegram from "./../../public/assets/svg/sotials/Telegram.svg";
 import insp from "./../../public/assets/svg/insp.svg";
 import Link from "next/link";
 import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
@@ -31,7 +30,7 @@ const Footer = ({ children }: IFooter) => {
   const footerMenu: IMenu[] = [
     {
       title: "Biography",
-      link: "/biography",
+      link: "/#BiographySection",
     },
     {
       title: "Gallery",

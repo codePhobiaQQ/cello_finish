@@ -63,10 +63,35 @@
       display: flex
       align-items: center
       margin-top: auto
-
       span
         color: #5C5C5C
         flex: 0 0 auto
-        margin-right: auto
+        margin-right: 10px
 
+
+  @media screen and (max-width: 1200px)
+    flex-wrap: wrap
+    .leftSide
+      width: 222px
+      img
+        width: 177px
+        margin-bottom: 5px
+      span
+        font-size: 13px
+        margin-bottom: 35px
+    .centerSide
+      ul
+        li
+          &:first-child
+            display: none
+    .rightSide
+      margin-top: 0
+      .whoMake
+        margin-top: auto
+
+  @media screen and (max-width: 992px)
+    .rightSide
+      margin: 70px auto 0 auto
+      .whoMake
+        margin-top: 30px
 

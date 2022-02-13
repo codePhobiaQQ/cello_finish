@@ -10,6 +10,8 @@
   justify-content: space-between
   @media screen and (max-width: 1350px)
     padding: 15px 30px
+  @media screen and (max-width: 767px)
+    padding: 10px 10px
   .logo
     cursor: pointer
     display: flex
@@ -23,6 +25,21 @@
       margin-left: 38px
       display: block
       top: 20px
+  @media screen and (max-width: 767px)
+    .logo
+      a
+        display: flex
+        align-items: center
+        img
+          height: 40px
+          top: inherit
+          position: relative
+        span
+          font-size: 10px
+          margin-left: 5px
+          position: relative
+          top: inherit
+
   .rightElements
     display: flex
     align-items: center

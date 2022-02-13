@@ -1,7 +1,7 @@
 import Footer from "../hoc/Footer/Footer";
 import Header from "../hoc/Header/Header";
 
-const Biography = () => {
+const Gallery = () => {
   return (
     <Header>
       <Footer></Footer>
@@ -9,4 +9,4 @@ const Biography = () => {
   );
 };
 
-export default Biography;
+export default Gallery;

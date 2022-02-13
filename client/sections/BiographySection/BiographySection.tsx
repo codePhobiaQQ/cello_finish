@@ -2,7 +2,6 @@ import styles from "./BiographySection.module.sass";
 import ivan from "../../public/assets/img/ivan.jpg";
 import Viol from "../../components/svg/viol";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
-import { motion } from "framer-motion";
 
 const BiographySection = () => {
   return (

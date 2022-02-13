@@ -52,6 +52,7 @@
         font-weight: 500
         padding-bottom: 20px
         color: #DDDDDD
+        width: 100%
         transition: border-color .3s ease
         &:global(.errorInput)
           border-color: red
@@ -101,4 +102,18 @@
           margin-right: 14px
         a
           color: #fff
+  @media screen and (max-width: 1024px)
+    display: flex
+  @media screen and (max-width: 992px)
+    .formSectionWrapper
+      height: 100%
+      top: inherit
+      .formSectionHorizontal
+        display: none
+      .formSectionVertical
+        position: relative
+        right: inherit
+        height: 569px
+        width: 450px
+
 
