@@ -34,7 +34,7 @@ const Header = ({ children }: IHeader) => {
         </div>
       </div>
       {children}
-      {isMenuOpen && <Menu isMenuOpen={isMenuOpen} />}
+      {isMenuOpen && <Menu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />}
       <Sotials />
     </>
   );
