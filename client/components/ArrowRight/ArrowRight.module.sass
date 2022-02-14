@@ -11,5 +11,14 @@
     border: 1px solid #C4C4C4
   .arrow
     position: absolute
-    top: 22px
     transform: translateX(calc(50% - 40px))
+    top: calc(50% - 4px)
+  @media screen and (max-width: 765px)
+    .circle
+      width: 30px
+      height: 30px
+    .arrow
+      width: 18px
+      transform: translateX(calc(50% - 24px))
+      top: calc(50% - 3px)
+

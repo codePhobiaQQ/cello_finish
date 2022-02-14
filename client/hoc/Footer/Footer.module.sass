@@ -46,6 +46,8 @@
     .sotials
       display: flex
       justify-content: space-between
+    .mobSocials
+      display: none
     .contact
       display: flex
       align-items: center
@@ -95,3 +97,42 @@
       .whoMake
         margin-top: 30px
 
+  @media screen and (max-width: 765px)
+    padding: 30px 0
+    .leftSide
+      //width: 125px
+      img
+        width: 125px
+        margin-bottom: 5px
+      span
+        font-size: 10px
+        margin-bottom: 28px
+    .centerSide
+      ul
+        &:first-child
+          margin-right: 0
+          li a
+            font-size: 10px
+            text-align: right
+            display: block
+        &:last-child
+          display: none
+    .rightSide
+      margin-top: 25px
+      width: 100%
+      .mobSocials
+        display: flex
+        list-style: none
+        font-size: 10px
+        width: 100%
+        justify-content: space-between
+        margin-top: 30px
+        li a
+          color: #5C5C5C
+      .contact
+        font-size: 10px
+        margin-top: 30px
+      .whoMake
+        font-size: 10px
+        a img
+          width: 101px

@@ -11,6 +11,9 @@ import Link from "next/link";
 import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
 import { useRouter } from "next/router";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+import Instagram from "../../components/svg/instagram";
+import Youtube from "../../components/svg/youtube";
+import Facebook from "../../components/svg/facebook";
 
 interface IFooter {
   children?: React.ReactNode;
@@ -143,6 +146,23 @@ const Footer = ({ children }: IFooter) => {
                   active={sotial.active}
                 />
               ))}
+            </div>
+            <div className={styles.mobSocials}>
+              <li>
+                <a href="#" target="_blank">
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank">
+                  Youtube
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank">
+                  Facebook
+                </a>
+              </li>
             </div>
             {/* <div className={styles.contact}>*/}
             {/*  <span className={styles.name}>Phone:</span>*/}

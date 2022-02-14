@@ -15,6 +15,7 @@ const BiographySection = () => {
             <img src={ivan.src} alt="Ivan" />
           </div>
           <div className={styles.textWrapper}>
+            <img src={ivan.src} alt="Ivan" />
             <p>
               Иван Сканави родился в 1996 году в Москве в семье музыкантов.
               Заниматься на виолончели начал в ДМШ Академического музыкального
