@@ -1,88 +1,96 @@
+import styles from "./Menu.module.sass";
+import menuBg from "../../public/assets/img/menuBg1.jpg";
 import Link from "next/link";
-import {Dispatch, SetStateAction, useState} from "react";
-import { motion } from "framer-motion";
-import useTypedSelector from "../../hooks/useTypedSelector";
-import IVariantClass from "../../variants/VariantClass";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface IMenu {
   isMenuOpen: boolean;
-  setMenuOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
-  const [menuItems, setMenuItems] = useState<any>(null);
-  const language = useTypedSelector(state => state.app.language);
-
-  const links = [
-    {
-      title: "Home",
-      link: '/#home'
+const Menu = ({ isMenuOpen }: IMenu) => {
+  const fadeIn = {
+    hidden: {
+      opacity: 0,
     },
-    {
-      title: "Biography",
-      subtitle: "the alisa",
-      link: '/#biography'
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
     },
-    {
-      title: "Gallery",
-      subtitle: "hey rofl",
-      link: '/gallery'
+    exit: {
+      opacity: 0.5,
     },
-    {
-      title: "Videos",
-      subtitle: "test shalun",
-      link: '/videos'
+  };
+  const scale = {
+    hidden: {
+      scale: 1,
     },
-    {
-      title: "Concerts",
-      subtitle: "ham privet",
-      link: '/concerts'
+    visible: {
+      scale: 1.05,
+      transition: {
+        duration: 0.5,
+      },
     },
-    {
-      title: "News",
-      subtitle: "ham privet",
-      link: '/news'
+    exit: {
+      opacity: 0.5,
     },
-    {
-      title: "Contacts",
-      link: '/contacts'
-    },
-  ]
-
-  const wrapperVariant: IVariantClass = { visible: { transition: { staggerChildren: .15 }}};
-  const menuRightVariant: IVariantClass = {
-      hidden: { opacity: 0, x: 25 },
-      visible: { opacity: 1, x: 0, transition: { duration: .2 }}
   };
 
-  // @ts-ignore
   return (
-    <div className={isMenuOpen ? "Menu active" : "Menu"}>
-      <motion.ul
-        className="menu menu--adsila"
-        variants={wrapperVariant}
-        animate={isMenuOpen ? "visible" : "hidden"}
-      >
-        {links.map((link, index) => (
-          <motion.li
-            onClick={() => setMenuOpen(false)}
-            variants={menuRightVariant}
-            key={"menu_item" + index}
+    <>
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            key={"modal"}
+            variants={fadeIn}
+            initial={"hidden"}
+            animate={isMenuOpen ? "visible" : "exit"}
+            // exit={{ opacity: 0.3, backgroundColor: "red" }}
+            className={styles.Menu}
           >
-            <Link href={link.link}>
-              <a className="menu__item">
-                <span className="menu__item-name">{link.title}</span>
-                { link.subtitle
-                  ? <span className="menu__item-label">{link.subtitle}</span>
-                  : null
-                }
-              </a>
-            </Link>
-          </motion.li>
-          )
+            <motion.img
+              variants={scale}
+              className={styles.bgImage}
+              src={menuBg.src}
+              alt="menuBg"
+            />
+            <ul className={styles.menuItems}>
+              <li className={styles.menuItem}>
+                <Link href="#">
+                  <a>Главная</a>
+                </Link>
+              </li>
+              <li className={styles.menuItem}>
+                <Link href="#">
+                  <a>Биография</a>
+                </Link>
+              </li>
+              <li className={styles.menuItem}>
+                <Link href="#">
+                  <a>Галерея</a>
+                </Link>
+              </li>
+              <li className={styles.menuItem}>
+                <Link href="#">
+                  <a>Концерты</a>
+                </Link>
+              </li>
+              <li className={styles.menuItem}>
+                <Link href="#">
+                  <a>Новости</a>
+                </Link>
+              </li>
+              <li className={styles.menuItem}>
+                <Link href="#">
+                  <a>Контакты</a>
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
         )}
-      </motion.ul>
-    </div>
+      </AnimatePresence>
+    </>
   );
 };
 
