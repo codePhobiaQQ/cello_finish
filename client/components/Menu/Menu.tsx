@@ -6,13 +6,12 @@ import menuBgMob from "../../public/assets/img/Menu/menuBgMob.jpg";
 import menuBgPc from "../../public/assets/img/Menu/menuBgPc.jpg";
 
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import SotialIconFooter from "../SotialIconFooter/SotialIconFooter";
 import {v4 as uuidv4} from "uuid";
 import {footerMenu, sotials} from "../../hoc/Footer/Footer";
 import useWindowWidth from "react-hook-use-window-width";
-import {SetStateAction, useEffect, useState} from "react";
-import { Dispatch } from "@reduxjs/toolkit";
+import { useEffect, useState} from "react";
 
 interface IMenu {
   isMenuOpen: boolean;
