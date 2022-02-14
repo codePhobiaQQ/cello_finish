@@ -16,7 +16,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 
 interface IMenu {
   isMenuOpen: boolean;
-  setMenuOpen: Dispatch<SetStateAction<boolean>>;
+  setMenuOpen: any;
 }
 
 const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
