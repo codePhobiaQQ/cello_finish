@@ -11,9 +11,6 @@ import Link from "next/link";
 import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
 import { useRouter } from "next/router";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
-import Instagram from "../../components/svg/instagram";
-import Youtube from "../../components/svg/youtube";
-import Facebook from "../../components/svg/facebook";
 
 interface IFooter {
   children?: React.ReactNode;
@@ -24,66 +21,69 @@ interface IMenu {
   link: string;
 }
 
+export const sotials: ISotial[] = [
+  {
+    icon: spotify.src,
+    active: spotifyActive.src,
+    link: "#",
+  },
+  {
+    icon: spotify.src,
+    active: spotifyActive.src,
+    link: "#",
+  },
+  {
+    icon: spotify.src,
+    active: spotifyActive.src,
+    link: "#",
+  },
+  {
+    icon: spotify.src,
+    active: spotifyActive.src,
+    link: "#",
+  },
+  {
+    icon: spotify.src,
+    active: spotifyActive.src,
+    link: "#",
+  },
+];
+
+export const footerMenu: IMenu[] = [
+  {
+    title: "Biography",
+    link: "/#BiographySection",
+  },
+  {
+    title: "Gallery",
+    link: "/gallery",
+  },
+  {
+    title: "Videos",
+    link: "/videos",
+  },
+  {
+    title: "Concerts",
+    link: "/concerts",
+  },
+  {
+    title: "News",
+    link: "/news",
+  },
+  {
+    title: "Contacts",
+    link: "/#Contacts",
+  },
+];
+
 const Footer = ({ children }: IFooter) => {
   const router = useRouter();
   const currentLink = router.asPath;
 
-  console.log(currentLink);
-
-  const footerMenu: IMenu[] = [
-    {
-      title: "Biography",
-      link: "/#BiographySection",
-    },
-    {
-      title: "Gallery",
-      link: "/gallery",
-    },
-    {
-      title: "Videos",
-      link: "/videos",
-    },
-    {
-      title: "Concerts",
-      link: "/concerts",
-    },
-    {
-      title: "News",
-      link: "/news",
-    },
-    {
-      title: "Contacts",
-      link: "/contacts",
-    },
-  ];
-
-  const sotials: ISotial[] = [
-    {
-      icon: spotify.src,
-      active: spotifyActive.src,
-    },
-    {
-      icon: spotify.src,
-      active: spotifyActive.src,
-    },
-    {
-      icon: spotify.src,
-      active: spotifyActive.src,
-    },
-    {
-      icon: spotify.src,
-      active: spotifyActive.src,
-    },
-    {
-      icon: spotify.src,
-      active: spotifyActive.src,
-    },
-  ];
-
   return (
     <>
       {children}
-      <div className="container">
+      <div className="container" id={"Contacts"}>
         <div className={styles.Footer}>
           <div className={styles.leftSide}>
             <Link href="/">
@@ -141,6 +141,7 @@ const Footer = ({ children }: IFooter) => {
             <div className={styles.sotials}>
               {sotials.map((sotial, index) => (
                 <SotialIconFooter
+                  link={sotial.link}
                   key={uuidv4() + index}
                   icon={sotial.icon}
                   active={sotial.active}
