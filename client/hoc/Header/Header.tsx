@@ -17,7 +17,7 @@ const Header = ({ children }: IHeader) => {
   return (
     <>
       <div className={styles.header}>
-        <div className={styles.logo}>
+        <div className={styles.logo} onClick={() => setMenuOpen(false)}>
           <Link href="/">
             <a>
               <img src={logo.src} alt="Logo" />

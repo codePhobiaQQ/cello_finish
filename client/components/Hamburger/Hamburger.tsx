@@ -7,17 +7,16 @@ interface IHamburger {
 }
 
 const Hamburger = ({ isMenuOpen, setMenuOpen }: IHamburger) => {
-  const [isActive, setIsActive] = useState(false);
-
   const clickHandler = () => {
-    setIsActive(!isActive);
     setMenuOpen(!isMenuOpen);
   };
 
   return (
     <div
       className={
-        !isActive ? styles.wrapperMenu : styles.wrapperMenu + " " + styles.open
+        !isMenuOpen
+          ? styles.wrapperMenu
+          : styles.wrapperMenu + " " + styles.open
       }
       onClick={() => clickHandler()}
     >
