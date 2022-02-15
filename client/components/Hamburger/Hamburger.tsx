@@ -1,5 +1,5 @@
 import styles from "./Hamburger.module.sass";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 interface IHamburger {
   isMenuOpen: boolean;
