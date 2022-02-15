@@ -1,50 +1,57 @@
 .videoSection
-  :global(.slick-slider)
-    //margin: 112px 0 51px
-    //display: flex
-    //align-items: center
-    :global(.slick-list)
-      //height: 100%
-      //display: flex
-      :global(.slick-track)
-        //display: flex
-        :global(.slick-slide)
-          //height: 100%
-          //width: 440px
-          //display: flex
-          //align-items: center
-          //justify-content: center
-          //margin: 0 30px
-          div
-            &:focus-visible
-              outline: none !important
+  margin: 204px 0 160px
+  height: 100%
+  width: 100%
+  :global(.moreWrap)
+    display: flex
+    align-items: center
+    width: 210px
+    margin: auto
+    justify-content: space-between
+    cursor: pointer
+    &:hover
+      :global(.moreArrow)
+        display: flex
+        align-items: center
+        img
+          margin-top: -9px
+    span
+      margin-left: 40px
+  .videoElem
+    display: flex
+    height: 160px
+    width: 100%
+    margin-bottom: 50px
+    //.video
+    :global(.video-react.video-react-fluid)
+      height: 100% !important
+      width: 287px
+    .contentWrapper
+      display: flex
+      justify-content: space-between
+      border-bottom: 1px solid #fff
+      padding: 17px 0
+      margin-left: 47px
+      width: 100%
+      .leftSide, .rightSide
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+      .leftSide
+        span
+          &:first-child
+            font-size: 16px
+          &:last-child
+            font-weight: bold
+            font-size: 20px
+      .rightSide
+        div
+          display: flex
+          flex-direction: column
+          text-align: right
+          span
+            &:first-child
+              margin-bottom: 7px
+        span
+          text-align: right
 
-
-  //@media screen and (max-width: 992px)
-  //  :global(.slick-slider)
-  //    margin: 112px 0 36px
-  //    :global(.slick-list)
-  //      :global(.slick-track)
-  //        :global(.slick-slide)
-  //          margin: 0 10px
-  //        :global(.slick-slide.slick-active)
-  //          img
-  //            transition: filter .7s ease
-  //            filter: none
-  //  .arrowsWrapper
-  //    margin-bottom: 85px
-  //    :global(.arrowSlider)
-  //      &:first-child
-  //        margin-right: 30px
-  //
-  //@media screen and (max-width: 768px)
-  //  :global(.slick-slider)
-  //    :global(.slick-list)
-  //      :global(.slick-track)
-  //        :global(.slick-slide)
-  //
-  //@media screen and (max-width: 576px)
-  //  :global(.slick-slider)
-  //    :global(.slick-list)
-  //      :global(.slick-track)
-  //        :global(.slick-slide)

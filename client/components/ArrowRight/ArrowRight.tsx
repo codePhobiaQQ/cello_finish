@@ -8,12 +8,13 @@ const ArrowRight = () => {
 
   return (
     <div className={styles.arrowWrapper}>
-      <div className={styles.circle}></div>
-      <img
-        className={styles.arrow + " arrowRight"}
-        src={width > 576 ? arrow.src : arrowMob.src}
-        alt="arrow"
-      />
+      <div className={styles.circle}>
+        <img
+          className={styles.arrow + " arrowRight"}
+          src={width > 576 ? arrow.src : arrowMob.src}
+          alt="arrow"
+        />
+      </div>
     </div>
   );
 };

@@ -117,6 +117,7 @@ const Footer = ({ children }: IFooter) => {
                     bottom: "inherit",
                     top: "inherit",
                   }}
+                  label={"S. Rachmaninov - Sonata for cello and piano.."}
                 />
               </li>
               <li>

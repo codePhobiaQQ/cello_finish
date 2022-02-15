@@ -5,7 +5,7 @@ const Languages = () => {
     <ul className={styles.languages}>
       <li className={styles.acitve}>Ru</li>
       <li>En</li>
-      <li>Ge</li>
+      <li>De</li>
     </ul>
   );
 };

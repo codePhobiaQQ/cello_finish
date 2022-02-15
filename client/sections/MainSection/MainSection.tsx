@@ -34,7 +34,9 @@ const MainSection = () => {
         <span>Concerts / Performances</span>
       </div>
       <div className={styles.connect}>Связаться с менеджером</div>
-      {width > 756 ? <VideoPlayer /> : null}
+      {width > 756 ? (
+        <VideoPlayer label={"S. Rachmaninov - Sonata for cello and piano.."} />
+      ) : null}
       {width > 756 ? <ArrowDown /> : null}
     </section>
   );

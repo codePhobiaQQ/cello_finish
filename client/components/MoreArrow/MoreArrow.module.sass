@@ -1,4 +1,4 @@
-.arrowWrapper
+.moreArrow
   display: flex
   flex-direction: column
   align-items: center
@@ -11,9 +11,12 @@
     border: 1px solid #C4C4C4
   .arrow
     position: absolute
-    transform: translateX(calc(50% - 27px))
+    transform: translateX(calc(50% - 52px)) rotate(90deg) translateY(calc(50% - 40px))
     top: calc(50% - 4px)
-    width: 27px
+    width: 28px
+    margin-top: -21px
+    transition: all .3s ease
+
   @media screen and (max-width: 765px)
     .circle
       width: 30px
@@ -22,4 +25,3 @@
       width: 18px
       transform: translateX(calc(50% - 24px))
       top: calc(50% - 3px)
-

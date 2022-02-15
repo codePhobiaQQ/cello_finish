@@ -1,20 +1,22 @@
 import styles from "./VideoPlayer.module.sass";
-import poster from "../../public/assets/img/videoImg.jpg";
+import postering from "../../public/assets/img/videoImg.jpg";
 // @ts-ignore
 import { Player } from "video-react";
 
 interface IVideoPlayer {
   styling?: any;
-  videoSrc?: any;
+  videoSrc?: string;
+  poster?: string;
+  label?: string;
 }
 
-const VideoPlayer = ({ videoSrc, styling }: IVideoPlayer) => {
+const VideoPlayer = ({ videoSrc, styling, poster, label }: IVideoPlayer) => {
   return (
     <div className={styles.VideoPlayerWrapper} style={styling}>
-      <span>S. Rachmaninov - Sonata for cello and piano...</span>
+      {!!label && <span>{label}</span>}
       <Player
         // playsInline
-        poster={poster.src}
+        poster={poster ? poster : postering.src}
         width={200}
         height={120}
         src={
