@@ -5,9 +5,10 @@ import { Player } from "video-react";
 
 interface IVideoPlayer {
   styling?: any;
+  videoSrc?: any;
 }
 
-const VideoPlayer = ({ styling }: IVideoPlayer) => {
+const VideoPlayer = ({ videoSrc, styling }: IVideoPlayer) => {
   return (
     <div className={styles.VideoPlayerWrapper} style={styling}>
       <span>S. Rachmaninov - Sonata for cello and piano...</span>
@@ -16,7 +17,11 @@ const VideoPlayer = ({ styling }: IVideoPlayer) => {
         poster={poster.src}
         width={200}
         height={120}
-        src={"https://media.w3.org/2010/05/sintel/trailer_hd.mp4"}
+        src={
+          videoSrc
+            ? videoSrc
+            : "https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+        }
       />
     </div>
   );
