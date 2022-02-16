@@ -1,5 +1,5 @@
 import styles from "./VideoSection.module.sass";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import slide1 from "../../public/assets/compositionSlides/composition.jpg";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
@@ -61,7 +61,7 @@ const VideoSection = () => {
   const [paging, setCurrentPage] = useState<number>(1);
 
   const [showSlides, setShowSlides] = useState<ISlide[]>(
-    slides.slice(1, paging * 3)
+    slides.slice(0, paging * 3)
   );
   // let mayShowOnPage = 3;
 
