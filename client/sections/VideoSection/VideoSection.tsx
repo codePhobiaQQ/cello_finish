@@ -56,24 +56,42 @@ const VideoSection = () => {
       composition: "Pezzo capriccioso",
       duration: "06:50",
     },
+    {
+      image: slide1.src,
+      video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
+      author: "Pyotr Ilyich Tchaikovsky",
+      executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
+      composition: "Pezzo capriccioso",
+      duration: "06:50",
+    },
+    {
+      image: slide1.src,
+      video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
+      author: "Pyotr Ilyich Tchaikovsky",
+      executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
+      composition: "Pezzo capriccioso",
+      duration: "06:50",
+    },
   ];
 
-  const [paging, setCurrentPage] = useState<number>(1);
+  const [pagination, setCurrentPagination] = useState<number>(3);
+  const [isMoreVisible, setMobVisible] = useState<boolean>(true);
 
-  const [showSlides, setShowSlides] = useState<ISlide[]>(
-    slides.slice(0, paging * 3)
-  );
-  // let mayShowOnPage = 3;
+  const slidesAmount = slides.length;
 
   const clickMoreAction = () => {
-    setCurrentPage(paging + 1);
-    setShowSlides(slides.slice(0, paging * 3));
+    if (pagination + 3 > slidesAmount) {
+      setCurrentPagination(slidesAmount);
+      setMobVisible(false);
+    } else {
+      setCurrentPagination(pagination + 3);
+    }
   };
 
   return (
     <div className={styles.videoSection}>
       <div className="container">
-        {showSlides.map((slide, index) => (
+        {slides.slice(0, pagination).map((slide, index) => (
           <div key={uuidv4() + index} className={styles.videoElem}>
             <VideoPlayer
               styling={{
@@ -100,10 +118,12 @@ const VideoSection = () => {
             </div>
           </div>
         ))}
-        <div onClick={clickMoreAction} className="moreWrap">
-          <MoreArrow />
-          <span>Показать еще</span>
-        </div>
+        {isMoreVisible && (
+          <div onClick={clickMoreAction} className="moreWrap">
+            <MoreArrow />
+            <span>Показать еще</span>
+          </div>
+        )}
       </div>
     </div>
   );
