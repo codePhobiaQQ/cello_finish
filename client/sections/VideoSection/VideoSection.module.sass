@@ -2,6 +2,8 @@
   margin: 204px 0 160px
   height: 100%
   width: 100%
+  @media screen and (max-height: 1000px)
+    margin: 140px 0 120px
   :global(.moreWrap)
     display: flex
     align-items: center
@@ -14,15 +16,24 @@
         display: flex
         align-items: center
         img
-          margin-top: -9px
+          margin-top: -10px
     span
       margin-left: 40px
+
+  @media screen and (max-width: 767px)
+    :global(.VideoPlayerWrapper)
+      width: 90px
+
+
   .videoElem
     display: flex
     height: 160px
     width: 100%
     margin-bottom: 50px
     //.video
+    @media screen and (max-width: 767px)
+      margin-bottom: 25px
+
     :global(.video-react.video-react-fluid)
       height: 100% !important
       width: 287px
@@ -55,3 +66,52 @@
         span
           text-align: right
 
+    @media screen and (max-width: 992px)
+      height: 90px
+      .contentWrapper
+        padding: 8px 0
+        margin-left: 26px
+        .leftSide
+          span
+            &:first-child
+              font-size: 13px
+            &:last-child
+              font-weight: bold
+              font-size: 16px
+        .rightSide
+          div
+            span
+              font-size: 13px
+              &:first-child
+                margin-bottom: 2px
+          span
+            font-size: 13px
+
+      :global(.video-react.video-react-fluid)
+        height: 100% !important
+        width: 160px
+
+    @media screen and (max-width: 767px)
+      height: 50px
+      .contentWrapper
+        padding: 3px 0
+        margin-left: 15px
+        .leftSide
+          span
+            &:first-child
+              font-size: 8px
+            &:last-child
+              font-weight: bold
+              font-size: 9px
+        .rightSide
+          div
+            span
+              font-size: 8px
+              &:first-child
+                margin-bottom: 2px
+          span
+            font-size: 8px
+
+      :global(.video-react.video-react-fluid)
+        height: 50px
+        width: 110px

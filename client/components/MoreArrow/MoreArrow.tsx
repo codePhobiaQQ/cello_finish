@@ -9,12 +9,13 @@ const MoreArrow = () => {
 
   return (
     <div className={styles.moreArrow + " moreArrow"}>
-      <div className={styles.circle}></div>
-      <img
-        className={styles.arrow + " arrowRight"}
-        src={width > 576 ? arrow.src : arrowMob.src}
-        alt="arrow"
-      />
+      <div className={styles.circle}>
+        <img
+          className={styles.arrow + " arrowRight"}
+          src={width > 576 ? arrow.src : arrowMob.src}
+          alt="arrow"
+        />
+      </div>
     </div>
   );
 };

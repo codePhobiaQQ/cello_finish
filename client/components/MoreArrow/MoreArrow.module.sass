@@ -9,13 +9,17 @@
     height: 50px
     border-radius: 50%
     border: 1px solid #C4C4C4
-  .arrow
-    position: absolute
-    transform: translateX(calc(50% - 52px)) rotate(90deg) translateY(calc(50% - 40px))
-    top: calc(50% - 4px)
-    width: 28px
-    margin-top: -21px
-    transition: all .3s ease
+    display: flex
+    align-items: center
+    justify-content: center
+    position: relative
+    .arrow
+      position: relative
+      transform: rotate(90deg)
+      top: -7px
+      width: 28px
+      margin-top: -21px
+      transition: all .3s ease
 
   @media screen and (max-width: 765px)
     .circle

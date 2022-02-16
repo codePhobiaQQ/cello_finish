@@ -11,7 +11,7 @@ const ArrowRight = () => {
       <div className={styles.circle}>
         <img
           className={styles.arrow + " arrowRight"}
-          src={width > 576 ? arrow.src : arrowMob.src}
+          src={width > 576 ? arrow : arrowMob}
           alt="arrow"
         />
       </div>

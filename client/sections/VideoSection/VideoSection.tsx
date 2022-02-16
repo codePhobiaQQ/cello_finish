@@ -1,5 +1,5 @@
 import styles from "./VideoSection.module.sass";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import slide1 from "../../public/assets/compositionSlides/composition.jpg";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
@@ -40,28 +40,40 @@ const VideoSection = () => {
       composition: "Pezzo capriccioso",
       duration: "06:50",
     },
-    // {
-    //   image: slide1.src,
-    //   video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
-    //   author: "Pyotr Ilyich Tchaikovsky",
-    //   executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
-    //   composition: "Pezzo capriccioso",
-    //   duration: "06:50",
-    // },
-    // {
-    //   image: slide1.src,
-    //   video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
-    //   author: "Pyotr Ilyich Tchaikovsky",
-    //   executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
-    //   composition: "Pezzo capriccioso",
-    //   duration: "06:50",
-    // },
+    {
+      image: slide1.src,
+      video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
+      author: "Pyotr Ilyich Tchaikovsky",
+      executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
+      composition: "Pezzo capriccioso",
+      duration: "06:50",
+    },
+    {
+      image: slide1.src,
+      video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
+      author: "Pyotr Ilyich Tchaikovsky",
+      executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
+      composition: "Pezzo capriccioso",
+      duration: "06:50",
+    },
   ];
+
+  const [paging, setCurrentPage] = useState<number>(1);
+
+  const [showSlides, setShowSlides] = useState<ISlide[]>(
+    slides.slice(1, paging * 3)
+  );
+  // let mayShowOnPage = 3;
+
+  const clickMoreAction = () => {
+    setCurrentPage(paging + 1);
+    setShowSlides(slides.slice(0, paging * 3));
+  };
 
   return (
     <div className={styles.videoSection}>
       <div className="container">
-        {slides.map((slide, index) => (
+        {showSlides.map((slide, index) => (
           <div key={uuidv4() + index} className={styles.videoElem}>
             <VideoPlayer
               styling={{
@@ -88,7 +100,7 @@ const VideoSection = () => {
             </div>
           </div>
         ))}
-        <div className="moreWrap">
+        <div onClick={clickMoreAction} className="moreWrap">
           <MoreArrow />
           <span>Показать еще</span>
         </div>

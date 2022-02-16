@@ -12,7 +12,10 @@ interface IVideoPlayer {
 
 const VideoPlayer = ({ videoSrc, styling, poster, label }: IVideoPlayer) => {
   return (
-    <div className={styles.VideoPlayerWrapper} style={styling}>
+    <div
+      className={styles.VideoPlayerWrapper + " VideoPlayerWrapper"}
+      style={styling}
+    >
       {!!label && <span>{label}</span>}
       <Player
         // playsInline
