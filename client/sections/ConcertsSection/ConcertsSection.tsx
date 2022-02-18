@@ -7,7 +7,6 @@ import image3 from "../../public/assets/concerts/concert3.jpg";
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import MoreArrow from "../../components/MoreArrow/MoreArrow";
-import ivan from "../../public/assets/img/ivan.jpg";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
 
 interface IConcert {
@@ -119,7 +118,7 @@ const ConcertsSection = () => {
                   <span className={styles.location}>{concert.location}</span>
                 </div>
                 <div className={styles.rightSide}>
-                  <a className={styles.buyTiсket} href="#">
+                  <a className={styles.buyTiсket} href={concert.link}>
                     <span>Купить билет</span>
                     <ArrowRight />
                   </a>
