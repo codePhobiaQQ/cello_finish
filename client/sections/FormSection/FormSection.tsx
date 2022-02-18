@@ -1,6 +1,7 @@
 import styles from "./FormSection.module.sass";
 import { useFormik } from "formik";
 import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
+import formImg from "../../public/assets/img/formImg.png";
 
 interface IValues {
   name?: string;
@@ -89,6 +90,7 @@ const FormSection = () => {
           </form>
 
           <div className={styles.formSectionHorizontal}>
+            <img src={formImg.src} alt="formImg" />
             <div className={styles.emailWrapper}>
               <span>Email:</span>
               <a href="mailto:info@ivanskanavi.com">info@ivanskanavi.com</a>
