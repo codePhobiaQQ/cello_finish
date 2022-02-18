@@ -6,7 +6,10 @@ import menuBgMob from "../../public/assets/img/Menu/menuBgMob.jpg";
 import menuBgPc from "../../public/assets/img/Menu/menuBgPC.jpg";
 
 import Link from "next/link";
+
+// @ts-ignore
 import { motion } from "framer-motion";
+
 import SotialIconFooter from "../SotialIconFooter/SotialIconFooter";
 import { v4 as uuidv4 } from "uuid";
 import { footerMenu, sotials } from "../../hoc/Footer/Footer";
@@ -22,15 +25,14 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
   const fadeIn = {
     hidden: {
       opacity: 0,
+      // pointerEvents: "none",
     },
     visible: {
       opacity: 1,
+      // pointerEvents: "auto",
       transition: {
         duration: 0.5,
       },
-    },
-    exit: {
-      opacity: 0.5,
     },
   };
   const scale = {
@@ -42,9 +44,6 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
       transition: {
         duration: 0.5,
       },
-    },
-    exit: {
-      opacity: 0.5,
     },
   };
 
@@ -68,50 +67,45 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
   };
 
   return (
-    <>
-      {isMenuOpen && (
-        <motion.div
-          key={"modal"}
-          variants={fadeIn}
-          initial={"hidden"}
-          animate={isMenuOpen ? "visible" : "exit"}
-          // exit={{ opacity: 0.3, backgroundColor: "red" }}
-          className={styles.Menu}
-        >
-          <motion.img
-            variants={scale}
-            className={styles.bgImage}
-            src={bgImage}
-            alt="menuBg"
-          />
-          <ul className={styles.menuItems}>
-            {footerMenu.map((menuItem, index) => (
-              <li
-                onClick={clickMenuHandler}
-                key={uuidv4() + index}
-                className={styles.menuItem}
-              >
-                <Link href={menuItem.link}>
-                  <a>{menuItem.title}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="container">
-            <div className={styles.socials}>
-              {sotials.map((sotial, index) => (
-                <SotialIconFooter
-                  link={sotial.link}
-                  key={uuidv4() + index}
-                  icon={sotial.icon}
-                  active={sotial.active}
-                />
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </>
+    <motion.div
+      key={"modal"}
+      variants={fadeIn}
+      initial={"hidden"}
+      animate={isMenuOpen ? "visible" : "hidden"}
+      className={styles.Menu}
+    >
+      <motion.img
+        variants={scale}
+        className={styles.bgImage}
+        src={bgImage}
+        alt="menuBg"
+      />
+      <ul className={styles.menuItems}>
+        {footerMenu.map((menuItem, index) => (
+          <li
+            onClick={clickMenuHandler}
+            key={uuidv4() + index}
+            className={styles.menuItem}
+          >
+            <Link href={menuItem.link}>
+              <a>{menuItem.title}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <div className="container">
+        <div className={styles.socials}>
+          {sotials.map((sotial, index) => (
+            <SotialIconFooter
+              link={sotial.link}
+              key={uuidv4() + index}
+              icon={sotial.icon}
+              active={sotial.active}
+            />
+          ))}
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
