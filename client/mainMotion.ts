@@ -3,7 +3,7 @@ export const contentVariant = () => {
     hidden: {
       opacity: 0,
       scale: 0.95,
-      y: 30,
+      y: 100,
     },
     visible: {
       opacity: 1,
@@ -12,7 +12,7 @@ export const contentVariant = () => {
       transition: {
         // ease: "easeOut",
         // type: "spring",
-        duration: 0.3,
+        duration: 1.2,
       },
     },
   };
@@ -23,7 +23,7 @@ export const connectVariant = () => {
     hidden: {
       opacity: 0,
       scale: 0.95,
-      x: 30,
+      x: 100,
     },
     visible: {
       opacity: 1,
@@ -32,7 +32,7 @@ export const connectVariant = () => {
       transition: {
         // ease: "easeOut",
         // type: "spring",
-        duration: 0.3,
+        duration: 1.2,
       },
     },
   };

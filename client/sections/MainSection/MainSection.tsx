@@ -33,9 +33,12 @@ const MainSection = () => {
   const { scrollY } = useViewportScroll();
   const y1 = useTransform(scrollY, [0, 400], [0, -100]);
   const x1 = useTransform(scrollY, [0, 400], [0, -100]);
+
+  const y2 = useTransform(scrollY, [0, 800], [0, 250]);
+
   const opacity1 = useTransform(scrollY, [0, 400], [1, 0]);
 
-  const mainWrapperVariant = wrapperVariant({ staggerChildren: 0.8 });
+  const mainWrapperVariant = wrapperVariant({ staggerChildren: 0.3 });
   const mainBgImageVariant = bgImageVariant({ delay: 0.5, duration: 1 });
   const mainContentVariant = contentVariant();
   const mainConnectVariant = connectVariant();
@@ -52,12 +55,13 @@ const MainSection = () => {
         variants={mainBgImageVariant}
         className={styles.backgroundImg}
         src={bgImage}
+        style={{ translateY: y2 }}
         alt="bg"
       />
 
       <motion.div
         variants={mainContentVariant}
-        style={{ y: y1, opacity: opacity1 }}
+        style={{ translateY: y1, opacity: opacity1 }}
         className={styles.content}
       >
         <h1>Cellist Ivan Skanavi</h1>
@@ -66,7 +70,7 @@ const MainSection = () => {
 
       <motion.div
         variants={mainConnectVariant}
-        style={{ x: x1, opacity: opacity1 }}
+        style={{ translateX: x1, opacity: opacity1 }}
         className={styles.connect}
       >
         <span>Связаться с менеджером</span>
