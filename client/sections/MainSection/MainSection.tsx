@@ -4,8 +4,8 @@ import mediumPc from "../../public/assets/img/mainSection/mediumPc.jpg";
 import bgIpad from "../../public/assets/img/mainSection/mainBgIpad.jpg";
 import bgMob from "../../public/assets/img/mainSection/mainBgMob.jpg";
 
-import { wrapperVariant, bgImageVariant } from "../../motions";
-import { contentVariant, connectVariant } from "../../mainMotion";
+import { wrapperVariant, bgImageVariant } from "../../motions/motions";
+import { contentVariant, connectVariant } from "../../motions/mainMotion";
 
 import { motion, useTransform, useViewportScroll } from "framer-motion";
 

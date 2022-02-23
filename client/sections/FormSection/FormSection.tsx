@@ -2,6 +2,10 @@ import styles from "./FormSection.module.sass";
 import { useFormik } from "formik";
 import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
 import formImg from "../../public/assets/img/formImg.png";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
+import { formVariant, inputVariant } from "../../motions/formMotions";
+import { imageVariant } from "../../motions/bioMotions";
 
 interface IValues {
   name?: string;
@@ -44,15 +48,25 @@ const FormSection = () => {
     },
   });
 
+  const [formRef, formInView] = useInView({
+    threshold: 0.5,
+    triggerOnce: true,
+  });
+
   return (
     <section className={styles.FormSection}>
       <div className="container">
-        <div className={styles.formSectionWrapper}>
+        <motion.div
+          className={styles.formSectionWrapper}
+          ref={formRef}
+          variants={formVariant}
+          animate={formInView ? "visible" : "hidden"}
+        >
           <form
             className={styles.formSectionVertical}
             onSubmit={formik.handleSubmit}
           >
-            <div className={styles.inputWrapper}>
+            <motion.div variants={inputVariant} className={styles.inputWrapper}>
               <label htmlFor="name">Ваше Имя*</label>
               <input
                 id="name"
@@ -63,9 +77,9 @@ const FormSection = () => {
                 value={formik.values.name}
               />
               <span>select</span>
-            </div>
+            </motion.div>
 
-            <div className={styles.inputWrapper}>
+            <motion.div variants={inputVariant} className={styles.inputWrapper}>
               <label htmlFor="email">Ваш E-mail*</label>
               <input
                 id="email"
@@ -75,10 +89,15 @@ const FormSection = () => {
                 onChange={formik.handleChange}
                 value={formik.values.email}
               />
-            </div>
+            </motion.div>
 
-            <label htmlFor="name">Ваше сообщение</label>
-            <div className={styles.submitWrapper}>
+            <motion.label variants={inputVariant} htmlFor="name">
+              Ваше сообщение
+            </motion.label>
+            <motion.div
+              variants={inputVariant}
+              className={styles.submitWrapper}
+            >
               <textarea
                 id="message"
                 name="message"
@@ -86,7 +105,7 @@ const FormSection = () => {
                 value={formik.values.message}
               />
               <BtnSubscribe customClass={styles.btn} type={true} />
-            </div>
+            </motion.div>
           </form>
 
           <div className={styles.formSectionHorizontal}>
@@ -96,7 +115,7 @@ const FormSection = () => {
               <a href="mailto:info@ivanskanavi.com">info@ivanskanavi.com</a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

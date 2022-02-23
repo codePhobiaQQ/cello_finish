@@ -3,49 +3,61 @@ import ivan from "../../public/assets/img/ivan.jpg";
 import Viol from "../../components/svg/viol";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
-import { wrapperVariant } from "../../motions";
+import { wrapperVariant } from "../../motions/motions";
 import { useEffect, useRef, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { imageVariant, textVariant } from "../../motions/bioMotions";
 
 const BiographySection = () => {
-  const [offsetTop, setOffsetTop] = useState<number>(800);
-  const [sectionHeight, setSectionHeight] = useState<number>(1200);
-  const { scrollY } = useViewportScroll();
-  const y1 = useTransform(
-    scrollY,
-    [offsetTop / 2, offsetTop / 2 + sectionHeight],
-    [0, -100]
-  );
-  const bioWrapperVariant = wrapperVariant({ staggerChildren: 0.3 });
-
-  const sectionRef = useRef<HTMLElement>(null);
-
-  // Получаем параметры секции
-  useEffect(() => {
-    const section = sectionRef?.current;
-    const top: number = section?.offsetTop || 0;
-    const sectionHeight: number = section?.clientHeight || 0;
-    setOffsetTop(top);
-    setSectionHeight(sectionHeight);
-  }, []);
+  const [imageRef, imageInView] = useInView({
+    threshold: 1,
+    triggerOnce: true,
+  });
+  const [imageMobRef, imageMobInView] = useInView({
+    threshold: 1,
+    triggerOnce: true,
+  });
+  const [text1Ref, text1InView] = useInView({
+    threshold: 1,
+    triggerOnce: true,
+  });
+  const [text2Ref, text2InView] = useInView({
+    threshold: 1,
+    triggerOnce: true,
+  });
+  const [text3Ref, text3InView] = useInView({
+    threshold: 0.8,
+    triggerOnce: true,
+  });
 
   return (
-    <motion.section
-      ref={sectionRef}
-      variants={bioWrapperVariant}
-      id={"BiographySection"}
-      className={styles.Biography}
-    >
+    <section id={"BiographySection"} className={styles.Biography}>
       <div className={styles.accent}>
         <span>Biography</span>
       </div>
       <div className="container">
         <div className={styles.biographyWrapper}>
-          <div className={styles.imageWrapper}>
+          <motion.div
+            ref={imageRef}
+            variants={imageVariant}
+            animate={imageInView ? "visible" : "hidden"}
+            className={styles.imageWrapper}
+          >
             <img src={ivan.src} alt="Ivan" />
-          </div>
+          </motion.div>
           <div className={styles.textWrapper}>
-            <img src={ivan.src} alt="Ivan" />
-            <motion.p style={{ y: y1 }}>
+            <motion.img
+              ref={imageMobRef}
+              variants={imageVariant}
+              animate={imageMobInView ? "visible" : "hidden"}
+              src={ivan.src}
+              alt="Ivan"
+            />
+            <motion.p
+              animate={text1InView ? "visible" : "hidden"}
+              ref={text1Ref}
+              variants={textVariant}
+            >
               Иван Сканави родился в 1996 году в Москве в семье музыкантов.
               Заниматься на виолончели начал в ДМШ Академического музыкального
               колледжа при МГК им. П.И. Чайковского (класс заслуженного
@@ -54,13 +66,21 @@ const BiographySection = () => {
               при Московской Государственной Консерватории и в Московской
               Консерватории им. П.И. Чайковского.
             </motion.p>
-            <p>
+            <motion.p
+              animate={text2InView ? "visible" : "hidden"}
+              ref={text2Ref}
+              variants={textVariant}
+            >
               Участник концертов абонемента Московской консерватории
               «Музыкальные династии», фестивалей «Шереметьевские сезоны в
               Останкино», «I Mozartini» (Италия), Международного фестиваля им.
               М.И.Ростроповича (Баку).
-            </p>
-            <p>
+            </motion.p>
+            <motion.p
+              animate={text3InView ? "visible" : "hidden"}
+              ref={text3Ref}
+              variants={textVariant}
+            >
               Концертным симфоническим оркестром Московской Государственной
               Консерватории им. П.И. Чайковского, с Московским Камерным
               оркестром Центра Павла Слободкина, с Симфоническим оркестром
@@ -68,7 +88,7 @@ const BiographySection = () => {
               с Ансамблем солистов «Премьера», с Таллиннским камерным оркестром,
               с оркестром Südwestdeutsches Kammerorchester Pforzheim, с
               Зауральским симфоническим оркестром.
-            </p>
+            </motion.p>
             <Viol />
           </div>
         </div>
@@ -77,7 +97,7 @@ const BiographySection = () => {
           <ArrowRight />
         </a>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
