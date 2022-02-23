@@ -61,6 +61,17 @@
       .value
         color: #fff
 
+    .subscribeWrapper
+      display: flex
+      align-items: center
+      margin-top: 50px
+      :global(.footerSubscribe)
+        button
+          margin-top: 0
+      input
+        width: 100%
+        margin-right: 30px
+        padding-bottom: 8px
     .whoMake
       display: flex
       align-items: center
@@ -136,3 +147,9 @@
         font-size: 10px
         a img
           width: 101px
+
+      .subscribeWrapper
+        :global(.footerSubscribe)
+          button
+        input
+          width: 200px

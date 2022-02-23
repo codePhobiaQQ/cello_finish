@@ -4,8 +4,22 @@ import SotialIconFooter, {
   ISotial,
 } from "../../components/SotialIconFooter/SotialIconFooter";
 import { v4 as uuidv4 } from "uuid";
+
 import spotify from "./../../public/assets/svg/sotials/Spotify.svg";
 import spotifyActive from "./../../public/assets/svg/sotials/SpotifyActive.svg";
+
+import sber from "./../../public/assets/svg/sotials/sber.svg";
+import sberActive from "./../../public/assets/svg/sotials/sberActive.svg";
+
+import appleMusic from "./../../public/assets/svg/sotials/appleMusic.svg";
+import appleMusicActive from "./../../public/assets/svg/sotials/appleMusicActive.svg";
+
+import yandexMusic from "./../../public/assets/svg/sotials/yandexMusic.svg";
+import yandexMusicActive from "./../../public/assets/svg/sotials/yandexMusicActive.svg";
+
+import vkMusic from "./../../public/assets/svg/sotials/vkMusic.svg";
+import vkMusicActive from "./../../public/assets/svg/sotials/vkMusicActive.svg";
+
 import insp from "./../../public/assets/svg/insp.svg";
 import Link from "next/link";
 import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
@@ -28,23 +42,23 @@ export const sotials: ISotial[] = [
     link: "#",
   },
   {
-    icon: spotify.src,
-    active: spotifyActive.src,
+    icon: vkMusic.src,
+    active: vkMusicActive.src,
     link: "#",
   },
   {
-    icon: spotify.src,
-    active: spotifyActive.src,
+    icon: yandexMusic.src,
+    active: yandexMusicActive.src,
     link: "#",
   },
   {
-    icon: spotify.src,
-    active: spotifyActive.src,
+    icon: appleMusic.src,
+    active: appleMusicActive.src,
     link: "#",
   },
   {
-    icon: spotify.src,
-    active: spotifyActive.src,
+    icon: sber.src,
+    active: sberActive.src,
     link: "#",
   },
 ];
@@ -178,7 +192,10 @@ const Footer = ({ children }: IFooter) => {
                 info@ivanskanavi.com
               </a>
             </div>
-            <BtnSubscribe />
+            <div className={styles.subscribeWrapper}>
+              <input type="email" />
+              <BtnSubscribe customClass={"footerSubscribe"} />
+            </div>
             <div className={styles.whoMake}>
               <span>Website development</span>
               <a href="#">

@@ -1,9 +1,13 @@
 import styles from "./MainSection.module.sass";
-
 import bg from "../../public/assets/img/mainSection/bgMain1.jpg";
 import mediumPc from "../../public/assets/img/mainSection/mediumPc.jpg";
 import bgIpad from "../../public/assets/img/mainSection/mainBgIpad.jpg";
 import bgMob from "../../public/assets/img/mainSection/mainBgMob.jpg";
+
+import { wrapperVariant, bgImageVariant } from "../../motions";
+import { contentVariant, connectVariant } from "../../mainMotion";
+
+import { motion, useTransform, useViewportScroll } from "framer-motion";
 
 import ArrowDown from "../../components/ArrowDown/ArrowDown";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
@@ -26,19 +30,53 @@ const MainSection = () => {
     }
   }, [width]);
 
+  const { scrollY } = useViewportScroll();
+  const y1 = useTransform(scrollY, [0, 400], [0, -100]);
+  const x1 = useTransform(scrollY, [0, 400], [0, -100]);
+  const opacity1 = useTransform(scrollY, [0, 400], [1, 0]);
+
+  const mainWrapperVariant = wrapperVariant({ staggerChildren: 0.8 });
+  const mainBgImageVariant = bgImageVariant({ delay: 0.5, duration: 1 });
+  const mainContentVariant = contentVariant();
+  const mainConnectVariant = connectVariant();
+
   return (
-    <section className={styles.MainSection} style={{ backgroundImage: bg.src }}>
-      <img className={styles.backgroundImg} src={bgImage} alt="bg" />
-      <div className={styles.content}>
+    <motion.section
+      variants={mainWrapperVariant}
+      initial="hidden"
+      animate="visible"
+      className={styles.MainSection}
+      style={{ backgroundImage: bg.src }}
+    >
+      <motion.img
+        variants={mainBgImageVariant}
+        className={styles.backgroundImg}
+        src={bgImage}
+        alt="bg"
+      />
+
+      <motion.div
+        variants={mainContentVariant}
+        style={{ y: y1, opacity: opacity1 }}
+        className={styles.content}
+      >
         <h1>Cellist Ivan Skanavi</h1>
         <span>Concerts / Performances</span>
-      </div>
-      <div className={styles.connect}>Связаться с менеджером</div>
+      </motion.div>
+
+      <motion.div
+        variants={mainConnectVariant}
+        style={{ x: x1, opacity: opacity1 }}
+        className={styles.connect}
+      >
+        <span>Связаться с менеджером</span>
+      </motion.div>
+
       {width > 756 ? (
         <VideoPlayer label={"S. Rachmaninov - Sonata for cello and piano.."} />
       ) : null}
       {width > 756 ? <ArrowDown /> : null}
-    </section>
+    </motion.section>
   );
 };
 
