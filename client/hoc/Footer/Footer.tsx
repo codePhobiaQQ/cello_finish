@@ -28,6 +28,7 @@ import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
 interface IFooter {
   children?: React.ReactNode;
+  FooterSection: any;
 }
 
 interface IMenu {
@@ -90,7 +91,7 @@ export const footerMenu: IMenu[] = [
   },
 ];
 
-const Footer = ({ children }: IFooter) => {
+const Footer = ({ children, FooterSection }: IFooter) => {
   const router = useRouter();
   const currentLink = router.asPath;
 

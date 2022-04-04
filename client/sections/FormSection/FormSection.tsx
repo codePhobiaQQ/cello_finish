@@ -2,10 +2,12 @@ import styles from "./FormSection.module.sass";
 import { useFormik } from "formik";
 import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
 import formImg from "../../public/assets/img/formImg.png";
+import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import { formVariant, inputVariant } from "../../motions/formMotions";
 import { imageVariant } from "../../motions/bioMotions";
+import useTypedSelector from "../../hooks/useTypedSelector";
 
 interface IValues {
   name?: string;
@@ -35,7 +37,13 @@ const validate = (values: IValues) => {
   return errors;
 };
 
-const FormSection = () => {
+interface IFormSection {
+  FormiSection: any;
+}
+
+const FormSection = ({ FormiSection }: IFormSection) => {
+  const lang = useTypedSelector((state) => state.app.language);
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -67,7 +75,9 @@ const FormSection = () => {
             onSubmit={formik.handleSubmit}
           >
             <motion.div variants={inputVariant} className={styles.inputWrapper}>
-              <label htmlFor="name">Ваше Имя*</label>
+              <label htmlFor="name">
+                {FormiSection[`FormSection${lang}`].first_field}
+              </label>
               <input
                 id="name"
                 name="name"
@@ -80,7 +90,9 @@ const FormSection = () => {
             </motion.div>
 
             <motion.div variants={inputVariant} className={styles.inputWrapper}>
-              <label htmlFor="email">Ваш E-mail*</label>
+              <label htmlFor="email">
+                {FormiSection[`FormSection${lang}`].second_field}
+              </label>
               <input
                 id="email"
                 name="email"
@@ -92,7 +104,7 @@ const FormSection = () => {
             </motion.div>
 
             <motion.label variants={inputVariant} htmlFor="name">
-              Ваше сообщение
+              {FormiSection[`FormSection${lang}`].third_field}
             </motion.label>
             <motion.div
               variants={inputVariant}
@@ -104,15 +116,24 @@ const FormSection = () => {
                 onChange={formik.handleChange}
                 value={formik.values.message}
               />
-              <BtnSubscribe customClass={styles.btn} type={true} />
+              <BtnSubscribe
+                text={FormiSection[`FormSection${lang}`].button_text}
+                customClass={styles.btn}
+                type={true}
+              />
             </motion.div>
           </form>
 
           <div className={styles.formSectionHorizontal}>
-            <img src={formImg.src} alt="formImg" />
+            <div className={styles.imageWrap}>
+              <Image height={400} width={800} src={formImg.src} alt="formImg" />
+            </div>
+
             <div className={styles.emailWrapper}>
               <span>Email:</span>
-              <a href="mailto:info@ivanskanavi.com">info@ivanskanavi.com</a>
+              <a href={`mailto:${FormiSection[`FormSection${lang}`].email}`}>
+                {FormiSection[`FormSection${lang}`].email}
+              </a>
             </div>
           </div>
         </motion.div>

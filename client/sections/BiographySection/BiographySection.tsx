@@ -1,7 +1,7 @@
 import styles from "./BiographySection.module.sass";
 import ivan from "../../public/assets/img/ivan.jpg";
 import Viol from "../../components/svg/viol";
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
@@ -10,14 +10,14 @@ import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { imageVariant, textVariant } from "../../motions/bioMotions";
 import useTypedSelector from "../../hooks/useTypedSelector";
-import {backUrl} from "../../vars";
+import { backUrl } from "../../vars";
 
 interface IBiographySection {
-  AboutSection: any
+  AboutSection: any;
 }
 
 const BiographySection = ({ AboutSection }: IBiographySection) => {
-  const lang = useTypedSelector(state => state.app.language)
+  const lang = useTypedSelector((state) => state.app.language);
 
   const [imageRef, imageInView] = useInView({
     threshold: 1,
@@ -53,7 +53,16 @@ const BiographySection = ({ AboutSection }: IBiographySection) => {
             animate={imageInView ? "visible" : "hidden"}
             className={styles.imageWrapper}
           >
-            <Image width={270} height={400} src={backUrl + AboutSection[`AboutSection${lang}`].image_ivan.data.attributes.url} alt="Ivan" />
+            <Image
+              width={270}
+              height={400}
+              src={
+                backUrl +
+                AboutSection[`AboutSection${lang}`].image_ivan.data.attributes
+                  .url
+              }
+              alt="Ivan"
+            />
           </motion.div>
           <div className={styles.textWrapper}>
             <motion.div
@@ -63,8 +72,13 @@ const BiographySection = ({ AboutSection }: IBiographySection) => {
               className={styles.imageWrapperMob}
             >
               <Image
-                width={270} height={400}
-                src={backUrl + AboutSection[`AboutSection${lang}`].image_ivan.data.attributes.url}
+                width={270}
+                height={400}
+                src={
+                  backUrl +
+                  AboutSection[`AboutSection${lang}`].image_ivan.data.attributes
+                    .url
+                }
                 alt="Ivan"
               />
             </motion.div>
@@ -72,14 +86,25 @@ const BiographySection = ({ AboutSection }: IBiographySection) => {
             <motion.div
               animate={text1InView ? "visible" : "hidden"}
               ref={text1Ref}
-              variants={textVariant}>
-              <ReactMarkdown>{AboutSection[`AboutSection${lang}`].content}</ReactMarkdown>
+              variants={textVariant}
+            >
+              <ReactMarkdown>
+                {AboutSection[`AboutSection${lang}`].content}
+              </ReactMarkdown>
             </motion.div>
             <Viol />
           </div>
         </div>
-        <a href={ivan.src} download className={styles.dowloadButton}>
-          <span>Скачать биографию</span>
+        <a
+          href={
+            backUrl +
+            AboutSection[`AboutSection${lang}`].bio_file.data.attributes.url
+          }
+          download
+          target="_blank"
+          className={styles.dowloadButton}
+        >
+          <span>{AboutSection[`AboutSection${lang}`].button_text}</span>
           <ArrowRight />
         </a>
       </div>

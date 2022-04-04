@@ -7,9 +7,8 @@ import Footer from "../hoc/Footer/Footer";
 import { fetchQuery } from "../services/ssr";
 
 const MainPage = (props: any) => {
-  console.log(props.AboutSectionRu);
-
   useEffect(() => {
+    console.log(props.FooterSectionDe);
     history.pushState("", document.title, window.location.pathname);
   }, []);
 
@@ -30,7 +29,13 @@ const MainPage = (props: any) => {
             AboutSectionDe: props.AboutSectionDe,
           }}
         />
-        <FormSection />
+        <FormSection
+          FormiSection={{
+            FormSectionRu: props.FormSectionRu,
+            FormSectionEn: props.FormSectionEn,
+            FormSectionDe: props.FormSectionDe,
+          }}
+        />
       </Footer>
     </Header>
   );
@@ -60,6 +65,26 @@ export async function getServerSideProps(context: any) {
       "api/main-page?populate=*&locale=de&populate=about_section.image_ivan&populate=about_section.bio_file"
     );
 
+    const FormSectionRu = await fetchQuery(
+      "api/main-page?populate=*&locale=ru"
+    );
+    const FormSectionEn = await fetchQuery(
+      "api/main-page?populate=*&locale=en"
+    );
+    const FormSectionDe = await fetchQuery(
+      "api/main-page?populate=*&locale=de"
+    );
+
+    const FooterSectionRu = await fetchQuery(
+      "api/footer-section?populate=*&locale=ru"
+    );
+    const FooterSectionEn = await fetchQuery(
+      "api/footer-section?populate=*&locale=en"
+    );
+    const FooterSectionDe = await fetchQuery(
+      "api/footer-section?populate=*&locale=de"
+    );
+
     return {
       props: {
         MainSectionRu: MainSectionRu.data.attributes.MainSection,
@@ -69,6 +94,14 @@ export async function getServerSideProps(context: any) {
         AboutSectionRu: AboutSectionRu.data.attributes.about_section,
         AboutSectionEn: AboutSectionEn.data.attributes.about_section,
         AboutSectionDe: AboutSectionDe.data.attributes.about_section,
+
+        FormSectionRu: FormSectionRu.data.attributes.FormSection,
+        FormSectionEn: FormSectionEn.data.attributes.FormSection,
+        FormSectionDe: FormSectionDe.data.attributes.FormSection,
+
+        FooterSectionRu: FooterSectionRu.data.attributes.FooterSection,
+        FooterSectionEn: FooterSectionEn.data.attributes.FooterSection,
+        FooterSectionDe: FooterSectionDe.data.attributes.FooterSection,
       },
     };
   } catch (e) {

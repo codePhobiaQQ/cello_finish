@@ -89,10 +89,16 @@
       margin: auto
       background-color: #0C0C0C
       position: relative
-      img
+      .imageWrap
         position: absolute
         height: 90%
+        width: 40%
         top: 5%
+        & > div
+          height: 100%
+          img
+            height: 100%
+            object-fit: contain
       .emailWrapper
         display: flex
         font-size: 20px
