@@ -30,7 +30,7 @@ export const connectVariant = () => {
       scale: 1,
       x: 0,
       transition: {
-        ease: [0,1.04,.25,1],
+        // ease: [0,1.04,.25,1],
         // type: "spring",
         duration: 1.2,
       },

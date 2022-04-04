@@ -20,7 +20,7 @@ const BiographySection = ({ AboutSection }: IBiographySection) => {
   const lang = useTypedSelector((state) => state.app.language);
 
   const [imageRef, imageInView] = useInView({
-    threshold: 1,
+    threshold: 0.3,
     triggerOnce: true,
   });
   const [imageMobRef, imageMobInView] = useInView({

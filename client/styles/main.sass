@@ -55,23 +55,30 @@ input
     padding-top: 0 !important
     .video-react-video
 
+*::-webkit-scrollbar-thumb
+  background-color: #fff
 
-@media only screen and (min-width: 1200px) and (max-width: 1400px)
+*::-webkit-scrollbar-track
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset
+  box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset
+
+
+@media only screen and (max-width: 1919px)
   .container
-    width: 1080px
+    width: 1060px
 
-@media only screen and (min-width: 992px) and (max-width: 1200px)
+@media only screen and (max-width: 1200px)
   .container
     width: 870px
 
-@media only screen and (min-width: 767px) and (max-width: 992px)
+@media only screen and (max-width: 992px)
   .container
     width: 570px
 
-@media only screen and (min-width: 569px) and (max-width: 767px)
+@media only screen and (max-width: 767px)
   .container
     width: 80%
 
-@media only screen and (min-width: 320px) and (max-width: 568px)
+@media only screen and (max-width: 568px)
   .container
     width: 315px

@@ -14,7 +14,13 @@ const MainPage = (props: any) => {
 
   return (
     <Header>
-      <Footer>
+      <Footer
+        FooterSection={{
+          FooterSectionRu: props.FooterSectionRu,
+          FooterSectionEn: props.FooterSectionEn,
+          FooterSectionDe: props.FooterSectionDe,
+        }}
+      >
         <MainSection
           MainSection={{
             MainSectionRu: props.MainSectionRu,

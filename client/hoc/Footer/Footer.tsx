@@ -5,6 +5,8 @@ import SotialIconFooter, {
 } from "../../components/SotialIconFooter/SotialIconFooter";
 import { v4 as uuidv4 } from "uuid";
 
+import Image from "next/image";
+
 import spotify from "./../../public/assets/svg/sotials/Spotify.svg";
 import spotifyActive from "./../../public/assets/svg/sotials/SpotifyActive.svg";
 
@@ -25,10 +27,14 @@ import Link from "next/link";
 import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
 import { useRouter } from "next/router";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+import useTypedSelector from "../../hooks/useTypedSelector";
+import PoliticPopup from "../../components/popups/PoliticPopup";
+import { useMemo, useState } from "react";
+import ProtectPopup from "../../components/popups/ProtectPopup";
 
 interface IFooter {
   children?: React.ReactNode;
-  FooterSection: any;
+  FooterSection?: any;
 }
 
 interface IMenu {
@@ -94,120 +100,160 @@ export const footerMenu: IMenu[] = [
 const Footer = ({ children, FooterSection }: IFooter) => {
   const router = useRouter();
   const currentLink = router.asPath;
+  const lang = useTypedSelector((state) => state.app.language);
 
-  return (
-    <>
-      {children}
-      <div className="container" id={"Contacts"}>
-        <div className={styles.Footer}>
-          <div className={styles.leftSide}>
-            <Link href="/">
-              <a>
-                <img src={LogoFooter.src} alt="LogoFooter" />
-              </a>
-            </Link>
-            <span>Защита персональных данных</span>
-            <span>Политика конфиденциальности</span>
-          </div>
-          <div className={styles.centerSide}>
-            <ul>
-              {footerMenu.map((link, index) => (
-                <li key={uuidv4() + index}>
-                  <Link href={link.link}>
-                    <a
-                      className={currentLink == link.link ? styles.active : ""}
-                    >
-                      {link.title}
-                    </a>
-                  </Link>
+  const [isPoliticOpen, setPoliticOpen] = useState<boolean>(false);
+  const closePoliticHandler = () => setPoliticOpen(false);
+
+  const [isProtectOpen, setProtectOpen] = useState<boolean>(false);
+  const closeProtectHandler = () => setProtectOpen(false);
+
+  const mail = FooterSection[`FooterSection${lang}`].email;
+  const spotify = FooterSection[`FooterSection${lang}`].spotify;
+  const vk_music = FooterSection[`FooterSection${lang}`].vk_music;
+  const yandex_music = FooterSection[`FooterSection${lang}`].yandex_music;
+  const apple_music = FooterSection[`FooterSection${lang}`].apple_music;
+  const sber = FooterSection[`FooterSection${lang}`].sber;
+  const instagram = FooterSection[`FooterSection${lang}`].instagram;
+  const youtobe = FooterSection[`FooterSection${lang}`].youtobe;
+  const facebook = FooterSection[`FooterSection${lang}`].facebook;
+
+  return useMemo(() => {
+    return (
+      <>
+        <PoliticPopup
+          isPoliticOpen={isPoliticOpen}
+          setPoliticOpen={closePoliticHandler}
+        />
+        <ProtectPopup
+          isProtectOpen={isProtectOpen}
+          setProtectOpen={closeProtectHandler}
+        />
+        {children}
+        <div className="container" id={"Contacts"}>
+          <div className={styles.Footer}>
+            <div className={styles.leftSide}>
+              <Link href="/">
+                <a>
+                  <div className={styles.imageWrapper}>
+                    <Image
+                      width={232}
+                      height={232}
+                      src={LogoFooter.src}
+                      alt="LogoFooter"
+                    />
+                  </div>
+                </a>
+              </Link>
+              <span onClick={() => setProtectOpen(true)}>
+                Защита персональных данных
+              </span>
+              <span onClick={() => setPoliticOpen(true)}>
+                Политика конфиденциальности
+              </span>
+            </div>
+            <div className={styles.centerSide}>
+              <ul>
+                {footerMenu.map((link, index) => (
+                  <li key={uuidv4() + index}>
+                    <Link href={link.link}>
+                      <a
+                        className={
+                          currentLink == link.link ? styles.active : ""
+                        }
+                      >
+                        {link.title}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <ul>
+                <li>
+                  <VideoPlayer
+                    styling={{
+                      position: "relative",
+                      right: "inherit",
+                      bottom: "inherit",
+                      top: "inherit",
+                    }}
+                    label={"S. Rachmaninov - Sonata for cello and piano.."}
+                  />
                 </li>
-              ))}
-            </ul>
-            <ul>
-              <li>
-                <VideoPlayer
-                  styling={{
-                    position: "relative",
-                    right: "inherit",
-                    bottom: "inherit",
-                    top: "inherit",
-                  }}
-                  label={"S. Rachmaninov - Sonata for cello and piano.."}
-                />
-              </li>
-              <li>
-                <a href="#" target="_blank">
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href="#" target="_blank">
-                  YouTube
-                </a>
-              </li>
-              <li>
-                <a href="#" target="_blank">
-                  Facebook
-                </a>
-              </li>
-            </ul>
-          </div>
+                <li>
+                  <a href="#" target="_blank">
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a href="#" target="_blank">
+                    YouTube
+                  </a>
+                </li>
+                <li>
+                  <a href="#" target="_blank">
+                    Facebook
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          <div className={styles.rightSide}>
-            <div className={styles.sotials}>
-              {sotials.map((sotial, index) => (
-                <SotialIconFooter
-                  link={sotial.link}
-                  key={uuidv4() + index}
-                  icon={sotial.icon}
-                  active={sotial.active}
-                />
-              ))}
-            </div>
-            <div className={styles.mobSocials}>
-              <li>
-                <a href="#" target="_blank">
-                  Instagram
+            <div className={styles.rightSide}>
+              <div className={styles.sotials}>
+                {sotials.map((sotial, index) => (
+                  <SotialIconFooter
+                    link={sotial.link}
+                    key={uuidv4() + index}
+                    icon={sotial.icon}
+                    active={sotial.active}
+                  />
+                ))}
+              </div>
+              <div className={styles.mobSocials}>
+                <li>
+                  <a href={instagram} target="_blank">
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a href={youtobe} target="_blank">
+                    Youtube
+                  </a>
+                </li>
+                <li>
+                  <a href={facebook} target="_blank">
+                    Facebook
+                  </a>
+                </li>
+              </div>
+              {/* <div className={styles.contact}>*/}
+              {/*  <span className={styles.name}>Phone:</span>*/}
+              {/*  <a href="#" className={styles.value}>*/}
+              {/*    8-800-123-45-67*/}
+              {/*  </a>*/}
+              {/* </div>*/}
+              <div className={styles.contact}>
+                <span className={styles.name}>Email:</span>
+                <a href={`mailto:${mail}`} className={styles.value}>
+                  {mail}
                 </a>
-              </li>
-              <li>
-                <a href="#" target="_blank">
-                  Youtube
+              </div>
+              <div className={styles.subscribeWrapper}>
+                <input type="email" />
+                <BtnSubscribe customClass={"footerSubscribe"} />
+              </div>
+              <div className={styles.whoMake}>
+                <span>Website development</span>
+                <a href="#">
+                  <img src={insp.src} alt="insspiration" />
                 </a>
-              </li>
-              <li>
-                <a href="#" target="_blank">
-                  Facebook
-                </a>
-              </li>
-            </div>
-            {/* <div className={styles.contact}>*/}
-            {/*  <span className={styles.name}>Phone:</span>*/}
-            {/*  <a href="#" className={styles.value}>*/}
-            {/*    8-800-123-45-67*/}
-            {/*  </a>*/}
-            {/* </div>*/}
-            <div className={styles.contact}>
-              <span className={styles.name}>Email:</span>
-              <a href="#" className={styles.value}>
-                info@ivanskanavi.com
-              </a>
-            </div>
-            <div className={styles.subscribeWrapper}>
-              <input type="email" />
-              <BtnSubscribe customClass={"footerSubscribe"} />
-            </div>
-            <div className={styles.whoMake}>
-              <span>Website development</span>
-              <a href="#">
-                <img src={insp.src} alt="insspiration" />
-              </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }, [isPoliticOpen, isProtectOpen]);
 };
 
 export default Footer;

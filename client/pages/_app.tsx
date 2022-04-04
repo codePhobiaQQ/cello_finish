@@ -1,4 +1,5 @@
 import "./../styles/main.sass";
+import "./../styles/popups/PoliticPopup.sass";
 import type { AppProps } from "next/app";
 import React, { FC } from "react";
 import withRedux from "next-redux-wrapper";

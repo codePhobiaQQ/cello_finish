@@ -1,0 +1,34 @@
+$scale: calc(1vh + 1vw)
+
+.PoliticPopup, .ProtectPopup
+  position: fixed
+  z-index: 1000
+  background-color: #000
+  top: 0
+  left: 0
+  height: 100vh
+  width: 100vw
+  padding: 70px 0
+  overflow: auto
+
+  .close
+    position: absolute
+    right: 30px
+    top: 30px
+    width: calc(#{$scale} * 1.7)
+    height: calc(#{$scale} * 1.7)
+    cursor: pointer
+    transition: transform .3s ease
+    &:hover
+      transform: scale(1.05)
+
+  h2
+    font-size: calc(#{$scale} * 2.2)
+    margin-bottom: calc(#{$scale} * 1.6)
+  p, li
+    font-size: calc(#{$scale} * 1)
+    margin-bottom: calc(#{$scale} * 1)
+    line-height: 120%
+
+  li
+    margin-left: 20px
