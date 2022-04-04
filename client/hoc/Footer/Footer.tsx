@@ -34,7 +34,7 @@ import ProtectPopup from "../../components/popups/ProtectPopup";
 
 interface IFooter {
   children?: React.ReactNode;
-  FooterSection?: any;
+  FooterSection: any;
 }
 
 interface IMenu {
