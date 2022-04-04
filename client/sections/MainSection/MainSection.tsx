@@ -3,19 +3,24 @@ import bg from "../../public/assets/img/mainSection/bgMain1.jpg";
 import mediumPc from "../../public/assets/img/mainSection/mediumPc.jpg";
 import bgIpad from "../../public/assets/img/mainSection/mainBgIpad.jpg";
 import bgMob from "../../public/assets/img/mainSection/mainBgMob.jpg";
-
 import { wrapperVariant, bgImageVariant } from "../../motions/motions";
 import { contentVariant, connectVariant } from "../../motions/mainMotion";
-
 import { motion, useTransform, useViewportScroll } from "framer-motion";
-
 import ArrowDown from "../../components/ArrowDown/ArrowDown";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import { useEffect, useState } from "react";
 import useWindowWidth from "react-hook-use-window-width";
+import {backUrl} from "../../vars";
+import Image from "next/image";
+import useTypedSelector from "../../hooks/useTypedSelector";
 
-const MainSection = () => {
+interface IMainSection {
+  MainSection: any
+}
+
+const MainSection = ({MainSection}: IMainSection) => {
   const [bgImage, setBgImage] = useState<string>(bg.src);
+  const lang = useTypedSelector(state => state.app.language)
 
   const width = useWindowWidth();
   useEffect(() => {
@@ -33,9 +38,7 @@ const MainSection = () => {
   const { scrollY } = useViewportScroll();
   const y1 = useTransform(scrollY, [0, 400], [0, -100]);
   const x1 = useTransform(scrollY, [0, 400], [0, -100]);
-
   const y2 = useTransform(scrollY, [0, 800], [0, 250]);
-
   const opacity1 = useTransform(scrollY, [0, 400], [1, 0]);
 
   const mainWrapperVariant = wrapperVariant({ staggerChildren: 0.3 });
@@ -48,24 +51,32 @@ const MainSection = () => {
       variants={mainWrapperVariant}
       initial="hidden"
       animate="visible"
-      className={styles.MainSection}
+      className={styles.MainSection + " MainSection"}
       style={{ backgroundImage: bg.src }}
     >
-      <motion.img
+      <motion.div
         variants={mainBgImageVariant}
         className={styles.backgroundImg}
-        src={bgImage}
         style={{ translateY: y2 }}
-        alt="bg"
-      />
+      >
+        <Image
+          objectFit={"cover"}
+          height={1000}
+          width={2000}
+          src={bgImage}
+          alt="bg"
+        />
+      </motion.div>
 
       <motion.div
         variants={mainContentVariant}
         style={{ translateY: y1, opacity: opacity1 }}
         className={styles.content}
       >
-        <h1>Cellist Ivan Skanavi</h1>
-        <span>Concerts / Performances</span>
+        <h1>
+          {MainSection[`MainSection${lang}`].title}
+        </h1>
+        <span>{MainSection[`MainSection${lang}`].subtitle}</span>
       </motion.div>
 
       <motion.div
@@ -73,11 +84,15 @@ const MainSection = () => {
         style={{ translateX: x1, opacity: opacity1 }}
         className={styles.connect}
       >
-        <span>Связаться с менеджером</span>
+        <span>{MainSection[`MainSection${lang}`].connect}</span>
       </motion.div>
 
       {width > 756 ? (
-        <VideoPlayer label={"S. Rachmaninov - Sonata for cello and piano.."} />
+        <VideoPlayer
+          poster={backUrl + MainSection[`MainSection${lang}`].video_preview.data.attributes.url}
+          videoSrc={backUrl + MainSection[`MainSection${lang}`].video.data.attributes.url}
+          label={MainSection[`MainSection${lang}`].video_name}
+        />
       ) : null}
       {width > 756 ? <ArrowDown /> : null}
     </motion.section>

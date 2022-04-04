@@ -3,6 +3,7 @@ import Languages from "../../components/Languages/Languages";
 import Hamburger from "../../components/Hamburger/Hamburger";
 import logo from "../../public/assets/svg/Logo.svg";
 import Menu from "../../components/Menu/Menu";
+import Head from 'next/head'
 import { useState } from "react";
 import Sotials from "../../components/Sotials/Sotials";
 import Link from "next/link";
@@ -16,6 +17,10 @@ const Header = ({ children }: IHeader) => {
 
   return (
     <>
+      <Head>
+        <title>Ivan Skanavi</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className={styles.header}>
         <div className={styles.logo} onClick={() => setMenuOpen(false)}>
           <Link href="/">

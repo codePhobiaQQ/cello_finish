@@ -1,1 +1,1 @@
-export const back_url = "http://localhost:1337"
+export const backUrl = "https://backend.ivanskanavi.com";

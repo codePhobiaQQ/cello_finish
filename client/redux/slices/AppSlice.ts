@@ -8,7 +8,7 @@ export interface appState {
 
 const initialState: appState = {
   isLoading: true,
-  language: 'RU',
+  language: 'En',
 }
 
 export const appReducer = createSlice({

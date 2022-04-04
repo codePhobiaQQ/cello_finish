@@ -1,14 +1,6 @@
 module.exports = {
-  image: {
-    domains: ["http://localhost:1337/"],
+  reactStrictMode: true,
+  images: {
+    domains: ["backend.ivanskanavi.com", "localhost"],
   },
-  // reactStrictMode: false,
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: '/:path*',
-  //       destination: 'https://localhost:5000/:path*',
-  //     },
-  //   ]
-  // },
-}
+};

@@ -46,15 +46,18 @@
     .biographyWrapper
       display: flex
       .imageWrapper
-        img
-          position: relative
+        & > div
           width: 270px
+          img
+            position: relative
+            width: 270px
           //height: 450px
       .textWrapper
         margin-left: 40px
         position: relative
-        img
+        .imageWrapperMob
           display: none
+
         svg
           position: absolute
           bottom: -140px
@@ -95,13 +98,20 @@
             transform: translateX(calc(50% - 9px))
       .biographyWrapper
         .textWrapper
-          img
+          .imageWrapperMob
             display: block
             float: left
             margin: 0 14px 14px 0
             width: 126px
             height: 189px
             margin-left: 0
+            & > div
+              width: 126px
+              height: 189px
+              img
+                width: 126px
+                height: 189px
+
           p
             font-size: 10px
             line-height: 16px

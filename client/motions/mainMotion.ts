@@ -10,7 +10,7 @@ export const contentVariant = () => {
       scale: 1,
       y: 0,
       transition: {
-        // ease: "easeOut",
+        // ease: [0,1.04,.25,1],
         // type: "spring",
         duration: 1.2,
       },
@@ -30,7 +30,7 @@ export const connectVariant = () => {
       scale: 1,
       x: 0,
       transition: {
-        // ease: "easeOut",
+        ease: [0,1.04,.25,1],
         // type: "spring",
         duration: 1.2,
       },

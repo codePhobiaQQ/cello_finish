@@ -1,14 +1,24 @@
 import styles from "./BiographySection.module.sass";
 import ivan from "../../public/assets/img/ivan.jpg";
 import Viol from "../../components/svg/viol";
+import ReactMarkdown from 'react-markdown'
+import Image from "next/image";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
 import { wrapperVariant } from "../../motions/motions";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { imageVariant, textVariant } from "../../motions/bioMotions";
+import useTypedSelector from "../../hooks/useTypedSelector";
+import {backUrl} from "../../vars";
 
-const BiographySection = () => {
+interface IBiographySection {
+  AboutSection: any
+}
+
+const BiographySection = ({ AboutSection }: IBiographySection) => {
+  const lang = useTypedSelector(state => state.app.language)
+
   const [imageRef, imageInView] = useInView({
     threshold: 1,
     triggerOnce: true,
@@ -43,52 +53,28 @@ const BiographySection = () => {
             animate={imageInView ? "visible" : "hidden"}
             className={styles.imageWrapper}
           >
-            <img src={ivan.src} alt="Ivan" />
+            <Image width={270} height={400} src={backUrl + AboutSection[`AboutSection${lang}`].image_ivan.data.attributes.url} alt="Ivan" />
           </motion.div>
           <div className={styles.textWrapper}>
-            <motion.img
+            <motion.div
               ref={imageMobRef}
               variants={imageVariant}
               animate={imageMobInView ? "visible" : "hidden"}
-              src={ivan.src}
-              alt="Ivan"
-            />
-            <motion.p
+              className={styles.imageWrapperMob}
+            >
+              <Image
+                width={270} height={400}
+                src={backUrl + AboutSection[`AboutSection${lang}`].image_ivan.data.attributes.url}
+                alt="Ivan"
+              />
+            </motion.div>
+
+            <motion.div
               animate={text1InView ? "visible" : "hidden"}
               ref={text1Ref}
-              variants={textVariant}
-            >
-              Иван Сканави родился в 1996 году в Москве в семье музыкантов.
-              Заниматься на виолончели начал в ДМШ Академического музыкального
-              колледжа при МГК им. П.И. Чайковского (класс заслуженного
-              работника культуры РФ Т.Г. Алексеева). Позднее обучался в классе
-              профессора Алексея Селезнёва в Академическом Музыкальном Колледже
-              при Московской Государственной Консерватории и в Московской
-              Консерватории им. П.И. Чайковского.
-            </motion.p>
-            <motion.p
-              animate={text2InView ? "visible" : "hidden"}
-              ref={text2Ref}
-              variants={textVariant}
-            >
-              Участник концертов абонемента Московской консерватории
-              «Музыкальные династии», фестивалей «Шереметьевские сезоны в
-              Останкино», «I Mozartini» (Италия), Международного фестиваля им.
-              М.И.Ростроповича (Баку).
-            </motion.p>
-            <motion.p
-              animate={text3InView ? "visible" : "hidden"}
-              ref={text3Ref}
-              variants={textVariant}
-            >
-              Концертным симфоническим оркестром Московской Государственной
-              Консерватории им. П.И. Чайковского, с Московским Камерным
-              оркестром Центра Павла Слободкина, с Симфоническим оркестром
-              Академического музыкального училища при МГК им. П.И. Чайковского,
-              с Ансамблем солистов «Премьера», с Таллиннским камерным оркестром,
-              с оркестром Südwestdeutsches Kammerorchester Pforzheim, с
-              Зауральским симфоническим оркестром.
-            </motion.p>
+              variants={textVariant}>
+              <ReactMarkdown>{AboutSection[`AboutSection${lang}`].content}</ReactMarkdown>
+            </motion.div>
             <Viol />
           </div>
         </div>

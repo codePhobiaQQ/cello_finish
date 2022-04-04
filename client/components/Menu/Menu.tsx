@@ -1,5 +1,5 @@
 import styles from "./Menu.module.sass";
-
+import Image from "next/image";
 import menuBg from "../../public/assets/img/Menu/menuBg1.jpg";
 import menuBgIpad from "../../public/assets/img/Menu/ipadMenuBg.jpg";
 import menuBgMob from "../../public/assets/img/Menu/menuBgMob.jpg";
@@ -74,12 +74,9 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
       animate={isMenuOpen ? "visible" : "hidden"}
       className={styles.Menu}
     >
-      <motion.img
-        variants={scale}
-        className={styles.bgImage}
-        src={bgImage}
-        alt="menuBg"
-      />
+      <motion.div variants={scale} className={styles.bgImage}>
+        <Image src={bgImage} alt="menuBg" width={2000} height={2000} />
+      </motion.div>
       <ul className={styles.menuItems}>
         {footerMenu.map((menuItem, index) => (
           <li
