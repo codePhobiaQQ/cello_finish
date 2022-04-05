@@ -9,9 +9,9 @@ const Gallery = (props: any) => {
       <GallerySection />
       <Footer
         FooterSection={{
-          FormSectionRu: props.FormSectionRu,
-          FormSectionEn: props.FormSectionEn,
-          FormSectionDe: props.FormSectionDe,
+          FooterSectionRu: props.FooterSectionRu,
+          FooterSectionEn: props.FooterSectionEn,
+          FooterSectionDe: props.FooterSectionDe,
         }}
       ></Footer>
     </Header>
@@ -31,6 +31,8 @@ export async function getServerSideProps(context: any) {
     const FooterSectionDe = await fetchQuery(
       "api/footer-section?populate=*&locale=de"
     );
+
+    console.log(FooterSectionRu.data.attributes.FooterSection);
 
     return {
       props: {

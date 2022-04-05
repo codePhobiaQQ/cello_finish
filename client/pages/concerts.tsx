@@ -10,9 +10,9 @@ const Concerts = (props: any) => {
       <ConcertsSection />
       <Footer
         FooterSection={{
-          FormSectionRu: props.FormSectionRu,
-          FormSectionEn: props.FormSectionEn,
-          FormSectionDe: props.FormSectionDe,
+          FooterSectionRu: props.FooterSectionRu,
+          FooterSectionEn: props.FooterSectionEn,
+          FooterSectionDe: props.FooterSectionDe,
         }}
       ></Footer>
     </Header>

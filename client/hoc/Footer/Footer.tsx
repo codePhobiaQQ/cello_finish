@@ -98,6 +98,7 @@ export const footerMenu: IMenu[] = [
 ];
 
 const Footer = ({ children, FooterSection }: IFooter) => {
+  console.log(FooterSection);
   const router = useRouter();
   const currentLink = router.asPath;
   const lang = useTypedSelector((state) => state.app.language);
