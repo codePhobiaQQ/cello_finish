@@ -15,6 +15,7 @@ import slide6 from "./../../public/assets/slides/6.jpg";
 import slide7 from "./../../public/assets/slides/7.jpg";
 import slide8 from "./../../public/assets/slides/8.jpg";
 import useWindowWidth from "react-hook-use-window-width";
+import Image from "next/image";
 
 interface ISlide {
   image: string;
@@ -94,7 +95,7 @@ const GallerySection = () => {
         <Slider ref={sliderRef} {...settings}>
           {slides.map((slide, index) => (
             <div key={uuidv4() + index}>
-              <img src={slide.image} alt={"slide"} />
+              <Image width={200} height={300} src={slide.image} alt={"slide"} />
             </div>
           ))}
         </Slider>

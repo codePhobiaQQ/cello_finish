@@ -14,12 +14,20 @@
     padding: 10px 10px
   .logo
     cursor: pointer
-    display: flex
-    align-items: center
-    img
-      height: 80px
-      top: 15px
-      position: absolute
+    a
+      display: flex
+      align-items: center
+      position: relative
+      & > div
+        height: 80px
+        width: 34px
+        top: -5px
+        position: absolute !important
+        img
+          width: 34px
+          height: 80px
+
+
     span
       position: relative
       margin-left: 38px

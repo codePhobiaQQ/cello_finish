@@ -3,7 +3,8 @@ import Languages from "../../components/Languages/Languages";
 import Hamburger from "../../components/Hamburger/Hamburger";
 import logo from "../../public/assets/svg/Logo.svg";
 import Menu from "../../components/Menu/Menu";
-import Head from 'next/head'
+import Head from "next/head";
+import Image from "next/image";
 import { useState } from "react";
 import Sotials from "../../components/Sotials/Sotials";
 import Link from "next/link";
@@ -25,7 +26,12 @@ const Header = ({ children }: IHeader) => {
         <div className={styles.logo} onClick={() => setMenuOpen(false)}>
           <Link href="/">
             <a>
-              <img src={logo.src} alt="Logo" />
+              <Image
+                src={logo.src}
+                width={34}
+                height={80}
+                objectFit={"contain"}
+              />
               <span>
                 Ivan <br />
                 Skanavi
