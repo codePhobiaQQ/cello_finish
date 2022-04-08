@@ -9,11 +9,13 @@
     height: 51px
     border-radius: 50%
     border: 1px solid #C4C4C4
+    display: flex
+    align-items: center
+    justify-content: center
   .arrow
-    position: absolute
-    transform: translateX(calc(50% - 27px))
-    top: calc(50% - 4px)
-    width: 27px
+    margin-left: -45px
+    transition: margin-left .3s cubic-bezier(0,.24,.32,.99)
+
   @media screen and (max-width: 765px)
     .circle
       width: 30px

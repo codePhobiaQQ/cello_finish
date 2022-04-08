@@ -8,7 +8,7 @@ import { fetchQuery } from "../services/ssr";
 
 const MainPage = (props: any) => {
   useEffect(() => {
-    console.log(props.FooterSectionDe);
+    console.log(props.MenuRu);
     history.pushState("", document.title, window.location.pathname);
   }, []);
 
@@ -91,6 +91,10 @@ export async function getServerSideProps(context: any) {
       "api/footer-section?populate=*&locale=de"
     );
 
+    const MenuRu = await fetchQuery("api/menu?locale=ru");
+    const MenuEn = await fetchQuery("api/menu?locale=en");
+    const MenuDe = await fetchQuery("api/menu?locale=de");
+
     return {
       props: {
         MainSectionRu: MainSectionRu.data.attributes.MainSection,
@@ -108,6 +112,10 @@ export async function getServerSideProps(context: any) {
         FooterSectionRu: FooterSectionRu.data.attributes.FooterSection,
         FooterSectionEn: FooterSectionEn.data.attributes.FooterSection,
         FooterSectionDe: FooterSectionDe.data.attributes.FooterSection,
+
+        MenuRu: MenuRu.data.attributes,
+        MenuEn: MenuEn.data.attributes,
+        MenuDe: MenuDe.data.attributes,
       },
     };
   } catch (e) {

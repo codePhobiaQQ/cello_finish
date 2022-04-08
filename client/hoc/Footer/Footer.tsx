@@ -31,6 +31,7 @@ import useTypedSelector from "../../hooks/useTypedSelector";
 import PoliticPopup from "../../components/popups/PoliticPopup";
 import { useMemo, useState } from "react";
 import ProtectPopup from "../../components/popups/ProtectPopup";
+import ThanksPopup from "../../components/popups/ThanksPopup";
 
 interface IFooter {
   children?: React.ReactNode;
@@ -98,8 +99,8 @@ export const footerMenu: IMenu[] = [
 ];
 
 const Footer = ({ children, FooterSection }: IFooter) => {
-  console.log(FooterSection);
   const router = useRouter();
+  const thanks = useTypedSelector((state) => state.app.thanks);
   const currentLink = router.asPath;
   const lang = useTypedSelector((state) => state.app.language);
 
@@ -130,6 +131,7 @@ const Footer = ({ children, FooterSection }: IFooter) => {
           isProtectOpen={isProtectOpen}
           setProtectOpen={closeProtectHandler}
         />
+        <ThanksPopup />
         {children}
         <div className="container" id={"Contacts"}>
           <div className={styles.Footer}>
@@ -227,12 +229,6 @@ const Footer = ({ children, FooterSection }: IFooter) => {
                   </a>
                 </li>
               </div>
-              {/* <div className={styles.contact}>*/}
-              {/*  <span className={styles.name}>Phone:</span>*/}
-              {/*  <a href="#" className={styles.value}>*/}
-              {/*    8-800-123-45-67*/}
-              {/*  </a>*/}
-              {/* </div>*/}
               <div className={styles.contact}>
                 <span className={styles.name}>Email:</span>
                 <a href={`mailto:${mail}`} className={styles.value}>
@@ -254,7 +250,7 @@ const Footer = ({ children, FooterSection }: IFooter) => {
         </div>
       </>
     );
-  }, [isPoliticOpen, isProtectOpen]);
+  }, [isPoliticOpen, isProtectOpen, thanks]);
 };
 
 export default Footer;

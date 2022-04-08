@@ -10,17 +10,17 @@ import ArrowDown from "../../components/ArrowDown/ArrowDown";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import { useEffect, useState } from "react";
 import useWindowWidth from "react-hook-use-window-width";
-import {backUrl} from "../../vars";
+import { backUrl } from "../../vars";
 import Image from "next/image";
 import useTypedSelector from "../../hooks/useTypedSelector";
 
 interface IMainSection {
-  MainSection: any
+  MainSection: any;
 }
 
-const MainSection = ({MainSection}: IMainSection) => {
+const MainSection = ({ MainSection }: IMainSection) => {
   const [bgImage, setBgImage] = useState<string>(bg.src);
-  const lang = useTypedSelector(state => state.app.language)
+  const lang = useTypedSelector((state) => state.app.language);
 
   const width = useWindowWidth();
   useEffect(() => {
@@ -59,13 +59,7 @@ const MainSection = ({MainSection}: IMainSection) => {
         className={styles.backgroundImg}
         style={{ translateY: y2 }}
       >
-        <Image
-          objectFit={"cover"}
-          height={1000}
-          width={2000}
-          src={bgImage}
-          alt="bg"
-        />
+        <Image objectFit={"cover"} layout={"fill"} src={bgImage} alt="bg" />
       </motion.div>
 
       <motion.div
@@ -73,9 +67,7 @@ const MainSection = ({MainSection}: IMainSection) => {
         style={{ translateY: y1, opacity: opacity1 }}
         className={styles.content}
       >
-        <h1>
-          {MainSection[`MainSection${lang}`].title}
-        </h1>
+        <h1>{MainSection[`MainSection${lang}`].title}</h1>
         <span>{MainSection[`MainSection${lang}`].subtitle}</span>
       </motion.div>
 
@@ -89,8 +81,14 @@ const MainSection = ({MainSection}: IMainSection) => {
 
       {width > 756 ? (
         <VideoPlayer
-          poster={backUrl + MainSection[`MainSection${lang}`].video_preview.data.attributes.url}
-          videoSrc={backUrl + MainSection[`MainSection${lang}`].video.data.attributes.url}
+          poster={
+            backUrl +
+            MainSection[`MainSection${lang}`].video_preview.data.attributes.url
+          }
+          videoSrc={
+            backUrl +
+            MainSection[`MainSection${lang}`].video.data.attributes.url
+          }
           label={MainSection[`MainSection${lang}`].video_name}
         />
       ) : null}

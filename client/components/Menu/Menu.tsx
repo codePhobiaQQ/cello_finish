@@ -5,13 +5,13 @@ import menuBgIpad from "../../public/assets/img/Menu/ipadMenuBg.jpg";
 import menuBgMob from "../../public/assets/img/Menu/menuBgMob.jpg";
 import menuBgPc from "../../public/assets/img/Menu/menuBgPC.jpg";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import SotialIconFooter from "../SotialIconFooter/SotialIconFooter";
 import { v4 as uuidv4 } from "uuid";
 import { footerMenu, sotials } from "../../hoc/Footer/Footer";
 import useWindowWidth from "react-hook-use-window-width";
 import { useEffect, useState } from "react";
-import { listItem } from "../../motions/menuMotion";
+import { listItem, fadeIn, scale } from "../../motions/menuMotion";
 
 interface IMenu {
   isMenuOpen: boolean;
@@ -19,29 +19,6 @@ interface IMenu {
 }
 
 const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
-  const fadeIn = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-  const scale = {
-    hidden: {
-      scale: 1,
-    },
-    visible: {
-      scale: 1.05,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   const [bgImage, setBgImage] = useState<string>(menuBg.src);
 
   const width = useWindowWidth();
@@ -65,14 +42,14 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
     <AnimatePresence initial={false}>
       {isMenuOpen && (
         <motion.div
-          // variants={fadeIn}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
           className={styles.Menu}
         >
           <motion.div variants={scale} className={styles.bgImage}>
-            <Image src={bgImage} alt="menuBg" width={2000} height={2000} />
+            <Image src={bgImage} alt="menuBg" layout={"fill"} />
           </motion.div>
           <ul className={styles.menuItems}>
             {footerMenu.map((menuItem, index) => (
