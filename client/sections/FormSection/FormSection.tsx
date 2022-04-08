@@ -40,7 +40,7 @@ const FormSection = ({ FormiSection }: IFormSection) => {
   });
 
   return (
-    <section className={styles.FormSection}>
+    <section id="FormSection" className={styles.FormSection}>
       <div className="container">
         <motion.div
           className={styles.formSectionWrapper}

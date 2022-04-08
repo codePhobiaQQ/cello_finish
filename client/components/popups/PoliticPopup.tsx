@@ -1,5 +1,5 @@
 import Close from "../UI/close";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { fadeIn } from "../../motions/oftenMotions";
 
 interface IPoliticPopup {
@@ -9,16 +9,22 @@ interface IPoliticPopup {
 
 const PoliticPopup = ({ isPoliticOpen, setPoliticOpen }: IPoliticPopup) => {
   return (
-    <>
+    <AnimatePresence initial={false}>
       {isPoliticOpen && (
         <motion.div
           variants={fadeIn}
           animate="visible"
           initial="hidden"
+          exit="hidden"
           className="PoliticPopup"
         >
           <Close onClick={setPoliticOpen} />
-          <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            className="container"
+          >
             <h2>Политика конфиденциальности</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
@@ -98,10 +104,10 @@ const PoliticPopup = ({ isPoliticOpen, setPoliticOpen }: IPoliticPopup) => {
               obcaecati officiis porro quam, quas, quasi qui quos rem
               repudiandae sed veniam.
             </p>
-          </div>
+          </motion.div>
         </motion.div>
       )}
-    </>
+    </AnimatePresence>
   );
 };
 

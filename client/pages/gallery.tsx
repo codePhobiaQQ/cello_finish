@@ -4,9 +4,11 @@ import GallerySection from "../sections/GallerySection/GallerySection";
 import { fetchQuery } from "../services/ssr";
 
 const Gallery = (props: any) => {
+  console.log(props.GalleryImages);
+
   return (
     <Header>
-      <GallerySection />
+      <GallerySection GalleryImages={props.GalleryImages} />
       <Footer
         FooterSection={{
           FooterSectionRu: props.FooterSectionRu,
@@ -32,13 +34,15 @@ export async function getServerSideProps(context: any) {
       "api/footer-section?populate=*&locale=de"
     );
 
-    console.log(FooterSectionRu.data.attributes.FooterSection);
+    const GalleryImages = await fetchQuery("api/gallery-images?populate=image");
 
     return {
       props: {
         FooterSectionRu: FooterSectionRu.data.attributes.FooterSection,
         FooterSectionEn: FooterSectionEn.data.attributes.FooterSection,
         FooterSectionDe: FooterSectionDe.data.attributes.FooterSection,
+
+        GalleryImages: GalleryImages.data,
       },
     };
   } catch (e) {

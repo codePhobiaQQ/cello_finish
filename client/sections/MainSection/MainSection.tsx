@@ -8,6 +8,7 @@ import { contentVariant, connectVariant } from "../../motions/mainMotion";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
 import ArrowDown from "../../components/ArrowDown/ArrowDown";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import useWindowWidth from "react-hook-use-window-width";
 import { backUrl } from "../../vars";
@@ -76,7 +77,11 @@ const MainSection = ({ MainSection }: IMainSection) => {
         style={{ translateX: x1, opacity: opacity1 }}
         className={styles.connect}
       >
-        <span>{MainSection[`MainSection${lang}`].connect}</span>
+        <Link href="#FormSection">
+          <a>
+            <span>{MainSection[`MainSection${lang}`].connect}</span>
+          </a>
+        </Link>
       </motion.div>
 
       {width > 756 ? (

@@ -9,7 +9,11 @@ $scale: calc(1vh + 1vw)
   height: 100vh
   width: 100vw
   padding: 70px 0
+  transition: all .3s cubic-bezier(0,.24,.32,.99)
   overflow: auto
+  display: flex
+  align-items: center
+  justify-content: center
 
   .close
     position: absolute
@@ -22,13 +26,15 @@ $scale: calc(1vh + 1vw)
     &:hover
       transform: scale(1.05)
 
-  h2
-    font-size: calc(#{$scale} * 2.2)
-    margin-bottom: calc(#{$scale} * 1.6)
-  p, li
-    font-size: calc(#{$scale} * 1)
-    margin-bottom: calc(#{$scale} * 1)
-    line-height: 120%
-
-  li
-    margin-left: 20px
+  .content
+    text-align: center
+    h2
+      font-size: calc(#{$scale} * 2.2)
+      margin-bottom: calc(#{$scale} * 1.6)
+    p, li
+      font-size: calc(#{$scale} * 1)
+      margin: auto
+      margin-bottom: calc(#{$scale} * 1)
+      line-height: 120%
+      width: 70%
+      text-align: center

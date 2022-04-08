@@ -1,6 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppThunk } from "../store";
-import { boolean } from "property-information/lib/util/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface appState {
   isLoading: boolean;
@@ -28,7 +26,6 @@ export const appReducer = createSlice({
       state.thanks = action.payload;
     },
   },
-  extraReducers: (builder) => {},
 });
 export const { setLoading, setLanguage, setThanks } = appReducer.actions;
 
