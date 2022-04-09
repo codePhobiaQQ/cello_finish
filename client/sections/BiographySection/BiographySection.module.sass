@@ -1,3 +1,5 @@
+$responsive: calc(1vh + 1vw)
+
 .Biography
   height: inherit
   position: relative
@@ -54,9 +56,22 @@
       .textWrapper
         margin-left: 40px
         position: relative
+        .imageWrapperCello
+          float: right
+          width: calc(#{$responsive} * 10)
+          height: calc(#{$responsive} * 20)
+          //shape-outside: circle(60%)
+          margin: 0 0 20px 20px
+          & > div
+            width: 100%
+            height: 100%
+            position: relative !important
+            img
+              width: 100%
+              height: 100%
+
         .imageWrapperMob
           display: none
-
         svg
           position: absolute
           bottom: -140px
@@ -85,6 +100,13 @@
             font-size: 13px
             margin-bottom: 20px
 
+  @media screen and (max-width: 991px)
+    :global(.container)
+      .biographyWrapper
+        .textWrapper
+          .imageWrapperCello
+            display: none
+
   @media screen and (max-width: 765px)
     :global(.container)
       .dowloadButton
@@ -94,25 +116,32 @@
           margin-right: 20px
         &:hover
           :global(.arrowRight)
-            transform: translateX(calc(50% - 9px))
+            margin-left: 0
       .biographyWrapper
         .textWrapper
+          .imageWrapperCello
+            display: block
           .imageWrapperMob
             display: block
             float: left
             margin: 0 14px 14px 0
             width: 126px
             height: 189px
-            margin-left: 0
             & > div
               width: 126px
               height: 189px
               img
                 width: 126px
                 height: 189px
-
           p
             font-size: 10px
             line-height: 16px
         .imageWrapper
           display: none
+
+  @media screen and (max-width: 576px)
+    :global(.container)
+      .biographyWrapper
+        .textWrapper
+          .imageWrapperCello
+            display: none

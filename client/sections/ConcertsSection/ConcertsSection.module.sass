@@ -1,3 +1,5 @@
+$responsive: calc(1vh + 1vw)
+
 .concertsSection
   margin: 140px 0 120px
   height: 100%
@@ -79,8 +81,7 @@
             align-items: center
             &:hover
               :global(.arrowRight)
-                transition: transform .4s ease
-                transform: translateX(calc(50% - 15px))
+                margin-left: 0
             @media screen and (max-width: 765px)
               &:hover
                 :global(.arrowRight)
@@ -108,20 +109,20 @@
         position: absolute
         &:first-child
           top: 0
-          width: 430px
-          height: 290px
+          width: calc(#{$responsive} * 8.6)
+          height: calc(#{$responsive} * 5.8)
           z-index: 1
         &:nth-child(2)
-          width: 285px
-          height: 430px
+          width: calc(#{$responsive} * 5.7)
+          height: calc(#{$responsive} * 8.6)
           left: 206px
-          top: 132px
+          top: calc(#{$responsive} * 5.8)
           z-index: 2
         &:last-child
-          width: 392px
-          height: 262px
+          width: calc(#{$responsive} * 8)
+          height: calc(#{$responsive} * 5.3)
           left: 25px
-          top: 400px
+          top: calc(#{$responsive} * 14)
           z-index: 3
 
 

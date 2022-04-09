@@ -21,6 +21,15 @@
 
   .centerSide
     display: flex
+    :global(.VideoPlayerWrapper)
+      width: 200px
+      height: 150px
+      position: relative
+      top: inherit
+      bottom: inherit
+      :global(.video-react)
+        width: 100% !important
+        height: calc(100% - 20px) !important
     ul
       height: 100%
       display: flex

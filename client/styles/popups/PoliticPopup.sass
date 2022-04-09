@@ -2,7 +2,7 @@ $scale: calc(1vh + 1vw)
 
 .PoliticPopup, .ProtectPopup
   position: fixed
-  z-index: 1000
+  z-index: 10000
   background-color: #000
   top: 0
   left: 0
@@ -10,7 +10,7 @@ $scale: calc(1vh + 1vw)
   transition: all .3s cubic-bezier(0,.24,.32,.99)
   width: 100vw
   padding: 70px 0
-  overflow: auto
+  overflow-y: auto
 
   .close
     position: absolute
@@ -24,8 +24,8 @@ $scale: calc(1vh + 1vw)
       transform: scale(1.05)
 
   h2
-    font-size: calc(#{$scale} * 2.2)
-    margin-bottom: calc(#{$scale} * 1.6)
+    font-size: calc(#{$scale} * 1.6)
+    margin-bottom: calc(#{$scale} * 1.8)
   p, li
     font-size: calc(#{$scale} * 1)
     margin-bottom: calc(#{$scale} * 1)

@@ -1,12 +1,10 @@
 import styles from "./BiographySection.module.sass";
-import ivan from "../../public/assets/img/ivan.jpg";
+import cello from "../../public/assets/bio/viol.png";
 import Viol from "../../components/svg/viol";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
-import { motion, useTransform, useViewportScroll } from "framer-motion";
-import { wrapperVariant } from "../../motions/motions";
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { imageVariant, textVariant } from "../../motions/bioMotions";
 import useTypedSelector from "../../hooks/useTypedSelector";
@@ -24,19 +22,11 @@ const BiographySection = ({ AboutSection }: IBiographySection) => {
     triggerOnce: true,
   });
   const [imageMobRef, imageMobInView] = useInView({
-    threshold: 1,
+    threshold: 0.5,
     triggerOnce: true,
   });
   const [text1Ref, text1InView] = useInView({
-    threshold: 1,
-    triggerOnce: true,
-  });
-  const [text2Ref, text2InView] = useInView({
-    threshold: 1,
-    triggerOnce: true,
-  });
-  const [text3Ref, text3InView] = useInView({
-    threshold: 0.8,
+    threshold: 0.3,
     triggerOnce: true,
   });
 
@@ -82,12 +72,14 @@ const BiographySection = ({ AboutSection }: IBiographySection) => {
                 alt="Ivan"
               />
             </motion.div>
-
             <motion.div
               animate={text1InView ? "visible" : "hidden"}
               ref={text1Ref}
               variants={textVariant}
             >
+              <div className={styles.imageWrapperCello}>
+                <Image src={cello.src} objectFit={"contain"} layout={"fill"} />
+              </div>
               <ReactMarkdown>
                 {AboutSection[`AboutSection${lang}`].content}
               </ReactMarkdown>

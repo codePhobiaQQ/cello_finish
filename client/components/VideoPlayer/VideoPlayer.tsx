@@ -4,24 +4,20 @@ import postering from "../../public/assets/img/videoImg.jpg";
 import { Player } from "video-react";
 
 interface IVideoPlayer {
-  styling?: any;
   videoSrc?: string;
   poster?: string;
   label?: string;
 }
 
-const VideoPlayer = ({ videoSrc, styling, poster, label }: IVideoPlayer) => {
+const VideoPlayer = ({ videoSrc, poster, label }: IVideoPlayer) => {
   return (
-    <div
-      className={styles.VideoPlayerWrapper + " VideoPlayerWrapper"}
-      style={styling}
-    >
+    <div className={styles.VideoPlayerWrapper + " VideoPlayerWrapper"}>
       {!!label && <span>{label}</span>}
       <Player
         // playsInline
         poster={poster ? poster : postering.src}
-        width={200}
-        height={120}
+        fluid={false}
+        preload={"none"}
         src={
           videoSrc
             ? videoSrc

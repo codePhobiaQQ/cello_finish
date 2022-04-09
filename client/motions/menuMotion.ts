@@ -18,9 +18,6 @@ export const fadeIn = {
   },
   visible: {
     opacity: 1,
-    transition: {
-      duration: 0.5,
-    },
   },
 };
 
@@ -30,8 +27,5 @@ export const scale = {
   },
   visible: {
     scale: 1.05,
-    transition: {
-      duration: 0.5,
-    },
   },
 };

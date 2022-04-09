@@ -11,6 +11,8 @@
   font-family: "Big"
   src : url("fonts/BigillaRegular.woff2") format("woff2")
 
+$responsive: calc(1vh + 1vw)
+
 body, html
   background-color: $backgroundColor
   color: $textColor
@@ -49,11 +51,14 @@ input
   margin: auto
 
 .MainSection
+  .VideoPlayerWrapper
+    height: calc(#{$responsive} * 6)
+    width: calc(#{$responsive} * 10)
   .video-react
-    width: 200px !important
-    height: 120px !important
-    padding-top: 0 !important
-    .video-react-video
+    width: 100% !important
+    height: 100% !important
+//    padding-top: 0 !important
+//    .video-react-video
 
 *::-webkit-scrollbar-thumb
   background-color: #fff

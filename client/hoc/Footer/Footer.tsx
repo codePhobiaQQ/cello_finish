@@ -174,12 +174,6 @@ const Footer = ({ children, FooterSection }: IFooter) => {
               <ul>
                 <li>
                   <VideoPlayer
-                    styling={{
-                      position: "relative",
-                      right: "inherit",
-                      bottom: "inherit",
-                      top: "inherit",
-                    }}
                     label={"S. Rachmaninov - Sonata for cello and piano.."}
                   />
                 </li>
