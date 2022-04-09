@@ -14,7 +14,6 @@ const VideoPlayer = ({ videoSrc, poster, label }: IVideoPlayer) => {
     <div className={styles.VideoPlayerWrapper + " VideoPlayerWrapper"}>
       {!!label && <span>{label}</span>}
       <Player
-        // playsInline
         poster={poster ? poster : postering.src}
         fluid={false}
         preload={"none"}

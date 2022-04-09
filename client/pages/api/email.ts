@@ -10,13 +10,14 @@ export default async function handler(
   console.log(req.body);
 
   const transporter = await nodemailer.createTransport({
-    host: "smtp.mail.ru",
+    host: "smtp.beget.com",
     port: 465,
     pool: true,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "vital.pereg@mail.ru", // generated ethereal user
-      pass: "juk1109@yandex.ru", // generated ethereal password
+      user: "info@ivanskanavi.com", // generated ethereal user
+      pass: "Vitalik2007", // generated ethereal password
+      // pass: "ofbyivoymzltksgj", // generated ethereal password
     },
   });
 
@@ -42,8 +43,8 @@ export default async function handler(
   };
 
   const info1 = await transporter.sendMail({
-    from: "vital.pereg@mail.ru",
-    to: "vital.pereg@mail.ru",
+    from: "info@ivanskanavi.com",
+    to: req.body.values.email,
     // @ts-ignore
     subject: TitleText[req.body.lang],
     // @ts-ignore
@@ -51,8 +52,8 @@ export default async function handler(
   });
 
   const info2 = await transporter.sendMail({
-    from: "vital.pereg@mail.ru", // sender address
-    to: "vital.pereg@mail.ru", // list of receivers
+    from: "info@ivanskanavi.com", // sender address
+    to: "info@ivanskanavi.com", // list of receivers
     subject: "Заявка с сайта ivanskanavi.com", // Subject line
     html:
       `<div>${req.body.values.name} - ${req.body.values.email} оставил заявку на сайте</div>` +

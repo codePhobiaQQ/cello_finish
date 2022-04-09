@@ -94,7 +94,7 @@ export const footerMenu: IMenu[] = [
   },
   {
     title: "Contacts",
-    link: "/#Contacts",
+    link: "#Contacts",
   },
 ];
 

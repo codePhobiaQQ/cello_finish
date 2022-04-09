@@ -43,9 +43,17 @@
       :global(.VideoPlayerWrapper)
         width: 100%
 
-    :global(.video-react.video-react-fluid)
-      height: 100% !important
-      width: 287px
+
+    :global(.VideoPlayerWrapper)
+      width: 240px
+      height: 160px
+      position: relative
+      bottom: inherit
+      right: inherit
+      :global(.video-react)
+        height: 100% !important
+        width: 100% !important
+
     .contentWrapper
       display: flex
       justify-content: space-between
