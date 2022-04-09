@@ -15,7 +15,7 @@ const VideoSection = ({ VideoSection }: VideoSection) => {
   const [pagination, setCurrentPagination] = useState<number>(3);
   const [isMoreVisible, setMobVisible] = useState<boolean>(true);
 
-  const slidesAmount = VideoSection.VdieosEn.length;
+  const slidesAmount = VideoSection.VideosEn.length;
 
   const clickMoreAction = () => {
     if (pagination + 3 > slidesAmount) {
