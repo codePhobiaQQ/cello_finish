@@ -1,83 +1,21 @@
 import styles from "./VideoSection.module.sass";
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import slide1 from "../../public/assets/compositionSlides/composition.jpg";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import MoreArrow from "../../components/MoreArrow/MoreArrow";
+import useTypedSelector from "../../hooks/useTypedSelector";
+import { backUrl, moreButton } from "../../vars";
 
-interface ISlide {
-  image: string;
-  video: string;
-  author: string;
-  executors: string[];
-  composition: string;
-  duration: string;
+interface VideoSection {
+  VideoSection: any;
 }
 
-const VideoSection = () => {
-  const slides: ISlide[] = [
-    {
-      image: slide1.src,
-      video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
-      author: "Pyotr Ilyich Tchaikovsky",
-      executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
-      composition: "Pezzo capriccioso",
-      duration: "06:50",
-    },
-    {
-      image: slide1.src,
-      video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
-      author: "Pyotr Ilyich Tchaikovsky",
-      executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
-      composition: "Pezzo capriccioso",
-      duration: "06:50",
-    },
-    {
-      image: slide1.src,
-      video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
-      author: "Pyotr Ilyich Tchaikovsky",
-      executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
-      composition: "Pezzo capriccioso",
-      duration: "06:50",
-    },
-    {
-      image: slide1.src,
-      video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
-      author: "Pyotr Ilyich Tchaikovsky",
-      executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
-      composition: "Pezzo capriccioso",
-      duration: "06:50",
-    },
-    {
-      image: slide1.src,
-      video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
-      author: "Pyotr Ilyich Tchaikovsky",
-      executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
-      composition: "Pezzo capriccioso",
-      duration: "06:50",
-    },
-    {
-      image: slide1.src,
-      video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
-      author: "Pyotr Ilyich Tchaikovsky",
-      executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
-      composition: "Pezzo capriccioso",
-      duration: "06:50",
-    },
-    {
-      image: slide1.src,
-      video: "https://media.w3.org/2010/05/sintel/trailer_hd.mp4",
-      author: "Pyotr Ilyich Tchaikovsky",
-      executors: ["Ivan Skanavi - cello", "Nikolai Diomkin - piano"],
-      composition: "Pezzo capriccioso",
-      duration: "06:50",
-    },
-  ];
+const VideoSection = ({ VideoSection }: VideoSection) => {
+  const lang = useTypedSelector((state) => state.app.language);
 
   const [pagination, setCurrentPagination] = useState<number>(3);
   const [isMoreVisible, setMobVisible] = useState<boolean>(true);
 
-  const slidesAmount = slides.length;
+  const slidesAmount = VideoSection.VdieosEn.length;
 
   const clickMoreAction = () => {
     if (pagination + 3 > slidesAmount) {
@@ -91,29 +29,36 @@ const VideoSection = () => {
   return (
     <div className={styles.videoSection}>
       <div className="container">
-        {slides.slice(0, pagination).map((slide, index) => (
-          <div key={uuidv4() + index} className={styles.videoElem}>
-            <VideoPlayer poster={slide.image} videoSrc={slide.video} />
-            <div className={styles.contentWrapper}>
-              <div className={styles.leftSide}>
-                <span>Pyotr Ilyich Tchaikovsky</span>
-                <span>Pezzo capriccioso</span>
-              </div>
-              <div className={styles.rightSide}>
-                <div>
-                  {slide.executors.map((executor, indexing) => (
-                    <span key={uuidv4() + indexing}>{executor}</span>
-                  ))}
+        {VideoSection[`Videos${lang}`]
+          .slice(0, pagination)
+          .map((slide: any, index: number) => (
+            <div key={"videoelement" + index} className={styles.videoElem}>
+              <VideoPlayer
+                poster={backUrl + slide.attributes.image.data.attributes.url}
+                videoSrc={backUrl + slide.attributes.video.data.attributes.url}
+              />
+              <div className={styles.contentWrapper}>
+                <div className={styles.leftSide}>
+                  <span>{slide.attributes.author}</span>
+                  <span>{slide.attributes.composition}</span>
                 </div>
-                <span>06:50</span>
+                <div className={styles.rightSide}>
+                  <div>
+                    {slide.attributes.executors
+                      .split("\\n")
+                      .map((executor: string, indexing: number) => (
+                        <span key={"videoelement" + indexing}>{executor}</span>
+                      ))}
+                  </div>
+                  <span>{slide.attributes.duration}</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
         {isMoreVisible && (
           <div onClick={clickMoreAction} className="moreWrap">
             <MoreArrow />
-            <span>Показать еще</span>
+            <span>{moreButton[lang]}</span>
           </div>
         )}
       </div>

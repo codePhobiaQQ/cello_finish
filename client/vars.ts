@@ -6,6 +6,12 @@ export const buyTiket: any = {
   De: "Buy Ticket De",
 };
 
+export const readMore: any = {
+  Ru: "Читать дальше",
+  En: "Read more",
+  De: "Lesen Sie weiter",
+};
+
 export const moreButton: any = {
   Ru: "Показать еще",
   En: "Show more",

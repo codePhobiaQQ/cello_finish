@@ -1,9 +1,11 @@
 import styles from "./NewsSection.module.sass";
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
 import MoreArrow from "../../components/MoreArrow/MoreArrow";
 import newsImg from "../../public/assets/news/newsImg.jpg";
+import { backUrl, moreButton, readMore } from "../../vars";
+import useTypedSelector from "../../hooks/useTypedSelector";
+import Image from "next/image";
 
 interface INews {
   day: string;
@@ -14,7 +16,12 @@ interface INews {
   longText: string;
 }
 
-const NewsSection = () => {
+interface NewsSection {
+  NewsSection: any;
+}
+
+const NewsSection = ({ NewsSection }: NewsSection) => {
+  const lang = useTypedSelector((state) => state.app.language);
   const news: INews[] = [
     {
       day: "05",
@@ -171,42 +178,55 @@ const NewsSection = () => {
     <div className={styles.newsSection}>
       <div className="container">
         <div className={styles.newsWrapper}>
-          {news.slice(0, pagination).map((newsing, index) => (
-            <div key={uuidv4() + index} className={styles.newsElem}>
-              <div className={styles.leftSide}>
-                <span className={styles.day}>{newsing.day}</span>
-                <span className={styles.dayMonth}>
-                  {newsing.month} / {newsing.year}
-                </span>
-              </div>
-              <div className={styles.centerSide}>
-                <div className={styles.content}>
-                  <span className={styles.title}>{newsing.title}</span>
+          {NewsSection[`News${lang}`]
+            .slice(0, pagination)
+            .map((newsing: any, index: number) => (
+              <div key={"newselement" + index} className={styles.newsElem}>
+                <div className={styles.leftSide}>
+                  <span className={styles.day}>{newsing.attributes.day}</span>
+                  <span className={styles.dayMonth}>
+                    {newsing.attributes.month} / {newsing.attributes.year}
+                  </span>
+                </div>
+                <div className={styles.centerSide}>
+                  <div className={styles.content}>
+                    <span className={styles.title}>
+                      {newsing.attributes.title}
+                    </span>
+                  </div>
+
+                  <div
+                    className={
+                      index % 2 != 0
+                        ? styles.imgSide
+                        : styles.imgSide + " rightImg"
+                    }
+                  >
+                    <Image
+                      width={210}
+                      height={120}
+                      objectFit={"contain"}
+                      src={
+                        backUrl +
+                        newsing.attributes.littleImg.data.attributes.url
+                      }
+                      alt="image"
+                    />
+                  </div>
                 </div>
 
-                <div
-                  className={
-                    index % 2 != 0
-                      ? styles.imgSide
-                      : styles.imgSide + " rightImg"
-                  }
-                >
-                  <img src={newsing.littleImg} alt="image" />
+                <div className={styles.rightSide}>
+                  <span>{readMore[lang]}</span>
+                  <ArrowRight />
                 </div>
               </div>
-
-              <div className={styles.rightSide}>
-                <span>Читать далее</span>
-                <ArrowRight />
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
 
         {isMoreVisible && (
           <div onClick={clickMoreAction} className="moreWrap">
             <MoreArrow />
-            <span>Показать еще</span>
+            <span>{moreButton[lang]}</span>
           </div>
         )}
       </div>

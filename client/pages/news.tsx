@@ -7,7 +7,13 @@ import { fetchQuery } from "../services/ssr";
 const News = (props: any) => {
   return (
     <Header>
-      <NewsSection />
+      <NewsSection
+        NewsSection={{
+          NewsRu: props.NewsRu,
+          NewsEn: props.NewsEn,
+          NewsDe: props.NewsDe,
+        }}
+      />
       <Footer></Footer>
     </Header>
   );
@@ -17,21 +23,15 @@ export default News;
 
 export async function getServerSideProps(context: any) {
   try {
-    const FooterSectionRu = await fetchQuery(
-      "api/footer-section?populate=*&locale=ru"
-    );
-    const FooterSectionEn = await fetchQuery(
-      "api/footer-section?populate=*&locale=en"
-    );
-    const FooterSectionDe = await fetchQuery(
-      "api/footer-section?populate=*&locale=de"
-    );
+    const NewsRu = await fetchQuery("api/news?locale=ru&populate=littleImg");
+    const NewsEn = await fetchQuery("api/news?locale=en&populate=littleImg");
+    const NewsDe = await fetchQuery("api/news?locale=de&populate=littleImg");
 
     return {
       props: {
-        FooterSectionRu: FooterSectionRu.data.attributes.FooterSection,
-        FooterSectionEn: FooterSectionEn.data.attributes.FooterSection,
-        FooterSectionDe: FooterSectionDe.data.attributes.FooterSection,
+        NewsRu: NewsRu.data,
+        NewsEn: NewsEn.data,
+        NewsDe: NewsDe.data,
       },
     };
   } catch (e) {

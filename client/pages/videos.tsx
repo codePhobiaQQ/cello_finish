@@ -7,7 +7,13 @@ import { fetchQuery } from "../services/ssr";
 const Videos = (props: any) => {
   return (
     <Header>
-      <VideoSection />
+      <VideoSection
+        VideoSection={{
+          VideosRu: props.VideosRu,
+          VideosEn: props.VideosEn,
+          VideosDe: props.VideosDe,
+        }}
+      />
       <Footer></Footer>
     </Header>
   );
@@ -17,21 +23,21 @@ export default Videos;
 
 export async function getServerSideProps(context: any) {
   try {
-    const FooterSectionRu = await fetchQuery(
-      "api/footer-section?populate=*&locale=ru"
+    const VideosRu = await fetchQuery(
+      "api/videos?locale=ru&populate=video&populate=image"
     );
-    const FooterSectionEn = await fetchQuery(
-      "api/footer-section?populate=*&locale=en"
+    const VideosEn = await fetchQuery(
+      "api/videos?locale=en&populate=video&populate=image"
     );
-    const FooterSectionDe = await fetchQuery(
-      "api/footer-section?populate=*&locale=de"
+    const VideosDe = await fetchQuery(
+      "api/videos?locale=de&populate=video&populate=image"
     );
 
     return {
       props: {
-        FooterSectionRu: FooterSectionRu.data.attributes.FooterSection,
-        FooterSectionEn: FooterSectionEn.data.attributes.FooterSection,
-        FooterSectionDe: FooterSectionDe.data.attributes.FooterSection,
+        VideosRu: VideosRu.data,
+        VideosEn: VideosEn.data,
+        VideosDe: VideosDe.data,
       },
     };
   } catch (e) {
