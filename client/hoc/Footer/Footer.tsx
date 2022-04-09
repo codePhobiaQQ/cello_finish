@@ -165,6 +165,7 @@ const Footer = ({ children }: IFooter) => {
         {children}
         <div className="container" id={"Contacts"}>
           <div className={styles.Footer}>
+            <div className="pricol">10</div>
             <div className={styles.leftSide}>
               <Link href="/">
                 <a>
