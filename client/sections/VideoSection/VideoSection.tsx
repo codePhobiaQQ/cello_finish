@@ -93,15 +93,7 @@ const VideoSection = () => {
       <div className="container">
         {slides.slice(0, pagination).map((slide, index) => (
           <div key={uuidv4() + index} className={styles.videoElem}>
-            <VideoPlayer
-              styling={{
-                position: "relative",
-                right: "inherit",
-                bottom: "inherit",
-              }}
-              poster={slide.image}
-              videoSrc={slide.video}
-            />
+            <VideoPlayer poster={slide.image} videoSrc={slide.video} />
             <div className={styles.contentWrapper}>
               <div className={styles.leftSide}>
                 <span>Pyotr Ilyich Tchaikovsky</span>

@@ -7,19 +7,17 @@
   :global(.moreWrap)
     display: flex
     align-items: center
-    width: 210px
     margin: auto
     justify-content: space-between
     cursor: pointer
-      width: 200px
+    width: 210px
     &:hover
       :global(.moreArrow)
-        display: flex
-        align-items: center
-        img
-          margin-top: -10px
+        :global(.arrowRight)
+          margin-top: 0
     span
       margin-left: 40px
+      white-space: nowrap
     @media screen and (max-width: 767px)
       width: 130px
       span
