@@ -51,34 +51,14 @@ export default MainPage;
 
 export async function getServerSideProps(context: any) {
   try {
-    const MainSectionRu = await fetchQuery(
-      "api/main-page?populate=*&locale=ru&populate=MainSection.video_preview&populate=MainSection.video"
+    const bigRequestRu = await fetchQuery(
+      "api/main-page?populate=*&locale=ru&populate=MainSection.video_preview&populate=MainSection.video&populate=about_section.image_ivan&populate=about_section.bio_file"
     );
-    const MainSectionEn = await fetchQuery(
-      "api/main-page?populate=*&locale=en&populate=MainSection.video_preview&populate=MainSection.video"
+    const bigRequestEn = await fetchQuery(
+      "api/main-page?populate=*&locale=en&populate=MainSection.video_preview&populate=MainSection.video&populate=about_section.image_ivan&populate=about_section.bio_file"
     );
-    const MainSectionDe = await fetchQuery(
-      "api/main-page?populate=*&locale=de&populate=MainSection.video_preview&populate=MainSection.video"
-    );
-
-    const AboutSectionRu = await fetchQuery(
-      "api/main-page?populate=*&locale=ru&populate=about_section.image_ivan&populate=about_section.bio_file"
-    );
-    const AboutSectionEn = await fetchQuery(
-      "api/main-page?populate=*&locale=en&populate=about_section.image_ivan&populate=about_section.bio_file"
-    );
-    const AboutSectionDe = await fetchQuery(
-      "api/main-page?populate=*&locale=de&populate=about_section.image_ivan&populate=about_section.bio_file"
-    );
-
-    const FormSectionRu = await fetchQuery(
-      "api/main-page?populate=*&locale=ru"
-    );
-    const FormSectionEn = await fetchQuery(
-      "api/main-page?populate=*&locale=en"
-    );
-    const FormSectionDe = await fetchQuery(
-      "api/main-page?populate=*&locale=de"
+    const bigRequestDe = await fetchQuery(
+      "api/main-page?populate=*&locale=de&populate=MainSection.video_preview&populate=MainSection.video&populate=about_section.image_ivan&populate=about_section.bio_file"
     );
 
     const FooterSectionRu = await fetchQuery(
@@ -91,31 +71,23 @@ export async function getServerSideProps(context: any) {
       "api/footer-section?populate=*&locale=de"
     );
 
-    const MenuRu = await fetchQuery("api/menu?locale=ru");
-    const MenuEn = await fetchQuery("api/menu?locale=en");
-    const MenuDe = await fetchQuery("api/menu?locale=de");
-
     return {
       props: {
-        MainSectionRu: MainSectionRu.data.attributes.MainSection,
-        MainSectionEn: MainSectionEn.data.attributes.MainSection,
-        MainSectionDe: MainSectionDe.data.attributes.MainSection,
+        MainSectionRu: bigRequestRu.data.attributes.MainSection,
+        MainSectionEn: bigRequestEn.data.attributes.MainSection,
+        MainSectionDe: bigRequestDe.data.attributes.MainSection,
 
-        AboutSectionRu: AboutSectionRu.data.attributes.about_section,
-        AboutSectionEn: AboutSectionEn.data.attributes.about_section,
-        AboutSectionDe: AboutSectionDe.data.attributes.about_section,
+        AboutSectionRu: bigRequestRu.data.attributes.about_section,
+        AboutSectionEn: bigRequestEn.data.attributes.about_section,
+        AboutSectionDe: bigRequestDe.data.attributes.about_section,
 
-        FormSectionRu: FormSectionRu.data.attributes.FormSection,
-        FormSectionEn: FormSectionEn.data.attributes.FormSection,
-        FormSectionDe: FormSectionDe.data.attributes.FormSection,
+        FormSectionRu: bigRequestRu.data.attributes.FormSection,
+        FormSectionEn: bigRequestEn.data.attributes.FormSection,
+        FormSectionDe: bigRequestDe.data.attributes.FormSection,
 
         FooterSectionRu: FooterSectionRu.data.attributes.FooterSection,
         FooterSectionEn: FooterSectionEn.data.attributes.FooterSection,
         FooterSectionDe: FooterSectionDe.data.attributes.FooterSection,
-
-        MenuRu: MenuRu.data.attributes,
-        MenuEn: MenuEn.data.attributes,
-        MenuDe: MenuDe.data.attributes,
       },
     };
   } catch (e) {

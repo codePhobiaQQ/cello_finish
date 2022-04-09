@@ -33,11 +33,19 @@ export async function getServerSideProps(context: any) {
       "api/footer-section?populate=*&locale=de"
     );
 
+    const ConcertsRu = await fetchQuery("api/concerts?locale=ru");
+    const ConcertsEn = await fetchQuery("api/concerts?locale=en");
+    const ConcertsDe = await fetchQuery("api/concerts?locale=de");
+
     return {
       props: {
         FooterSectionRu: FooterSectionRu.data.attributes.FooterSection,
         FooterSectionEn: FooterSectionEn.data.attributes.FooterSection,
         FooterSectionDe: FooterSectionDe.data.attributes.FooterSection,
+
+        ConcertsRu: ConcertsRu.data,
+        ConcertsEn: ConcertsEn.data,
+        ConcertsDe: ConcertsDe.data,
       },
     };
   } catch (e) {
