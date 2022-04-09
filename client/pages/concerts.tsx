@@ -14,13 +14,7 @@ const Concerts = (props: any) => {
           ConcertsDe: props.ConcertsDe,
         }}
       />
-      <Footer
-        FooterSection={{
-          FooterSectionRu: props.FooterSectionRu,
-          FooterSectionEn: props.FooterSectionEn,
-          FooterSectionDe: props.FooterSectionDe,
-        }}
-      ></Footer>
+      <Footer></Footer>
     </Header>
   );
 };
@@ -29,26 +23,12 @@ export default Concerts;
 
 export async function getServerSideProps(context: any) {
   try {
-    const FooterSectionRu = await fetchQuery(
-      "api/footer-section?populate=*&locale=ru"
-    );
-    const FooterSectionEn = await fetchQuery(
-      "api/footer-section?populate=*&locale=en"
-    );
-    const FooterSectionDe = await fetchQuery(
-      "api/footer-section?populate=*&locale=de"
-    );
-
     const ConcertsRu = await fetchQuery("api/concerts?locale=ru");
     const ConcertsEn = await fetchQuery("api/concerts?locale=en");
     const ConcertsDe = await fetchQuery("api/concerts?locale=de");
 
     return {
       props: {
-        FooterSectionRu: FooterSectionRu.data.attributes.FooterSection,
-        FooterSectionEn: FooterSectionEn.data.attributes.FooterSection,
-        FooterSectionDe: FooterSectionDe.data.attributes.FooterSection,
-
         ConcertsRu: ConcertsRu.data,
         ConcertsEn: ConcertsEn.data,
         ConcertsDe: ConcertsDe.data,

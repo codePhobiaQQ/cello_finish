@@ -8,13 +8,7 @@ const News = (props: any) => {
   return (
     <Header>
       <NewsSection />
-      <Footer
-        FooterSection={{
-          FooterSectionRu: props.FooterSectionRu,
-          FooterSectionEn: props.FooterSectionEn,
-          FooterSectionDe: props.FooterSectionDe,
-        }}
-      ></Footer>
+      <Footer></Footer>
     </Header>
   );
 };

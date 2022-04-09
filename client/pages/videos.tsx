@@ -8,13 +8,7 @@ const Videos = (props: any) => {
   return (
     <Header>
       <VideoSection />
-      <Footer
-        FooterSection={{
-          FooterSectionRu: props.FooterSectionRu,
-          FooterSectionEn: props.FooterSectionEn,
-          FooterSectionDe: props.FooterSectionDe,
-        }}
-      ></Footer>
+      <Footer></Footer>
     </Header>
   );
 };

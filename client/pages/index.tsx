@@ -14,13 +14,7 @@ const MainPage = (props: any) => {
 
   return (
     <Header>
-      <Footer
-        FooterSection={{
-          FooterSectionRu: props.FooterSectionRu,
-          FooterSectionEn: props.FooterSectionEn,
-          FooterSectionDe: props.FooterSectionDe,
-        }}
-      >
+      <Footer>
         <MainSection
           MainSection={{
             MainSectionRu: props.MainSectionRu,
@@ -61,16 +55,6 @@ export async function getServerSideProps(context: any) {
       "api/main-page?populate=*&locale=de&populate=MainSection.video_preview&populate=MainSection.video&populate=about_section.image_ivan&populate=about_section.bio_file&populate=FormSection"
     );
 
-    const FooterSectionRu = await fetchQuery(
-      "api/footer-section?populate=*&locale=ru"
-    );
-    const FooterSectionEn = await fetchQuery(
-      "api/footer-section?populate=*&locale=en"
-    );
-    const FooterSectionDe = await fetchQuery(
-      "api/footer-section?populate=*&locale=de"
-    );
-
     return {
       props: {
         MainSectionRu: bigRequestRu.data.attributes.MainSection,
@@ -84,10 +68,6 @@ export async function getServerSideProps(context: any) {
         FormSectionRu: bigRequestRu.data.attributes.FormSection,
         FormSectionEn: bigRequestEn.data.attributes.FormSection,
         FormSectionDe: bigRequestDe.data.attributes.FormSection,
-
-        FooterSectionRu: FooterSectionRu.data.attributes.FooterSection,
-        FooterSectionEn: FooterSectionEn.data.attributes.FooterSection,
-        FooterSectionDe: FooterSectionDe.data.attributes.FooterSection,
       },
     };
   } catch (e) {

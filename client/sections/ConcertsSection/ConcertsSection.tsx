@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import MoreArrow from "../../components/MoreArrow/MoreArrow";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
 import useTypedSelector from "../../hooks/useTypedSelector";
+import { buyTiket, moreButton } from "../../vars";
 
 interface IConcert {
   day: string;
@@ -25,79 +26,11 @@ interface ConcertsSection {
 
 const ConcertsSection = ({ ConcertSection }: ConcertsSection) => {
   const lang = useTypedSelector((state) => state.app.language);
-  console.log(lang);
-
-  const concerts: IConcert[] = [
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      city: "Berlin",
-      location: "Tchaikovsky Concert",
-      link: "#",
-    },
-    {
-      day: "28",
-      month: "03",
-      year: "2022",
-      city: "Saint-Petersburg",
-      location: "Oktyabrskiy Big Concert Hall",
-      link: "#",
-    },
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      city: "Berlin",
-      location: "Tchaikovsky Concert Hall",
-      link: "#",
-    },
-    {
-      day: "28",
-      month: "03",
-      year: "2022",
-      city: "Saint-Petersburg",
-      location: "Oktyabrskiy Big Concert Hall",
-      link: "#",
-    },
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      city: "Berlin",
-      location: "Tchaikovsky Concert Hall",
-      link: "#",
-    },
-    {
-      day: "28",
-      month: "03",
-      year: "2022",
-      city: "Saint-Petersburg",
-      location: "Oktyabrskiy Big Concert Hall",
-      link: "#",
-    },
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      city: "Berlin",
-      location: "Tchaikovsky Concert Hall",
-      link: "#",
-    },
-    {
-      day: "28",
-      month: "03",
-      year: "2022",
-      city: "Saint-Petersburg",
-      location: "Oktyabrskiy Big Concert Hall",
-      link: "#",
-    },
-  ];
 
   const [pagination, setCurrentPagination] = useState<number>(5);
   const [isMoreVisible, setMobVisible] = useState<boolean>(true);
 
-  const concertsAmount = concerts.length;
+  const concertsAmount = ConcertSection["ConcertsEn"].length;
 
   const clickMoreAction = () => {
     if (pagination + 3 > concertsAmount) {
@@ -113,26 +46,35 @@ const ConcertsSection = ({ ConcertSection }: ConcertsSection) => {
       <div className="container">
         <div className={styles.concertsImagesWrapper}>
           <div className={styles.concertsWrapper}>
-            {concerts.slice(0, pagination).map((concert, index) => (
-              <div key={uuidv4() + index} className={styles.concertElem}>
-                <div className={styles.leftSide}>
-                  <span className={styles.day}>{concert.day}</span>
-                  <span className={styles.dayMonth}>
-                    {concert.month} / {concert.year}
-                  </span>
+            {ConcertSection[`Concerts${lang}`]
+              .slice(0, pagination)
+              .map((concert: any, index: number) => (
+                <div key={uuidv4() + index} className={styles.concertElem}>
+                  <div className={styles.leftSide}>
+                    <span className={styles.day}>{concert.attributes.day}</span>
+                    <span className={styles.dayMonth}>
+                      {concert.attributes.month} / {concert.attributes.year}
+                    </span>
+                  </div>
+                  <div className={styles.centerSide}>
+                    <span className={styles.city}>
+                      {concert.attributes.city}
+                    </span>
+                    <span className={styles.location}>
+                      {concert.attributes.location}
+                    </span>
+                  </div>
+                  <div className={styles.rightSide}>
+                    <a
+                      className={styles.buyTiсket}
+                      href={concert.attributes.link}
+                    >
+                      <span>{buyTiket[lang]}</span>
+                      <ArrowRight />
+                    </a>
+                  </div>
                 </div>
-                <div className={styles.centerSide}>
-                  <span className={styles.city}>{concert.city}</span>
-                  <span className={styles.location}>{concert.location}</span>
-                </div>
-                <div className={styles.rightSide}>
-                  <a className={styles.buyTiсket} href={concert.link}>
-                    <span>Купить билет</span>
-                    <ArrowRight />
-                  </a>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
 
           <div className={styles.imagesWrapper}>
@@ -145,7 +87,7 @@ const ConcertsSection = ({ ConcertSection }: ConcertsSection) => {
         {isMoreVisible && (
           <div onClick={clickMoreAction} className="moreWrap">
             <MoreArrow />
-            <span>Показать еще</span>
+            <span>{moreButton[lang]}</span>
           </div>
         )}
       </div>

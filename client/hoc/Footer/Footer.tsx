@@ -29,13 +29,15 @@ import { useRouter } from "next/router";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import PoliticPopup from "../../components/popups/PoliticPopup";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ProtectPopup from "../../components/popups/ProtectPopup";
 import ThanksPopup from "../../components/popups/ThanksPopup";
+import { fetchQuery } from "../../services/ssr";
+import { log } from "util";
+import { politic, protect } from "../../vars";
 
 interface IFooter {
   children?: React.ReactNode;
-  FooterSection: any;
 }
 
 interface IMenu {
@@ -98,7 +100,24 @@ export const footerMenu: IMenu[] = [
   },
 ];
 
-const Footer = ({ children, FooterSection }: IFooter) => {
+const Footer = ({ children }: IFooter) => {
+  const [data, setData] = useState<any>({});
+
+  useEffect(() => {
+    async function takeData() {
+      const response = await fetchQuery(
+        "api/footer-section?populate=*&locale=en"
+      );
+      return response;
+    }
+    takeData().then((result) => {
+      console.log(result.data.attributes.FooterSection);
+      setData(result.data.attributes.FooterSection);
+    });
+  }, []);
+
+  console.log("render");
+
   const router = useRouter();
   const thanks = useTypedSelector((state) => state.app.thanks);
   const currentLink = router.asPath;
@@ -109,16 +128,6 @@ const Footer = ({ children, FooterSection }: IFooter) => {
 
   const [isProtectOpen, setProtectOpen] = useState<boolean>(false);
   const closeProtectHandler = () => setProtectOpen(false);
-
-  const mail = FooterSection[`FooterSection${lang}`].email;
-  const spotify = FooterSection[`FooterSection${lang}`].spotify;
-  const vk_music = FooterSection[`FooterSection${lang}`].vk_music;
-  const yandex_music = FooterSection[`FooterSection${lang}`].yandex_music;
-  const apple_music = FooterSection[`FooterSection${lang}`].apple_music;
-  const sber = FooterSection[`FooterSection${lang}`].sber;
-  const instagram = FooterSection[`FooterSection${lang}`].instagram;
-  const youtobe = FooterSection[`FooterSection${lang}`].youtobe;
-  const facebook = FooterSection[`FooterSection${lang}`].facebook;
 
   return useMemo(() => {
     return (
@@ -148,12 +157,8 @@ const Footer = ({ children, FooterSection }: IFooter) => {
                   </div>
                 </a>
               </Link>
-              <span onClick={() => setProtectOpen(true)}>
-                Защита персональных данных
-              </span>
-              <span onClick={() => setPoliticOpen(true)}>
-                Политика конфиденциальности
-              </span>
+              <span onClick={() => setProtectOpen(true)}>{protect[lang]}</span>
+              <span onClick={() => setPoliticOpen(true)}>{politic[lang]}</span>
             </div>
             <div className={styles.centerSide}>
               <ul>
@@ -208,25 +213,25 @@ const Footer = ({ children, FooterSection }: IFooter) => {
               </div>
               <div className={styles.mobSocials}>
                 <li>
-                  <a href={instagram} target="_blank">
+                  <a href={data.instagram} target="_blank">
                     Instagram
                   </a>
                 </li>
                 <li>
-                  <a href={youtobe} target="_blank">
+                  <a href={data.youtube} target="_blank">
                     Youtube
                   </a>
                 </li>
                 <li>
-                  <a href={facebook} target="_blank">
+                  <a href={data.facebook} target="_blank">
                     Facebook
                   </a>
                 </li>
               </div>
               <div className={styles.contact}>
                 <span className={styles.name}>Email:</span>
-                <a href={`mailto:${mail}`} className={styles.value}>
-                  {mail}
+                <a href={`mailto:${data.email}`} className={styles.value}>
+                  {data.email}
                 </a>
               </div>
               <div className={styles.subscribeWrapper}>
@@ -244,7 +249,7 @@ const Footer = ({ children, FooterSection }: IFooter) => {
         </div>
       </>
     );
-  }, [isPoliticOpen, isProtectOpen, thanks]);
+  }, [isPoliticOpen, isProtectOpen, thanks, lang, data]);
 };
 
 export default Footer;
