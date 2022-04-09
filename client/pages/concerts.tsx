@@ -7,7 +7,13 @@ import { fetchQuery } from "../services/ssr";
 const Concerts = (props: any) => {
   return (
     <Header>
-      <ConcertsSection />
+      <ConcertsSection
+        ConcertSection={{
+          ConcertsRu: props.ConcertsRu,
+          ConcertsEn: props.ConcertsEn,
+          ConcertsDe: props.ConcertsDe,
+        }}
+      />
       <Footer
         FooterSection={{
           FooterSectionRu: props.FooterSectionRu,

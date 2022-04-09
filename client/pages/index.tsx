@@ -52,13 +52,13 @@ export default MainPage;
 export async function getServerSideProps(context: any) {
   try {
     const bigRequestRu = await fetchQuery(
-      "api/main-page?populate=*&locale=ru&populate=MainSection.video_preview&populate=MainSection.video&populate=about_section.image_ivan&populate=about_section.bio_file"
+      "api/main-page?populate=*&locale=ru&populate=MainSection.video_preview&populate=MainSection.video&populate=about_section.image_ivan&populate=about_section.bio_file&populate=FormSection"
     );
     const bigRequestEn = await fetchQuery(
-      "api/main-page?populate=*&locale=en&populate=MainSection.video_preview&populate=MainSection.video&populate=about_section.image_ivan&populate=about_section.bio_file"
+      "api/main-page?populate=*&locale=en&populate=MainSection.video_preview&populate=MainSection.video&populate=about_section.image_ivan&populate=about_section.bio_file&populate=FormSection"
     );
     const bigRequestDe = await fetchQuery(
-      "api/main-page?populate=*&locale=de&populate=MainSection.video_preview&populate=MainSection.video&populate=about_section.image_ivan&populate=about_section.bio_file"
+      "api/main-page?populate=*&locale=de&populate=MainSection.video_preview&populate=MainSection.video&populate=about_section.image_ivan&populate=about_section.bio_file&populate=FormSection"
     );
 
     const FooterSectionRu = await fetchQuery(

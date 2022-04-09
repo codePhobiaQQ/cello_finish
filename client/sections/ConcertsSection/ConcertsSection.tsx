@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import MoreArrow from "../../components/MoreArrow/MoreArrow";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
+import useTypedSelector from "../../hooks/useTypedSelector";
 
 interface IConcert {
   day: string;
@@ -18,7 +19,14 @@ interface IConcert {
   link: string;
 }
 
-const ConcertsSection = () => {
+interface ConcertsSection {
+  ConcertSection: any;
+}
+
+const ConcertsSection = ({ ConcertSection }: ConcertsSection) => {
+  const lang = useTypedSelector((state) => state.app.language);
+  console.log(lang);
+
   const concerts: IConcert[] = [
     {
       day: "05",
