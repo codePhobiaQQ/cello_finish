@@ -111,6 +111,7 @@ export const footerMenu: any = [
 
 const Footer = ({ children }: IFooter) => {
   const [data, setData] = useState<any>({});
+  console.log(data);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -165,7 +166,7 @@ const Footer = ({ children }: IFooter) => {
         {children}
         <div className="container" id={"Contacts"}>
           <div className={styles.Footer}>
-            <div className="pricol">10</div>
+            <div className="pricol">{data.pricol}</div>
             <div className={styles.leftSide}>
               <Link href="/">
                 <a>
