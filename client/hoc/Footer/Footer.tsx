@@ -33,16 +33,13 @@ import { useEffect, useMemo, useState } from "react";
 import ProtectPopup from "../../components/popups/ProtectPopup";
 import ThanksPopup from "../../components/popups/ThanksPopup";
 import { fetchQuery } from "../../services/ssr";
-import { log } from "util";
 import { politic, protect } from "../../vars";
+import { setThanks } from "../../redux/slices/AppSlice";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
 interface IFooter {
   children?: React.ReactNode;
-}
-
-interface IMenu {
-  title: string;
-  link: string;
 }
 
 export const sotials: ISotial[] = [
@@ -73,35 +70,48 @@ export const sotials: ISotial[] = [
   },
 ];
 
-export const footerMenu: IMenu[] = [
+export const footerMenu: any = [
   {
-    title: "Biography",
+    titleRu: "Биография",
+    titleEn: "Biography",
+    titleDe: "Biographie",
     link: "/#BiographySection",
   },
   {
-    title: "Gallery",
+    titleRu: "Галерея",
+    titleEn: "Gallery",
+    titleDe: "Galerie",
     link: "/gallery",
   },
   {
-    title: "Videos",
+    titleRu: "Видео",
+    titleEn: "Videos",
+    titleDe: "Das Videos",
     link: "/videos",
   },
   {
-    title: "Concerts",
+    titleRu: "Концерты",
+    titleEn: "Concerts",
+    titleDe: "Konzerte",
     link: "/concerts",
   },
   {
-    title: "News",
+    titleRu: "Новости",
+    titleEn: "News",
+    titleDe: "Nachrichten",
     link: "/news",
   },
   {
-    title: "Contacts",
+    titleRu: "Контакты",
+    titleEn: "Contacts",
+    titleDe: "Kontakte",
     link: "#Contacts",
   },
 ];
 
 const Footer = ({ children }: IFooter) => {
   const [data, setData] = useState<any>({});
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function takeData() {
@@ -111,12 +121,9 @@ const Footer = ({ children }: IFooter) => {
       return response;
     }
     takeData().then((result) => {
-      console.log(result.data.attributes.FooterSection);
       setData(result.data.attributes.FooterSection);
     });
   }, []);
-
-  console.log("render");
 
   const router = useRouter();
   const thanks = useTypedSelector((state) => state.app.thanks);
@@ -129,16 +136,31 @@ const Footer = ({ children }: IFooter) => {
   const [isProtectOpen, setProtectOpen] = useState<boolean>(false);
   const closeProtectHandler = () => setProtectOpen(false);
 
+  const [inputEmail, setInputEmail] = useState<string>("");
+  const changeInputHandler = (e: any) => {
+    setInputEmail(e.target.value);
+  };
+  const sendEmail = async () => {
+    dispatch(setThanks(true));
+    const response = await axios.post("/api/sender", {
+      email: inputEmail,
+      lang,
+    });
+    console.log(response);
+  };
+
   return useMemo(() => {
     return (
       <>
         <PoliticPopup
           isPoliticOpen={isPoliticOpen}
           setPoliticOpen={closePoliticHandler}
+          text={data.politic}
         />
         <ProtectPopup
           isProtectOpen={isProtectOpen}
           setProtectOpen={closeProtectHandler}
+          text={data.protect_data}
         />
         <ThanksPopup />
         {children}
@@ -162,7 +184,7 @@ const Footer = ({ children }: IFooter) => {
             </div>
             <div className={styles.centerSide}>
               <ul>
-                {footerMenu.map((link, index) => (
+                {footerMenu.map((link: any, index: number) => (
                   <li key={uuidv4() + index}>
                     <Link href={link.link}>
                       <a
@@ -170,7 +192,7 @@ const Footer = ({ children }: IFooter) => {
                           currentLink == link.link ? styles.active : ""
                         }
                       >
-                        {link.title}
+                        {link[`title${lang}`]}
                       </a>
                     </Link>
                   </li>
@@ -183,17 +205,17 @@ const Footer = ({ children }: IFooter) => {
                   />
                 </li>
                 <li>
-                  <a href="#" target="_blank">
+                  <a href={data.instagram} target="_blank">
                     Instagram
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank">
+                  <a href={data.youtube} target="_blank">
                     YouTube
                   </a>
                 </li>
                 <li>
-                  <a href="#" target="_blank">
+                  <a href={data.facebook} target="_blank">
                     Facebook
                   </a>
                 </li>
@@ -235,8 +257,15 @@ const Footer = ({ children }: IFooter) => {
                 </a>
               </div>
               <div className={styles.subscribeWrapper}>
-                <input type="email" />
-                <BtnSubscribe customClass={"footerSubscribe"} />
+                <input
+                  value={inputEmail}
+                  onChange={changeInputHandler}
+                  type="email"
+                />
+                <BtnSubscribe
+                  clickHandler={sendEmail}
+                  customClass={"footerSubscribe"}
+                />
               </div>
               <div className={styles.whoMake}>
                 <span>Website development</span>
@@ -249,7 +278,7 @@ const Footer = ({ children }: IFooter) => {
         </div>
       </>
     );
-  }, [isPoliticOpen, isProtectOpen, thanks, lang, data]);
+  }, [isPoliticOpen, isProtectOpen, thanks, lang, data, inputEmail]);
 };
 
 export default Footer;

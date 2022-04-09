@@ -5,12 +5,22 @@ interface IBtnSubscribe {
   type?: boolean;
   customClass?: string;
   text?: string;
+  clickHandler?: any;
 }
 
-const BtnSubscribe = ({ type, customClass, text }: IBtnSubscribe) => {
+const BtnSubscribe = ({
+  type,
+  customClass,
+  text,
+  clickHandler,
+}: IBtnSubscribe) => {
   return (
     <div className={customClass ? customClass : ""}>
-      <button type={type ? "submit" : undefined} className={styles.subscribe}>
+      <button
+        onClick={clickHandler}
+        type={type ? "submit" : undefined}
+        className={styles.subscribe}
+      >
         <div className={styles.subBtn}>
           <img src={telegram.src} alt="telegram" />
           <span>{text || "Subscribe"}</span>

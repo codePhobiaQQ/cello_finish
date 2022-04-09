@@ -1,13 +1,19 @@
 import Close from "../UI/close";
 import { AnimatePresence, motion } from "framer-motion";
 import { fadeIn } from "../../motions/oftenMotions";
+import ReactMarkdown from "react-markdown";
 
 interface IPoliticPopup {
   isPoliticOpen: boolean;
   setPoliticOpen: any;
+  text: any;
 }
 
-const PoliticPopup = ({ isPoliticOpen, setPoliticOpen }: IPoliticPopup) => {
+const PoliticPopup = ({
+  isPoliticOpen,
+  setPoliticOpen,
+  text,
+}: IPoliticPopup) => {
   return (
     <AnimatePresence initial={false}>
       {isPoliticOpen && (
@@ -25,85 +31,7 @@ const PoliticPopup = ({ isPoliticOpen, setPoliticOpen }: IPoliticPopup) => {
             exit={{ opacity: 0, y: 30 }}
             className="container"
           >
-            <h2>Политика конфиденциальности</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-              consectetur dolor ea error explicabo, ipsa magni maiores nemo
-              obcaecati officiis porro quam, quas, quasi qui quos rem
-              repudiandae sed veniam.
-            </p>
+            <ReactMarkdown>{text}</ReactMarkdown>
           </motion.div>
         </motion.div>
       )}

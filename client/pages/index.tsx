@@ -8,7 +8,7 @@ import { fetchQuery } from "../services/ssr";
 
 const MainPage = (props: any) => {
   useEffect(() => {
-    console.log(props.MenuRu);
+    console.log(props.MainSectionRu);
     history.pushState("", document.title, window.location.pathname);
   }, []);
 
@@ -54,6 +54,8 @@ export async function getServerSideProps(context: any) {
     const bigRequestDe = await fetchQuery(
       "api/main-page?populate=*&locale=de&populate=MainSection.video_preview&populate=MainSection.video&populate=about_section.image_ivan&populate=about_section.bio_file&populate=FormSection"
     );
+
+    console.log(bigRequestRu.data.attributes.MainSection);
 
     return {
       props: {

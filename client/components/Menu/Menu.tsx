@@ -12,6 +12,7 @@ import { footerMenu, sotials } from "../../hoc/Footer/Footer";
 import useWindowWidth from "react-hook-use-window-width";
 import { useEffect, useState } from "react";
 import { listItem, fadeIn, scale } from "../../motions/menuMotion";
+import useTypedSelector from "../../hooks/useTypedSelector";
 
 interface IMenu {
   isMenuOpen: boolean;
@@ -20,6 +21,7 @@ interface IMenu {
 
 const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
   const [bgImage, setBgImage] = useState<string>(menuBg.src);
+  const lang = useTypedSelector((state) => state.app.language);
 
   const width = useWindowWidth();
   useEffect(() => {
@@ -52,16 +54,16 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
             <Image src={bgImage} alt="menuBg" layout={"fill"} />
           </motion.div>
           <ul className={styles.menuItems}>
-            {footerMenu.map((menuItem, index) => (
+            {footerMenu.map((menuItem: any, index: number) => (
               <motion.li
                 onClick={clickMenuHandler}
-                key={uuidv4() + index}
+                key={"menuItems " + index}
                 variants={listItem}
                 custom={index}
                 className={styles.menuItem}
               >
                 <Link href={menuItem.link}>
-                  <a>{menuItem.title}</a>
+                  <a>{menuItem[`title${lang}`]}</a>
                 </Link>
               </motion.li>
             ))}
