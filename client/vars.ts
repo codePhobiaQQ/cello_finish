@@ -1,4 +1,4 @@
-export const backUrl = "https://backend.ivanskanavi.com";
+export const backUrl = "https://backend-final.ivanskanavi.com";
 
 export const buyTiket: any = {
   Ru: "Купить билет",

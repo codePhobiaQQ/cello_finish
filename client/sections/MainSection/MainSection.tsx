@@ -10,20 +10,26 @@ import ArrowDown from "../../components/ArrowDown/ArrowDown";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import useWindowWidth from "react-hook-use-window-width";
 import { backUrl } from "../../vars";
 import Image from "next/image";
 import useTypedSelector from "../../hooks/useTypedSelector";
+import fetchQuery from "../../services/ssr";
+import useWindowSize from "../../hooks/useWindowSize";
 
 interface IMainSection {
-  MainSection: any;
+  MainTitle: string;
+  MainSubtitle: string;
+  VideoText: string;
+  Video: string;
+  ConnectText: string;
 }
 
-const MainSection = ({ MainSection }: IMainSection) => {
+const MainSection = () => {
   const [bgImage, setBgImage] = useState<string>(bg.src);
   const lang = useTypedSelector((state) => state.app.language);
 
-  const width = useWindowWidth();
+  const { width } = useWindowSize();
+
   useEffect(() => {
     if (width > 1355) {
       setBgImage(bg.src);
@@ -47,6 +53,25 @@ const MainSection = ({ MainSection }: IMainSection) => {
   const mainContentVariant = contentVariant();
   const mainConnectVariant = connectVariant();
 
+  const [sectionData, setSectionData] = useState<IMainSection>(
+    {} as IMainSection
+  );
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetchQuery(
+        `api/main-page-field?locale=${lang.toLowerCase()}&populate=*&populate=MainSection.Video`
+      );
+      setSectionData({
+        ...response.data.attributes.MainSection,
+        Video:
+          backUrl +
+          response.data.attributes.MainSection.Video.data.attributes.url,
+      });
+    }
+    fetchData();
+  }, [lang]);
+
   return (
     <motion.section
       variants={mainWrapperVariant}
@@ -68,8 +93,8 @@ const MainSection = ({ MainSection }: IMainSection) => {
         style={{ translateY: y1, opacity: opacity1 }}
         className={styles.content}
       >
-        <h1>{MainSection[`MainSection${lang}`].title}</h1>
-        <span>{MainSection[`MainSection${lang}`].subtitle}</span>
+        <h1>{sectionData?.MainTitle}</h1>
+        <span>{sectionData?.MainSubtitle}</span>
       </motion.div>
 
       <motion.div
@@ -79,22 +104,19 @@ const MainSection = ({ MainSection }: IMainSection) => {
       >
         <Link href="#FormSection">
           <a>
-            <span>{MainSection[`MainSection${lang}`].connect}</span>
+            <span>{sectionData?.ConnectText}</span>
           </a>
         </Link>
       </motion.div>
 
       {width > 756 ? (
         <VideoPlayer
-          poster={
-            backUrl +
-            MainSection[`MainSection${lang}`].video_preview.data.attributes.url
-          }
-          videoSrc={
-            backUrl +
-            MainSection[`MainSection${lang}`].video.data.attributes.url
-          }
-          label={MainSection[`MainSection${lang}`].video_name}
+          // poster={
+          //   backUrl +
+          //   MainSection[`MainSection${lang}`].video_preview.data.attributes.url
+          // }
+          videoSrc={sectionData.Video}
+          label={sectionData.VideoText}
         />
       ) : null}
       {width > 756 ? <ArrowDown /> : null}

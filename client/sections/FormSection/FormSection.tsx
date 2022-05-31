@@ -12,6 +12,9 @@ import useTypedSelector from "../../hooks/useTypedSelector";
 import axios from "axios";
 import { setThanks } from "../../redux/slices/AppSlice";
 import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import fetchQuery from "../../services/ssr";
+import { backUrl } from "../../vars";
 
 interface IValues {
   name?: string;
@@ -27,10 +30,15 @@ const SignupSchema = Yup.object().shape({
 });
 
 interface IFormSection {
-  FormiSection: any;
+  ButtonText: string;
+  EmailField: string;
+  EmailPlaceholder: string;
+  MessagePlaceholder: string;
+  NameField: string;
+  NamePlaceholder: string;
 }
 
-const FormSection = ({ FormiSection }: IFormSection) => {
+const FormSection = () => {
   const dispatch = useDispatch();
   const lang = useTypedSelector((state) => state.app.language);
 
@@ -38,6 +46,22 @@ const FormSection = ({ FormiSection }: IFormSection) => {
     threshold: 0.5,
     triggerOnce: true,
   });
+
+  const [sectionData, setSectionData] = useState<IFormSection>(
+    {} as IFormSection
+  );
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetchQuery(
+        `api/main-page-field?locale=${lang.toLowerCase()}&populate=*`
+      );
+      setSectionData({
+        ...response.data.attributes.FormSection,
+      });
+    }
+    fetchData();
+  }, [lang]);
 
   return (
     <section id="FormSection" className={styles.FormSection}>
@@ -69,12 +93,11 @@ const FormSection = ({ FormiSection }: IFormSection) => {
                   variants={inputVariant}
                   className={styles.inputWrapper}
                 >
-                  <label htmlFor="name">
-                    {FormiSection[`FormSection${lang}`].first_field}
-                  </label>
+                  <label htmlFor="name">{sectionData.NameField}</label>
                   <Field
                     id="name"
                     name="name"
+                    placeholder={sectionData.NamePlaceholder}
                     className={errors.name && touched.name ? "errorInput" : ""}
                     type="string"
                   />
@@ -85,12 +108,11 @@ const FormSection = ({ FormiSection }: IFormSection) => {
                   variants={inputVariant}
                   className={styles.inputWrapper}
                 >
-                  <label htmlFor="email">
-                    {FormiSection[`FormSection${lang}`].second_field}
-                  </label>
+                  <label htmlFor="email">{sectionData.EmailField}</label>
                   <Field
                     id="email"
                     name="email"
+                    placeholder={sectionData.EmailPlaceholder}
                     className={
                       errors.email && touched.email ? "errorInput" : ""
                     }
@@ -99,7 +121,7 @@ const FormSection = ({ FormiSection }: IFormSection) => {
                 </motion.div>
 
                 <motion.label variants={inputVariant} htmlFor="name">
-                  {FormiSection[`FormSection${lang}`].third_field}
+                  {sectionData.MessagePlaceholder}
                 </motion.label>
                 <motion.div
                   variants={inputVariant}
@@ -112,7 +134,7 @@ const FormSection = ({ FormiSection }: IFormSection) => {
                     name="message"
                   />
                   <BtnSubscribe
-                    text={FormiSection[`FormSection${lang}`].button_text}
+                    text={""}
                     customClass={styles.btn}
                     type={true}
                   />
@@ -128,8 +150,8 @@ const FormSection = ({ FormiSection }: IFormSection) => {
 
             <div className={styles.emailWrapper}>
               <span>Email:</span>
-              <a href={`mailto:${FormiSection[`FormSection${lang}`].email}`}>
-                {FormiSection[`FormSection${lang}`].email}
+              <a href={`mailto:${""}`}>
+                {/*{FormiSection[`FormSection${lang}`].email}*/}
               </a>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import styles from "./BiographySection.module.sass";
 import cello from "../../public/assets/bio/viol.png";
+import ivan from "../../public/assets/img/ivan.jpg";
 import Viol from "../../components/svg/viol";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
@@ -9,12 +10,18 @@ import { useInView } from "react-intersection-observer";
 import { imageVariant, textVariant } from "../../motions/bioMotions";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import { backUrl } from "../../vars";
+import { useEffect, useState } from "react";
+import fetchQuery from "../../services/ssr";
 
 interface IBiographySection {
-  AboutSection: any;
+  Content: string;
+  Title: string;
+  Image: string;
+  BioFile: string;
+  ButtonText: string;
 }
 
-const BiographySection = ({ AboutSection }: IBiographySection) => {
+const BiographySection = () => {
   const lang = useTypedSelector((state) => state.app.language);
 
   const [imageRef, imageInView] = useInView({
@@ -30,10 +37,32 @@ const BiographySection = ({ AboutSection }: IBiographySection) => {
     triggerOnce: true,
   });
 
+  const [sectionData, setSectionData] = useState<IBiographySection>(
+    {} as IBiographySection
+  );
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetchQuery(
+        `api/main-page-field?locale=${lang.toLowerCase()}&populate=*&populate=BioSection.Image&populate=BioSection.BioFile`
+      );
+      setSectionData({
+        ...response.data.attributes.BioSection,
+        BioFile:
+          backUrl +
+          response.data.attributes.BioSection.BioFile.data.attributes.url,
+        Image:
+          backUrl +
+          response.data.attributes.BioSection.Image.data.attributes.url,
+      });
+    }
+    fetchData();
+  }, [lang]);
+
   return (
     <section id={"BiographySection"} className={styles.Biography}>
       <div className={styles.accent}>
-        <span>Biography</span>
+        <span>{sectionData.Title}</span>
       </div>
       <div className="container">
         <div className={styles.biographyWrapper}>
@@ -46,11 +75,7 @@ const BiographySection = ({ AboutSection }: IBiographySection) => {
             <Image
               width={270}
               height={400}
-              src={
-                backUrl +
-                AboutSection[`AboutSection${lang}`].image_ivan.data.attributes
-                  .url
-              }
+              src={sectionData?.Image || ivan.src}
               alt="Ivan"
             />
           </motion.div>
@@ -64,11 +89,7 @@ const BiographySection = ({ AboutSection }: IBiographySection) => {
               <Image
                 width={270}
                 height={400}
-                src={
-                  backUrl +
-                  AboutSection[`AboutSection${lang}`].image_ivan.data.attributes
-                    .url
-                }
+                src={sectionData?.Image || ivan.src}
                 alt="Ivan"
               />
             </motion.div>
@@ -80,23 +101,18 @@ const BiographySection = ({ AboutSection }: IBiographySection) => {
               <div className={styles.imageWrapperCello}>
                 <Image src={cello.src} objectFit={"contain"} layout={"fill"} />
               </div>
-              <ReactMarkdown>
-                {AboutSection[`AboutSection${lang}`].content}
-              </ReactMarkdown>
+              <ReactMarkdown>{sectionData?.Content}</ReactMarkdown>
             </motion.div>
             <Viol />
           </div>
         </div>
         <a
-          href={
-            backUrl +
-            AboutSection[`AboutSection${lang}`].bio_file.data.attributes.url
-          }
+          href={sectionData?.BioFile}
           download
           target="_blank"
           className={styles.dowloadButton}
         >
-          <span>{AboutSection[`AboutSection${lang}`].button_text}</span>
+          <span>{sectionData.ButtonText}</span>
           <ArrowRight />
         </a>
       </div>

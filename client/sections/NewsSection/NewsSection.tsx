@@ -1,169 +1,33 @@
 import styles from "./NewsSection.module.sass";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
 import MoreArrow from "../../components/MoreArrow/MoreArrow";
 import newsImg from "../../public/assets/news/newsImg.jpg";
 import { backUrl, moreButton, readMore } from "../../vars";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import Image from "next/image";
+import fetchQuery from "../../services/ssr";
 
 interface INews {
   day: string;
   month: string;
   year: string;
-  title: string;
-  littleImg: string;
+  Title: string;
+  Content: string;
+  Image: string;
   longText: string;
+  Link: string;
 }
 
 interface NewsSection {
   NewsSection: any;
 }
 
-const NewsSection = ({ NewsSection }: NewsSection) => {
+const NewsSection = () => {
   const lang = useTypedSelector((state) => state.app.language);
-  const news: INews[] = [
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      title:
-        "Иван Скавани вместе с Диной Ивановой дали концерт в Концертном\n" +
-        "зале имени Уолта Диснея в Лос-Анжелесе",
-
-      littleImg: newsImg.src,
-      longText:
-        "Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили",
-    },
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      title:
-        "Иван Скавани вместе с Диной Ивановой дали концерт в Концертном\n" +
-        "зале имени Уолта Диснея в Лос-Анжелесе",
-
-      littleImg: newsImg.src,
-      longText:
-        "Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили",
-    },
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      title:
-        "Иван Скавани вместе с Диной Ивановой дали концерт в Концертном\n" +
-        "зале имени Уолта Диснея в Лос-Анжелесе",
-
-      littleImg: newsImg.src,
-      longText:
-        "Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили",
-    },
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      title:
-        "Иван Скавани вместе с Диной Ивановой дали концерт в Концертном\n" +
-        "зале имени Уолта Диснея в Лос-Анжелесе",
-
-      littleImg: newsImg.src,
-      longText:
-        "Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили",
-    },
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      title:
-        "Иван Скавани вместе с Диной Ивановой дали концерт в Концертном\n" +
-        "зале имени Уолта Диснея в Лос-Анжелесе",
-
-      littleImg: newsImg.src,
-      longText:
-        "Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили",
-    },
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      title:
-        "Иван Скавани вместе с Диной Ивановой дали концерт в Концертном\n" +
-        "зале имени Уолта Диснея в Лос-Анжелесе",
-
-      littleImg: newsImg.src,
-      longText:
-        "Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили",
-    },
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      title:
-        "Иван Скавани вместе с Диной Ивановой дали концерт в Концертном\n" +
-        "зале имени Уолта Диснея в Лос-Анжелесе",
-
-      littleImg: newsImg.src,
-      longText:
-        "Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили",
-    },
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      title:
-        "Иван Скавани вместе с Диной Ивановой дали концерт в Концертном\n" +
-        "зале имени Уолта Диснея в Лос-Анжелесе",
-
-      littleImg: newsImg.src,
-      longText:
-        "Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили",
-    },
-    {
-      day: "05",
-      month: "03",
-      year: "2022",
-      title:
-        "Иван Скавани вместе с Диной Ивановой дали концерт в Концертном\n" +
-        "зале имени Уолта Диснея в Лос-Анжелесе",
-
-      littleImg: newsImg.src,
-      longText:
-        "Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили Публика горячо приняла Ивана и Дину и не хотела их отпускать – два выхода на" +
-        " бис и продолжительные аплодисменты не заставили",
-    },
-  ];
-
   const [pagination, setCurrentPagination] = useState<number>(5);
   const [isMoreVisible, setMobVisible] = useState<boolean>(true);
-
-  const newsAmount = news.length;
+  const [newsAmount, setNewsAmount] = useState<number>(3);
 
   const clickMoreAction = () => {
     if (pagination + 3 > newsAmount) {
@@ -174,25 +38,44 @@ const NewsSection = ({ NewsSection }: NewsSection) => {
     }
   };
 
+  const [sectionData, setSectionData] = useState<INews[]>([] as INews[]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetchQuery(
+        `api/news?locale=${lang.toLowerCase()}&populate=*`
+      );
+      setSectionData(
+        response.data.map((newsing: any) => ({
+          ...newsing.attributes,
+          day: newsing.attributes.Date.split("-")[2],
+          month: newsing.attributes.Date.split("-")[1],
+          year: newsing.attributes.Date.split("-")[0],
+          Image: backUrl + newsing.attributes.Image.data.attributes.url,
+        }))
+      );
+      setNewsAmount(response.data.length);
+    }
+    fetchData();
+  }, [lang]);
+
   return (
     <div className={styles.newsSection}>
       <div className="container">
         <div className={styles.newsWrapper}>
-          {NewsSection[`News${lang}`]
+          {sectionData
             .slice(0, pagination)
             .map((newsing: any, index: number) => (
               <div key={"newselement" + index} className={styles.newsElem}>
                 <div className={styles.leftSide}>
-                  <span className={styles.day}>{newsing.attributes.day}</span>
+                  <span className={styles.day}>{newsing.day}</span>
                   <span className={styles.dayMonth}>
-                    {newsing.attributes.month} / {newsing.attributes.year}
+                    {newsing.month} / {newsing.year}
                   </span>
                 </div>
                 <div className={styles.centerSide}>
                   <div className={styles.content}>
-                    <span className={styles.title}>
-                      {newsing.attributes.title}
-                    </span>
+                    <span className={styles.title}>{newsing.Title}</span>
                   </div>
 
                   <div
@@ -206,18 +89,17 @@ const NewsSection = ({ NewsSection }: NewsSection) => {
                       width={210}
                       height={120}
                       objectFit={"contain"}
-                      src={
-                        backUrl +
-                        newsing.attributes.littleImg.data.attributes.url
-                      }
+                      src={newsing.Image}
                       alt="image"
                     />
                   </div>
                 </div>
 
                 <div className={styles.rightSide}>
-                  <span>{readMore[lang]}</span>
-                  <ArrowRight />
+                  <a href={newsing.Link} target="_blank">
+                    <span>{readMore[lang]}</span>
+                    <ArrowRight />
+                  </a>
                 </div>
               </div>
             ))}

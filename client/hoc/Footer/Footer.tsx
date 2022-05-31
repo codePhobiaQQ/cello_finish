@@ -114,17 +114,17 @@ const Footer = ({ children }: IFooter) => {
   console.log(data);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    async function takeData() {
-      const response = await fetchQuery(
-        "api/footer-section?populate=*&locale=en"
-      );
-      return response;
-    }
-    takeData().then((result) => {
-      setData(result.data.attributes.FooterSection);
-    });
-  }, []);
+  // useEffect(() => {
+  //   async function takeData() {
+  //     const response = await fetchQuery(
+  //       "api/footer-section?populate=*&locale=en"
+  //     );
+  //     return response;
+  //   }
+  //   takeData().then((result) => {
+  //     setData(result.data.attributes.FooterSection);
+  //   });
+  // }, []);
 
   const router = useRouter();
   const thanks = useTypedSelector((state) => state.app.thanks);
@@ -143,10 +143,10 @@ const Footer = ({ children }: IFooter) => {
   };
   const sendEmail = async () => {
     dispatch(setThanks(true));
-    const response = await axios.post("/api/sender", {
-      email: inputEmail,
-      lang,
-    });
+    // const response = await axios.post("/api/sender", {
+    //   email: inputEmail,
+    //   lang,
+    // });
   };
 
   return useMemo(() => {

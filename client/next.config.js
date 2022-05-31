@@ -1,5 +1,9 @@
 module.exports = {
   images: {
-    domains: ["backend.ivanskanavi.com", "localhost"],
+    domains: [
+      "backend.ivanskanavi.com",
+      "backend-final.ivanskanavi.com",
+      "localhost",
+    ],
   },
 };
