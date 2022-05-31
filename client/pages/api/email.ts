@@ -15,11 +15,13 @@ export default async function handler(
     pool: true,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "info@ivanskanavi.com", // generated ethereal user
+      user: "ivanskanavi.com@yandex.ru", // generated ethereal user
       pass: "rmfdgoghorvmxnen", // generated ethereal password
       // pass: "ofbyivoymzltksgj", // generated ethereal password
     },
   });
+
+  console.log("log");
 
   const TitleText = {
     Ru: "TestRu",
