@@ -202,7 +202,11 @@ const Footer = ({ children }: IFooter) => {
               </ul>
               <ul>
                 <li>
-                  <VideoPlayer label={data.VideoLabel} />
+                  <VideoPlayer
+                    poster={data.preview}
+                    videoSrc={data.video}
+                    label={data.VideoLabel}
+                  />
                 </li>
                 <li>
                   <a href={data.instagram} target="_blank">
