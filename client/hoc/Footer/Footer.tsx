@@ -32,11 +32,11 @@ import PoliticPopup from "../../components/popups/PoliticPopup";
 import { useEffect, useMemo, useState } from "react";
 import ProtectPopup from "../../components/popups/ProtectPopup";
 import ThanksPopup from "../../components/popups/ThanksPopup";
-import { fetchQuery } from "../../services/ssr";
-import { politic, protect } from "../../vars";
+import { backUrl, politic, protect } from "../../vars";
 import { setThanks } from "../../redux/slices/AppSlice";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import fetchQuery from "../../services/ssr";
 
 interface IFooter {
   children?: React.ReactNode;
@@ -110,26 +110,27 @@ export const footerMenu: any = [
 ];
 
 const Footer = ({ children }: IFooter) => {
+  const lang = useTypedSelector((state) => state.app.language);
   const [data, setData] = useState<any>({});
-  console.log(data);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   async function takeData() {
-  //     const response = await fetchQuery(
-  //       "api/footer-section?populate=*&locale=en"
-  //     );
-  //     return response;
-  //   }
-  //   takeData().then((result) => {
-  //     setData(result.data.attributes.FooterSection);
-  //   });
-  // }, []);
+  useEffect(() => {
+    async function takeData() {
+      const response = await fetchQuery(
+        `api/footer-info?locale=${lang.toLowerCase()}&populate=*`
+      );
+      setData({
+        ...response.data.attributes,
+        video: backUrl + response.data.attributes.video.data.attributes.url,
+        preview: backUrl + response.data.attributes.preview.data.attributes.url,
+      });
+    }
+    takeData();
+  }, [lang]);
 
   const router = useRouter();
   const thanks = useTypedSelector((state) => state.app.thanks);
   const currentLink = router.asPath;
-  const lang = useTypedSelector((state) => state.app.language);
 
   const [isPoliticOpen, setPoliticOpen] = useState<boolean>(false);
   const closePoliticHandler = () => setPoliticOpen(false);
@@ -143,10 +144,10 @@ const Footer = ({ children }: IFooter) => {
   };
   const sendEmail = async () => {
     dispatch(setThanks(true));
-    // const response = await axios.post("/api/sender", {
-    //   email: inputEmail,
-    //   lang,
-    // });
+    const response = await axios.post("/api/sender", {
+      email: inputEmail,
+      lang,
+    });
   };
 
   return useMemo(() => {
@@ -160,7 +161,7 @@ const Footer = ({ children }: IFooter) => {
         <ProtectPopup
           isProtectOpen={isProtectOpen}
           setProtectOpen={closeProtectHandler}
-          text={data.protect_data}
+          text={data.protect}
         />
         <ThanksPopup />
         {children}
@@ -201,9 +202,7 @@ const Footer = ({ children }: IFooter) => {
               </ul>
               <ul>
                 <li>
-                  <VideoPlayer
-                    label={"S. Rachmaninov - Sonata for cello and piano.."}
-                  />
+                  <VideoPlayer label={data.VideoLabel} />
                 </li>
                 <li>
                   <a href={data.instagram} target="_blank">
@@ -270,7 +269,7 @@ const Footer = ({ children }: IFooter) => {
               </div>
               <div className={styles.whoMake}>
                 <span>Website development</span>
-                <a href="#">
+                <a href={data.inspirationLink}>
                   <img src={insp.src} alt="insspiration" />
                 </a>
               </div>

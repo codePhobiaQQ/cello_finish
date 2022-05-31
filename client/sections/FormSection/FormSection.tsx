@@ -36,6 +36,7 @@ interface IFormSection {
   MessagePlaceholder: string;
   NameField: string;
   NamePlaceholder: string;
+  email: string;
 }
 
 const FormSection = () => {
@@ -56,8 +57,12 @@ const FormSection = () => {
       const response = await fetchQuery(
         `api/main-page-field?locale=${lang.toLowerCase()}&populate=*`
       );
+      const response1 = await fetchQuery(
+        `api/footer-info?locale=${lang.toLowerCase()}&populate=*`
+      );
       setSectionData({
         ...response.data.attributes.FormSection,
+        email: response1.data.attributes.email,
       });
     }
     fetchData();
@@ -150,9 +155,7 @@ const FormSection = () => {
 
             <div className={styles.emailWrapper}>
               <span>Email:</span>
-              <a href={`mailto:${""}`}>
-                {/*{FormiSection[`FormSection${lang}`].email}*/}
-              </a>
+              <a href={`mailto:${sectionData.email}`}>{sectionData.email}</a>
             </div>
           </div>
         </motion.div>
