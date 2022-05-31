@@ -276,6 +276,7 @@ const Footer = ({ children }: IFooter) => {
             </div>
           </div>
         </div>
+        <span className="littleNumber">{data.number}</span>
       </>
     );
   }, [isPoliticOpen, isProtectOpen, thanks, lang, data, inputEmail]);
