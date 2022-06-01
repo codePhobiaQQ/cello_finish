@@ -10,13 +10,13 @@ export default async function handler(
   console.log(req.body);
 
   const transporter = await nodemailer.createTransport({
-    host: "smtp.yandex.ru",
+    host: "smtp.gmail.com",
     port: 465,
     pool: true,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "ivanskanavi.com@yandex.ru", // generated ethereal user
-      pass: "rmfdgoghorvmxnen", // generated ethereal password
+      user: "ivanskanavi1@gmail.com", // generated ethereal user
+      pass: "rqivivjcuohjkimz", // generated ethereal password
       // pass: "ofbyivoymzltksgj", // generated ethereal password
     },
   });
