@@ -12,7 +12,11 @@ interface IVideoPlayer {
 const VideoPlayer = ({ videoSrc, poster, label }: IVideoPlayer) => {
   return (
     <div className={styles.VideoPlayerWrapper + " VideoPlayerWrapper"}>
-      {!!label && <span>{label}</span>}
+      {!!label ? (
+        <span>{label}</span>
+      ) : (
+        <span style={{ opacity: 0 }}>test</span>
+      )}
       <Player
         poster={poster ? poster : postering.src}
         fluid={false}

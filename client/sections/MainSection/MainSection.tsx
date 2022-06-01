@@ -15,6 +15,9 @@ import Image from "next/image";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import fetchQuery from "../../services/ssr";
 import useWindowSize from "../../hooks/useWindowSize";
+// @ts-ignore
+import FontFaceObserver from "fontfaceobserver";
+import { useRef } from "react";
 
 interface IMainSection {
   MainTitle: string;
@@ -27,7 +30,7 @@ interface IMainSection {
 const MainSection = () => {
   const [bgImage, setBgImage] = useState<string>(bg.src);
   const lang = useTypedSelector((state) => state.app.language);
-
+  const [isFontLoaded, setIsFontLoaded] = useState<boolean>(false);
   const { width } = useWindowSize();
 
   useEffect(() => {
@@ -42,20 +45,66 @@ const MainSection = () => {
     }
   }, [width]);
 
-  const { scrollY } = useViewportScroll();
-  const y1 = useTransform(scrollY, [0, 400], [0, -100]);
-  const x1 = useTransform(scrollY, [0, 400], [0, -100]);
-  const y2 = useTransform(scrollY, [0, 800], [0, 250]);
-  const opacity1 = useTransform(scrollY, [0, 400], [1, 0]);
+  // const { scrollY } = useViewportScroll();
+  // const y1 = useTransform(scrollY, [0, 400], [0, -100]);
+  // const x1 = useTransform(scrollY, [0, 400], [0, -100]);
+  // const y2 = useTransform(scrollY, [0, 800], [0, 250]);
+  // const opacity1 = useTransform(scrollY, [0, 400], [1, 0]);
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const x1 = useRef<number>(0);
+  const y1 = useRef<number>(0);
+  const y2 = useRef<number>(0);
+  const opacity1 = useRef<number>(1);
+
+  const scrollHandler = () => {
+    const top = document.documentElement.scrollTop;
+    if (top < 400) {
+      x1.current = (top / 400) * -100;
+      y1.current = (top / 400) * -100;
+      opacity1.current = 1 - top / 400;
+    }
+    if (top < 800) {
+      y2.current = (top / 800) * 250;
+    }
+    sectionRef.current
+      ?.querySelector("img")
+      ?.setAttribute("style", `transform: translateY(${y2.current}px)`);
+    sectionRef.current
+      ?.querySelector(".connect")
+      ?.setAttribute(
+        "style",
+        `transform: translateX(${x1.current}px); opacity: ${opacity1.current}`
+      );
+    sectionRef.current
+      ?.querySelector(".content")
+      ?.setAttribute(
+        "style",
+        `transform: translateY(${y1.current}px); opacity: ${opacity1.current}`
+      );
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
 
   const mainWrapperVariant = wrapperVariant({ staggerChildren: 0.3 });
   const mainBgImageVariant = bgImageVariant({ delay: 0.5, duration: 1 });
-  const mainContentVariant = contentVariant();
-  const mainConnectVariant = connectVariant();
 
   const [sectionData, setSectionData] = useState<IMainSection>(
     {} as IMainSection
   );
+
+  useEffect(() => {
+    const font = new FontFaceObserver("Big");
+
+    font.load().then(function () {
+      setIsFontLoaded(true);
+    });
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -76,31 +125,37 @@ const MainSection = () => {
     <motion.section
       variants={mainWrapperVariant}
       initial="hidden"
-      animate="visible"
+      animate={isFontLoaded ? "visible" : "hidden"}
       className={styles.MainSection + " MainSection"}
       style={{ backgroundImage: bg.src }}
+      ref={sectionRef}
     >
       <motion.div
         variants={mainBgImageVariant}
         className={styles.backgroundImg}
-        style={{ translateY: y2 }}
       >
-        <Image objectFit={"cover"} layout={"fill"} src={bgImage} alt="bg" />
+        <Image
+          objectFit={"cover"}
+          layout={"fill"}
+          src={bgImage}
+          priority={true}
+          alt="bg"
+        />
       </motion.div>
 
       <motion.div
-        variants={mainContentVariant}
-        style={{ translateY: y1, opacity: opacity1 }}
-        className={styles.content}
+        variants={contentVariant}
+        // style={{ translateY: `${y1}px` }}
+        className={styles.content + " content"}
       >
         <h1>{sectionData?.MainTitle}</h1>
         <span>{sectionData?.MainSubtitle}</span>
       </motion.div>
 
       <motion.div
-        variants={mainConnectVariant}
-        style={{ translateX: x1, opacity: opacity1 }}
-        className={styles.connect}
+        variants={connectVariant}
+        // style={{ translateX: x1, opacity: opacity1 }}
+        className={styles.connect + " connect"}
       >
         <Link href="#FormSection">
           <a>
