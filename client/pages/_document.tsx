@@ -3,7 +3,26 @@ import { Html, Head, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head>
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;600&display=swap"
+          as="font"
+          type="font"
+        />
+        <link
+          rel="preload"
+          href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap"
+          as="font"
+          type="font"
+        />
+        <link
+          rel="preload"
+          href="./../styles/fonts/BigillaRegular.woff2"
+          as="font"
+          type="font/woff2"
+        />
+      </Head>
       <body>
         <Main />
         <NextScript />
