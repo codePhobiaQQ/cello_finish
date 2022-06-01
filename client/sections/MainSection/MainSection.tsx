@@ -1,5 +1,5 @@
 import styles from "./MainSection.module.sass";
-import bg from "../../public/assets/img/mainSection/bgMain1.jpg";
+import bg from "../../public/assets/img/mainSection/bgMain2.jpg";
 import mediumPc from "../../public/assets/img/mainSection/mediumPc.jpg";
 import bgIpad from "../../public/assets/img/mainSection/mainBgIpad.jpg";
 import bgMob from "../../public/assets/img/mainSection/mainBgMob.jpg";
