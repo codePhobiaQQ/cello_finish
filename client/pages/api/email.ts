@@ -24,24 +24,21 @@ export default async function handler(
   console.log("log");
 
   const TitleText = {
-    Ru: "TestRu",
-    En: "TestEn",
-    de: "TestDe",
+    Ru: "Спасибо за Ваше письмо!",
+    En: "Thank you for you E-Mail!",
+    de: "Vielen Dank für Ihre E-Mail!",
   };
 
   const clientText = {
     Ru:
-      "<b style='text-align: center'>RuПривет, Исследователь! Поздравляю тебя с выбором своего путешествия!</b>" +
-      "<div style='margin-top: 30px'>Мы живем в век информации, в том числе, информации о способах самопознания. Изобретены десятки\n" +
-      "могут выбрать то, что по душе ему или воспользоваться расчетом на моем сайте по Хшановской А.</div>",
+      "<b style='text-align: center'>Спасибо за Ваше письмо!</b>" +
+      "<div style='margin-top: 30px'>Иван Сканави ответит Вам в ближайшее время.</div>",
     En:
-      "<b style='text-align: center'>EnПривет, Исследователь! Поздравляю тебя с выбором своего путешествия!</b>" +
-      "<div style='margin-top: 30px'>Мы живем в век информации, в том числе, информации о способах самопознания. Изобретены десятки\n" +
-      "могут выбрать то, что по душе ему или воспользоваться расчетом на моем сайте по Хшановской А.</div>",
+      "<b style='text-align: center'>Thank you for you E-Mail!</b>" +
+      "<div style='margin-top: 30px'>Ivan Skanavi will be in touch with you shortly</div>",
     De:
-      "<b style='text-align: center'>DeПривет, Исследователь! Поздравляю тебя с выбором своего путешествия!</b>" +
-      "<div style='margin-top: 30px'>Мы живем в век информации, в том числе, информации о способах самопознания. Изобретены десятки\n" +
-      "могут выбрать то, что по душе ему или воспользоваться расчетом на моем сайте по Хшановской А.</div>",
+      "<b style='text-align: center'>Vielen Dank für Ihre E-Mail!</b>" +
+      "<div style='margin-top: 30px'>Ivan Skanavi wird sobald wie möglich auf Ihre Nachricht antworten.</div>",
   };
 
   const info1 = await transporter.sendMail({
