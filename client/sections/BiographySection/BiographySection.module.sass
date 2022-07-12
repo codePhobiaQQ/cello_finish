@@ -47,15 +47,19 @@ $responsive: calc(1vh + 1vw)
     .biographyWrapper
       display: flex
       .imageWrapper
-        & > div
+        width: 270px
+        overflow: hidden
+        display: block
+        img
+          position: relative
           width: 270px
-          img
-            position: relative
-            width: 270px
-          //height: 450px
       .textWrapper
         margin-left: 40px
+        width: calc(100% - 310px)
         position: relative
+        :global(.pWrap)
+          overflow: hidden
+          display: inline !important
         .imageWrapperCello
           float: right
           width: calc(#{$responsive} * 10)
@@ -119,6 +123,7 @@ $responsive: calc(1vh + 1vw)
             margin-left: 0
       .biographyWrapper
         .textWrapper
+          width: 100%
           .imageWrapperCello
             display: block
           .imageWrapperMob

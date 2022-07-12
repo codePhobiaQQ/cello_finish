@@ -102,7 +102,7 @@ const FormSection = () => {
                   <Field
                     id="name"
                     name="name"
-                    autocomplete="off"
+                    autoComplete="off"
                     placeholder={sectionData.NamePlaceholder}
                     className={errors.name && touched.name ? "errorInput" : ""}
                     type="string"
@@ -118,7 +118,7 @@ const FormSection = () => {
                   <Field
                     id="email"
                     name="email"
-                    autocomplete="off"
+                    autoComplete="off"
                     placeholder={sectionData.EmailPlaceholder}
                     className={
                       errors.email && touched.email ? "errorInput" : ""
@@ -138,7 +138,7 @@ const FormSection = () => {
                     // className={styles.submitWrapper}
                     as={"textarea"}
                     id="message"
-                    autocomplete="off"
+                    autoComplete="off"
                     name="message"
                   />
                   <BtnSubscribe

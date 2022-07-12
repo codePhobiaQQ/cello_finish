@@ -25,6 +25,7 @@ interface IMainSection {
   VideoText: string;
   Video: string;
   ConnectText: string;
+  VideoLink: string;
 }
 
 const MainSection = () => {
@@ -121,6 +122,8 @@ const MainSection = () => {
     fetchData();
   }, [lang]);
 
+  console.log(sectionData);
+
   return (
     <motion.section
       variants={mainWrapperVariant}
@@ -168,7 +171,9 @@ const MainSection = () => {
           //   backUrl +
           //   MainSection[`MainSection${lang}`].video_preview.data.attributes.url
           // }
-          videoSrc={sectionData.Video}
+          videoSrc={
+            sectionData.VideoLink ? sectionData.VideoLink : sectionData.Video
+          }
           label={sectionData.VideoText}
         />
       ) : null}

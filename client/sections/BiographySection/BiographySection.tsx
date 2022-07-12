@@ -12,6 +12,7 @@ import useTypedSelector from "../../hooks/useTypedSelector";
 import { backUrl } from "../../vars";
 import { useEffect, useState } from "react";
 import fetchQuery from "../../services/ssr";
+import TextAnimation from "../../hoc/TextAnimation/TextAnimation";
 
 interface IBiographySection {
   Content: string;
@@ -25,8 +26,8 @@ const BiographySection = () => {
   const lang = useTypedSelector((state) => state.app.language);
 
   const [imageRef, imageInView] = useInView({
-    threshold: 0.3,
-    triggerOnce: true,
+    threshold: 0.5,
+    triggerOnce: false,
   });
   const [imageMobRef, imageMobInView] = useInView({
     threshold: 0.5,
@@ -40,6 +41,7 @@ const BiographySection = () => {
   const [sectionData, setSectionData] = useState<IBiographySection>(
     {} as IBiographySection
   );
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -55,6 +57,7 @@ const BiographySection = () => {
           backUrl +
           response.data.attributes.BioSection.Image.data.attributes.url,
       });
+      setIsLoading(false);
     }
     fetchData();
   }, [lang]);
@@ -67,14 +70,14 @@ const BiographySection = () => {
       <div className="container">
         <div className={styles.biographyWrapper}>
           <motion.div
+            animate={imageInView && !isLoading ? "visible" : "hidden"}
             ref={imageRef}
-            variants={imageVariant}
-            animate={imageInView ? "visible" : "hidden"}
             className={styles.imageWrapper}
           >
-            <Image
+            <motion.img
               width={270}
               height={400}
+              variants={imageVariant}
               src={sectionData?.Image || ivan.src}
               alt="Ivan"
             />
@@ -83,7 +86,7 @@ const BiographySection = () => {
             <motion.div
               ref={imageMobRef}
               variants={imageVariant}
-              animate={imageMobInView ? "visible" : "hidden"}
+              animate={imageMobInView && !isLoading ? "visible" : "hidden"}
               className={styles.imageWrapperMob}
             >
               <Image
@@ -94,14 +97,16 @@ const BiographySection = () => {
               />
             </motion.div>
             <motion.div
-              animate={text1InView ? "visible" : "hidden"}
+              animate={text1InView && !isLoading ? "visible" : "hidden"}
               ref={text1Ref}
-              variants={textVariant}
+              // variants={textVariant}
             >
               <div className={styles.imageWrapperCello}>
                 <Image src={cello.src} objectFit={"contain"} layout={"fill"} />
               </div>
-              <ReactMarkdown>{sectionData?.Content}</ReactMarkdown>
+              <TextAnimation isLoading={isLoading}>
+                <ReactMarkdown>{sectionData?.Content}</ReactMarkdown>
+              </TextAnimation>
             </motion.div>
             <Viol />
           </div>
