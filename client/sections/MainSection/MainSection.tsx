@@ -145,7 +145,6 @@ const MainSection = () => {
 
       <motion.div
         variants={contentVariant}
-        // style={{ translateY: `${y1}px` }}
         className={styles.content + " content"}
       >
         <h1>{sectionData?.MainTitle}</h1>
@@ -154,7 +153,6 @@ const MainSection = () => {
 
       <motion.div
         variants={connectVariant}
-        // style={{ translateX: x1, opacity: opacity1 }}
         className={styles.connect + " connect"}
       >
         <Link href="#FormSection">

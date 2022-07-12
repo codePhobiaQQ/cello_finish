@@ -13,7 +13,10 @@ const VideoPlayer = ({ videoSrc, poster, label }: IVideoPlayer) => {
   return (
     <div className={styles.VideoPlayerWrapper + " VideoPlayerWrapper"}>
       {!!label ? (
-        <span>{label}</span>
+        <span>
+          {label +
+            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, eligendi?"}
+        </span>
       ) : (
         <span style={{ opacity: 0 }}>test</span>
       )}
