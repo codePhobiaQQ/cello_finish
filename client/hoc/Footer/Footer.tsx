@@ -183,6 +183,7 @@ const Footer = ({ children }: IFooter) => {
               </Link>
               <span onClick={() => setProtectOpen(true)}>{protect[lang]}</span>
               <span onClick={() => setPoliticOpen(true)}>{politic[lang]}</span>
+              <p className="littleNumber">{data.number}</p>
             </div>
             <div className={styles.centerSide}>
               <ul>
@@ -280,7 +281,6 @@ const Footer = ({ children }: IFooter) => {
             </div>
           </div>
         </div>
-        <span className="littleNumber">{data.number}</span>
       </>
     );
   }, [isPoliticOpen, isProtectOpen, thanks, lang, data, inputEmail]);

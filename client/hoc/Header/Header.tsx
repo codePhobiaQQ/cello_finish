@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Sotials from "../../components/Sotials/Sotials";
 import Link from "next/link";
+import Logo from "../../components/UI/Logo";
 
 interface IHeader {
   children: React.ReactNode;
@@ -26,16 +27,7 @@ const Header = ({ children }: IHeader) => {
         <div className={styles.logo} onClick={() => setMenuOpen(false)}>
           <Link href="/">
             <a>
-              <Image
-                src={logo.src}
-                width={34}
-                height={80}
-                objectFit={"contain"}
-              />
-              <span>
-                Ivan <br />
-                Skanavi
-              </span>
+              <Logo />
             </a>
           </Link>
         </div>
