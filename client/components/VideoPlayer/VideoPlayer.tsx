@@ -19,14 +19,16 @@ const VideoPlayer = ({ videoSrc, poster, label }: IVideoPlayer) => {
       )}
       <Player
         poster={poster ? poster : postering.src}
-        fluid={false}
-        preload={"none"}
-        src={
-          videoSrc
-            ? videoSrc
-            : "https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-        }
-      />
+        // fluid={false}
+        // preload={"none"}
+        // src={
+        //   videoSrc
+        //     ? videoSrc
+        //     : "https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+        // }
+      >
+        <source src={videoSrc} />
+      </Player>
     </div>
   );
 };

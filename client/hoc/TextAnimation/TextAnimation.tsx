@@ -13,7 +13,6 @@ const TextAnimation = ({ children, isLoading }: ITextAnimation) => {
     () => children?.props?.children?.split("\n"),
     [isLoading]
   );
-  console.log(content());
   return (
     <>
       {content()?.map((text, index) => (

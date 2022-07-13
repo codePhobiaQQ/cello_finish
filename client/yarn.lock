@@ -1638,6 +1638,14 @@
   "resolved" "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz"
   "version" "1.0.2"
 
+"cors@^2.8.5":
+  "integrity" "sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g=="
+  "resolved" "https://registry.npmjs.org/cors/-/cors-2.8.5.tgz"
+  "version" "2.8.5"
+  dependencies:
+    "object-assign" "^4"
+    "vary" "^1"
+
 "create-ecdh@^4.0.0":
   "integrity" "sha512-mf+TCx8wWc9VpuxfP2ht0iSISLZnt0JgWlrOKZiNqyUZWnjIaCIVNQArMHnCZKfEYRg6IM7A+NeJoN8gf/Ws0A=="
   "resolved" "https://registry.npmjs.org/create-ecdh/-/create-ecdh-4.0.4.tgz"
@@ -4244,7 +4252,7 @@
   "resolved" "https://registry.npmjs.org/next-redux-wrapper/-/next-redux-wrapper-7.0.2.tgz"
   "version" "7.0.2"
 
-"next@^11.1.3", "next@>= 5.1.0", "next@>=10.0.3", "next@>=10.2.0":
+"next@^11.1.3", "next@^8.1.1-canary.54 || ^9.0.0 || ^10.0.0-0 || ^11.0.0 || ^12.0.0", "next@>= 5.1.0", "next@>=10.0.3", "next@>=10.2.0":
   "integrity" "sha512-GWQJrWYkfAKP8vmrzJcCfRSKv955Khyjqd5jipTcVKDGg+SH+NfjDMWFtCwArcQlHPvzisGu1ERLY0+Eoj7G+g=="
   "resolved" "https://registry.npmjs.org/next/-/next-11.1.4.tgz"
   "version" "11.1.4"
@@ -4304,6 +4312,13 @@
     "@next/swc-darwin-x64" "11.1.4"
     "@next/swc-linux-x64-gnu" "11.1.4"
     "@next/swc-win32-x64-msvc" "11.1.4"
+
+"nextjs-cors@^2.1.1":
+  "integrity" "sha512-HxE4w4Wng5VdTtnn0DWPphuWKwd1Ty+lpyTZ/sQGgaNnd5demYMchKf+W1LtI8YFYxu2HnRb3MrxERRV0QKLKA=="
+  "resolved" "https://registry.npmjs.org/nextjs-cors/-/nextjs-cors-2.1.1.tgz"
+  "version" "2.1.1"
+  dependencies:
+    "cors" "^2.8.5"
 
 "node-fetch@2.6.7":
   "integrity" "sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ=="
@@ -4658,7 +4673,7 @@
   "resolved" "https://registry.npmjs.org/oauth-sign/-/oauth-sign-0.9.0.tgz"
   "version" "0.9.0"
 
-"object-assign@^4.1.0", "object-assign@^4.1.1":
+"object-assign@^4", "object-assign@^4.1.0", "object-assign@^4.1.1":
   "integrity" "sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM="
   "resolved" "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz"
   "version" "4.1.1"
@@ -6688,6 +6703,11 @@
   "version" "3.0.0"
   dependencies:
     "builtins" "^1.0.3"
+
+"vary@^1":
+  "integrity" "sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg=="
+  "resolved" "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
+  "version" "1.1.2"
 
 "verror@1.10.0":
   "integrity" "sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA="

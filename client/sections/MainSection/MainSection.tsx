@@ -9,7 +9,7 @@ import { motion, useTransform, useViewportScroll } from "framer-motion";
 import ArrowDown from "../../components/ArrowDown/ArrowDown";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { backUrl } from "../../vars";
 import Image from "next/image";
 import useTypedSelector from "../../hooks/useTypedSelector";
@@ -23,9 +23,10 @@ interface IMainSection {
   MainTitle: string;
   MainSubtitle: string;
   VideoText: string;
-  Video: string;
+  // Video: string;
+  Preview?: string;
   ConnectText: string;
-  VideoLink: string;
+  VideoLink?: string;
 }
 
 const MainSection = () => {
@@ -45,12 +46,6 @@ const MainSection = () => {
       setBgImage(bgMob.src);
     }
   }, [width]);
-
-  // const { scrollY } = useViewportScroll();
-  // const y1 = useTransform(scrollY, [0, 400], [0, -100]);
-  // const x1 = useTransform(scrollY, [0, 400], [0, -100]);
-  // const y2 = useTransform(scrollY, [0, 800], [0, 250]);
-  // const opacity1 = useTransform(scrollY, [0, 400], [1, 0]);
 
   const sectionRef = useRef<HTMLElement>(null);
   const x1 = useRef<number>(0);
@@ -107,20 +102,29 @@ const MainSection = () => {
     });
   }, []);
 
-  useEffect(() => {
-    async function fetchData() {
+  const fetchData = useCallback(async () => {
+    try {
       const response = await fetchQuery(
-        `api/main-page-field?locale=${lang.toLowerCase()}&populate=*&populate=MainSection.Video`
+        `api/main-page-field?locale=${lang.toLowerCase()}&populate=*&populate=MainSection.PreviewImg`
       );
       setSectionData({
         ...response.data.attributes.MainSection,
-        Video:
+        Preview:
           backUrl +
-          response.data.attributes.MainSection.Video.data.attributes.url,
+          response.data.attributes.MainSection.PreviewImg.data.attributes.url,
       });
+    } catch (e) {
+      console.log(e);
     }
+  }, []);
+
+  useEffect(() => {
     fetchData();
   }, [lang]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   console.log(sectionData);
 
@@ -167,13 +171,8 @@ const MainSection = () => {
 
       {width > 756 ? (
         <VideoPlayer
-          // poster={
-          //   backUrl +
-          //   MainSection[`MainSection${lang}`].video_preview.data.attributes.url
-          // }
-          videoSrc={
-            sectionData.VideoLink ? sectionData.VideoLink : sectionData.Video
-          }
+          poster={sectionData.Preview}
+          videoSrc={sectionData.VideoLink}
           label={sectionData.VideoText}
         />
       ) : null}

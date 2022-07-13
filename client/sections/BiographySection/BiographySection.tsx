@@ -27,7 +27,7 @@ const BiographySection = () => {
 
   const [imageRef, imageInView] = useInView({
     threshold: 0.5,
-    triggerOnce: false,
+    triggerOnce: true,
   });
   const [imageMobRef, imageMobInView] = useInView({
     threshold: 0.5,
