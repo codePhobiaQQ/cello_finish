@@ -65,9 +65,9 @@ const MainSection = () => {
     if (top < 800) {
       y2.current = (top / 800) * 250;
     }
-    sectionRef.current
-      ?.querySelector("img")
-      ?.setAttribute("style", `transform: translateY(${y2.current}px)`);
+    // sectionRef.current
+    //   ?.querySelector("img")
+    //   ?.setAttribute("style", `transform: translateY(${y2.current}px)`);
     sectionRef.current
       ?.querySelector(".connect")
       ?.setAttribute(
@@ -136,7 +136,9 @@ const MainSection = () => {
       initial="hidden"
       animate={isFontLoaded ? "visible" : "hidden"}
       className={styles.MainSection + " MainSection"}
-      style={{ backgroundImage: bg.src }}
+      style={{
+        backgroundImage: `url('${bg.src}');`,
+      }}
       ref={sectionRef}
     >
       {/*<motion.div*/}
