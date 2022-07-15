@@ -43,8 +43,6 @@ const VideoSection = () => {
       setSectionData(
         response.data.map((video: any) => ({
           ...video.attributes,
-          PreviewImg: backUrl + video.attributes.PreviewImg.data.attributes.url,
-          // Video: backUrl + video.attributes.Video.data.attributes.url,
           Time:
             video.attributes?.Time?.split(":")[0] +
             ":" +
@@ -63,7 +61,6 @@ const VideoSection = () => {
           <div key={"videoelement" + index} className={styles.videoElem}>
             <VideoPlayer
               classing={"VideoSectionVideo"}
-              poster={slide.PreviewImg}
               videoSrc={slide.VideoLink}
             />
             <div className={styles.contentWrapper}>
