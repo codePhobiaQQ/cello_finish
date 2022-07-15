@@ -1,9 +1,9 @@
 import styles from "./MainSection.module.sass";
 
 import bg from "../../public/assets/img/mainSection/mainBg.jpg";
-import mediumPc from "../../public/assets/img/mainSection/mediumPc.jpg";
-import bgIpad from "../../public/assets/img/mainSection/mainBgIpad.jpg";
-import bgMob from "../../public/assets/img/mainSection/mainBgMob.jpg";
+import mediumPc from "../../public/assets/img/mainSection/bgPc.jpg";
+import bgIpad from "../../public/assets/img/mainSection/bgIpad.jpg";
+import bgMob from "../../public/assets/img/mainSection/bgMob.jpg";
 
 import { wrapperVariant, bgImageVariant } from "../../motions/motions";
 import { contentVariant, connectVariant } from "../../motions/mainMotion";
@@ -112,7 +112,7 @@ const MainSection = () => {
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     fetchData();
@@ -129,19 +129,6 @@ const MainSection = () => {
       }}
       ref={sectionRef}
     >
-      {/*<motion.div*/}
-      {/*  variants={mainBgImageVariant}*/}
-      {/*  className={styles.backgroundImg}*/}
-      {/*>*/}
-      {/*  <Image*/}
-      {/*    objectFit={"contain"}*/}
-      {/*    layout={"fill"}*/}
-      {/*    src={bgImage}*/}
-      {/*    priority={true}*/}
-      {/*    alt="bg"*/}
-      {/*  />*/}
-      {/*</motion.div>*/}
-
       <motion.div
         variants={contentVariant}
         className={styles.content + " content"}
