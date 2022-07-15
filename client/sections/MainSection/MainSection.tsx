@@ -55,7 +55,7 @@ const MainSection = () => {
   const y2 = useRef<number>(0);
   const opacity1 = useRef<number>(1);
 
-  const scrollHandler = () => {
+  const scrollHandler = useCallback(() => {
     const top = document.documentElement.scrollTop;
     if (top < 400) {
       x1.current = (top / 400) * -100;
@@ -65,9 +65,6 @@ const MainSection = () => {
     if (top < 800) {
       y2.current = (top / 800) * 250;
     }
-    // sectionRef.current
-    //   ?.querySelector("img")
-    //   ?.setAttribute("style", `transform: translateY(${y2.current}px)`);
     sectionRef.current
       ?.querySelector(".connect")
       ?.setAttribute(
@@ -80,7 +77,7 @@ const MainSection = () => {
         "style",
         `transform: translateY(${y1.current}px); opacity: ${opacity1.current}`
       );
-  };
+  }, []);
 
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
@@ -96,14 +93,6 @@ const MainSection = () => {
     {} as IMainSection
   );
 
-  useEffect(() => {
-    const font = new FontFaceObserver("Big");
-
-    font.load().then(function () {
-      setIsFontLoaded(true);
-    });
-  }, []);
-
   const fetchData = useCallback(async () => {
     try {
       const response = await fetchQuery(
@@ -115,6 +104,11 @@ const MainSection = () => {
           backUrl +
           response.data.attributes.MainSection.PreviewImg.data.attributes.url,
       });
+      const font = new FontFaceObserver("Big");
+
+      font.load().then(function () {
+        setIsFontLoaded(true);
+      });
     } catch (e) {
       console.log(e);
     }
@@ -124,12 +118,6 @@ const MainSection = () => {
     fetchData();
   }, [lang]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  console.log(sectionData);
-
   return (
     <motion.section
       variants={mainWrapperVariant}
@@ -137,7 +125,7 @@ const MainSection = () => {
       animate={isFontLoaded ? "visible" : "hidden"}
       className={styles.MainSection + " MainSection"}
       style={{
-        backgroundImage: `url('${bg.src}');`,
+        backgroundImage: `url(${bgImage})`,
       }}
       ref={sectionRef}
     >

@@ -1,13 +1,13 @@
 import styles from "./Languages.module.sass";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import { useDispatch } from "react-redux";
-import { setLanguage } from "./../../redux/slices/AppSlice";
+import { langType, setLanguage } from "./../../redux/slices/AppSlice";
 
 const Languages = () => {
   const dispatch = useDispatch();
   const currentLanguage = useTypedSelector((state) => state.app.language);
 
-  const clickLanguageHandler = (lang: string) => {
+  const clickLanguageHandler = (lang: langType) => {
     dispatch(setLanguage(lang));
   };
 

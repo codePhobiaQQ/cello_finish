@@ -7,7 +7,7 @@ const Videos = (props: any) => {
   return (
     <Header>
       <VideoSection />
-      <Footer></Footer>
+      <Footer />
     </Header>
   );
 };

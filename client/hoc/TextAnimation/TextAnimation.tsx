@@ -8,7 +8,7 @@ interface ITextAnimation {
 }
 
 const TextAnimation = ({ children, isLoading }: ITextAnimation) => {
-  console.log(children.props?.children);
+  // console.log(children.props?.children);
   const content: () => string[] = useCallback(
     () => children?.props?.children?.split("\n"),
     [isLoading]

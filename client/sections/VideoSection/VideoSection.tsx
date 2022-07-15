@@ -10,7 +10,7 @@ interface VideoSection {
   Executors: string;
   Author: string;
   PreviewImg: string;
-  Video: string;
+  // Video?: string;
   Name: string;
   Time: string;
 }
@@ -43,11 +43,11 @@ const VideoSection = () => {
         response.data.map((video: any) => ({
           ...video.attributes,
           PreviewImg: backUrl + video.attributes.PreviewImg.data.attributes.url,
-          Video: backUrl + video.attributes.Video.data.attributes.url,
+          // Video: backUrl + video.attributes.Video.data.attributes.url,
           Time:
-            video.attributes.Time.split(":")[0] +
+            video.attributes?.Time?.split(":")[0] +
             ":" +
-            video.attributes.Time.split(":")[1],
+            video.attributes?.Time?.split(":")[1],
         }))
       );
       setSlidesAmount(response.data.length);
