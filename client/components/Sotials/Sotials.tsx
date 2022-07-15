@@ -2,24 +2,19 @@ import styles from "./Sotials.module.sass";
 import Instagram from "../svg/instagram";
 import Youtube from "../svg/youtube";
 import Facebook from "../svg/facebook";
-import useTypedSelector from "../../hooks/useTypedSelector";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import fetchQuery from "../../services/ssr";
-import { backUrl } from "../../vars";
 
-const Sotials = () => {
-  const lang = useTypedSelector((state) => state.app.language);
+const Sotials = memo(() => {
   const [data, setData] = useState<any>({});
 
   useEffect(() => {
     async function takeData() {
-      const response = await fetchQuery(
-        `api/footer-info?locale=${lang.toLowerCase()}&populate=*`
-      );
+      const response = await fetchQuery(`api/footer-info?populate=*`);
       setData(response.data.attributes);
     }
     takeData();
-  }, [lang]);
+  }, []);
 
   return (
     <ul className={styles.sotialsInner}>
@@ -40,6 +35,6 @@ const Sotials = () => {
       </li>
     </ul>
   );
-};
+});
 
 export default Sotials;

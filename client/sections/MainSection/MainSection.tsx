@@ -78,7 +78,6 @@ const MainSection = () => {
         `transform: translateY(${y1.current}px); opacity: ${opacity1.current}`
       );
   }, []);
-
   useEffect(() => {
     document.addEventListener("scroll", scrollHandler);
     return function () {
@@ -102,7 +101,8 @@ const MainSection = () => {
         ...response.data.attributes.MainSection,
         Preview:
           backUrl +
-          response.data.attributes.MainSection.PreviewImg.data.attributes.url,
+          response.data.attributes.MainSection?.PreviewImg?.data?.attributes
+            ?.url,
       });
       const font = new FontFaceObserver("Big");
 

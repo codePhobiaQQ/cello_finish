@@ -3,9 +3,10 @@ import arrow from "./../../public/assets/svg/Arrow.svg";
 import circle from "./../../public/assets/svg/Circle.svg";
 // @ts-ignore
 import * as Scroll from "react-scroll";
+import { memo } from "react";
 const Link = Scroll.Link;
 
-const ArrowDown = () => {
+const ArrowDown = memo(() => {
   return (
     <Link
       className={styles.arrowWrapper}
@@ -17,6 +18,6 @@ const ArrowDown = () => {
       <img className={styles.arrow} src={arrow.src} alt="arrow" />
     </Link>
   );
-};
+});
 
 export default ArrowDown;
