@@ -9,15 +9,10 @@ interface IVideoPlayer {
 }
 
 const VideoPlayer = ({ videoSrc, poster, label, classing }: IVideoPlayer) => {
-  console.log(videoSrc?.split("/")[3]);
   return (
     <div className={styles.VideoPlayerWrapper + " VideoPlayerWrapper"}>
-      {!!label ? (
-        <span>{label}</span>
-      ) : (
-        <span style={{ opacity: 0 }}>test</span>
-      )}
-      <YouTube className={classing} videoId={videoSrc?.split("/")[3]} />
+      {!!label && <span>{label}</span>}
+      <YouTube className={classing} videoId={videoSrc} />
     </div>
   );
 };

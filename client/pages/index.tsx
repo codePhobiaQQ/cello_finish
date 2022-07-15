@@ -7,7 +7,6 @@ import FormSection from "../sections/FormSection/FormSection";
 
 const MainPage = (props: any) => {
   useEffect(() => {
-    console.log(props.MainSectionRu);
     history.pushState("", document.title, window.location.pathname);
   }, []);
 

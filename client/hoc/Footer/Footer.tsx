@@ -121,8 +121,6 @@ const Footer = ({ children }: IFooter) => {
       );
       setData({
         ...response.data.attributes,
-        video: backUrl + response.data.attributes.video.data.attributes.url,
-        preview: backUrl + response.data.attributes.preview.data.attributes.url,
       });
     }
     takeData();
@@ -166,7 +164,7 @@ const Footer = ({ children }: IFooter) => {
         <ThanksPopup />
         {children}
         <div className="container" id={"Contacts"}>
-          <div className={styles.Footer}>
+          <div className={styles.Footer + " Footer"}>
             <div className="pricol">{data.pricol}</div>
             <div className={styles.leftSide}>
               <Link href="/">
@@ -200,30 +198,6 @@ const Footer = ({ children }: IFooter) => {
                     </Link>
                   </li>
                 ))}
-              </ul>
-              <ul>
-                <li>
-                  <VideoPlayer
-                    poster={data.preview}
-                    videoSrc={data.video}
-                    label={data.VideoLabel}
-                  />
-                </li>
-                <li>
-                  <a href={data.instagram} target="_blank">
-                    Instagram
-                  </a>
-                </li>
-                <li>
-                  <a href={data.youtube} target="_blank">
-                    YouTube
-                  </a>
-                </li>
-                <li>
-                  <a href={data.facebook} target="_blank">
-                    Facebook
-                  </a>
-                </li>
               </ul>
             </div>
 

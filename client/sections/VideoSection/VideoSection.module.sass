@@ -1,3 +1,5 @@
+$responsive: calc(1vh + 1vw)
+
 .videoSection
   margin: 140px 0 120px
   height: 100%
@@ -31,22 +33,13 @@
 
   .videoElem
     display: flex
-    height: 160px
+    height: calc(#{$responsive} * 9)
     width: 100%
     margin-bottom: 50px
-    //.video
-    @media screen and (max-width: 576px)
-      margin-bottom: 25px
-    @media screen and (max-width: 992px)
-      margin-bottom: 45px
-      flex-direction: column
-      :global(.VideoPlayerWrapper)
-        width: 100%
-
-
+    justify-content: space-between
     :global(.VideoPlayerWrapper)
-      width: 240px
-      height: 160px
+      height: calc(#{$responsive} * 9)
+      width: calc(#{$responsive} * 13)
       position: relative
       bottom: inherit
       margin: auto
@@ -54,6 +47,19 @@
       :global(.video-react)
         height: 100% !important
         width: 100% !important
+    @media screen and (max-width: 576px)
+      margin-bottom: 25px
+    @media screen and (max-width: 992px)
+      margin-bottom: 45px
+      flex-direction: column
+      :global(.VideoPlayerWrapper)
+        width: 100%
+        height: calc(#{$responsive} * 15)
+        .VideoSectionVideo
+          width: 100%
+
+
+
 
     .contentWrapper
       display: flex
@@ -61,7 +67,7 @@
       border-bottom: 1px solid #fff
       padding: 17px 0
       margin-left: 47px
-      width: 100%
+      width: calc(100% - 300px)
       .leftSide, .rightSide
         display: flex
         flex-direction: column
@@ -90,6 +96,7 @@
         margin-top: 15px
         margin-bottom: 30px
         margin-left: 0
+        width: 100%
         .leftSide
           span
             &:first-child

@@ -57,11 +57,15 @@ const VideoSection = () => {
   }, [lang]);
 
   return (
-    <div className={styles.videoSection}>
+    <div className={styles.videoSection + " VideoSection"}>
       <div className="container">
         {sectionData.slice(0, pagination).map((slide: any, index: number) => (
           <div key={"videoelement" + index} className={styles.videoElem}>
-            <VideoPlayer poster={slide.PreviewImg} videoSrc={slide.VideoLink} />
+            <VideoPlayer
+              classing={"VideoSectionVideo"}
+              poster={slide.PreviewImg}
+              videoSrc={slide.VideoLink}
+            />
             <div className={styles.contentWrapper}>
               <div className={styles.leftSide}>
                 <span>{slide.Author}</span>

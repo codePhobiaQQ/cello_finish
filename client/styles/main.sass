@@ -50,13 +50,13 @@ input
   width: 1320px
   margin: auto
 
-.MainSection
+.MainSection, .Footer
   .VideoPlayerWrapper
     overflow: hidden
     position: absolute
     top: inherit
     bottom: 50px
-    .MainSectionsVideo
+    .MainSectionsVideo, .FooterSectionVideo
       height: calc(#{$responsive} * 9)
       width: calc(#{$responsive} * 13)
       filter: grayscale(100%)
@@ -68,6 +68,22 @@ input
         width: 100%
         height: 100%
 
+.Footer
+  .VideoPlayerWrapper
+    .FooterSectionVideo
+      width: 100%
+      height: 100%
+
+.VideoSectionVideo
+  height: 100%
+  filter: grayscale(100%)
+  -webkit-filter: grayscale(100%)
+  -moz-filter: grayscale(100%)
+  -o-filter: grayscale(100%)
+  -webkit-filter: grayscale(1)
+  iframe
+    width: 100%
+    height: 100%
 
 
 
