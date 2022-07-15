@@ -153,6 +153,7 @@ const MainSection = () => {
           poster={sectionData.Preview}
           videoSrc={sectionData.VideoLink}
           label={sectionData.VideoText}
+          classing={"MainSectionsVideo"}
         />
       ) : null}
       {width > 756 ? <ArrowDown /> : null}

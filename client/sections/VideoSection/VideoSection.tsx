@@ -13,6 +13,7 @@ interface VideoSection {
   // Video?: string;
   Name: string;
   Time: string;
+  VideoLink?: string;
 }
 
 const VideoSection = () => {
@@ -60,7 +61,7 @@ const VideoSection = () => {
       <div className="container">
         {sectionData.slice(0, pagination).map((slide: any, index: number) => (
           <div key={"videoelement" + index} className={styles.videoElem}>
-            <VideoPlayer poster={slide.PreviewImg} videoSrc={slide.Video} />
+            <VideoPlayer poster={slide.PreviewImg} videoSrc={slide.VideoLink} />
             <div className={styles.contentWrapper}>
               <div className={styles.leftSide}>
                 <span>{slide.Author}</span>
