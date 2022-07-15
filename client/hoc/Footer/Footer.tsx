@@ -46,28 +46,28 @@ export const sotials: ISotial[] = [
   {
     icon: spotify.src,
     active: spotifyActive.src,
-    link: "#",
+    link: "https://open.spotify.com/artist/5rhCdpyzBYhdzxQL7OglWa?si=X9WS8XzXSzSSLhGsfPz9OA&utm_source=copy-link",
   },
-  {
-    icon: vkMusic.src,
-    active: vkMusicActive.src,
-    link: "#",
-  },
-  {
-    icon: yandexMusic.src,
-    active: yandexMusicActive.src,
-    link: "#",
-  },
+  // {
+  //   icon: vkMusic.src,
+  //   active: vkMusicActive.src,
+  //   link: "#",
+  // },
+  // {
+  //   icon: yandexMusic.src,
+  //   active: yandexMusicActive.src,
+  //   link: "#",
+  // },
   {
     icon: appleMusic.src,
     active: appleMusicActive.src,
     link: "#",
   },
-  {
-    icon: sber.src,
-    active: sberActive.src,
-    link: "#",
-  },
+  // {
+  //   icon: sber.src,
+  //   active: sberActive.src,
+  //   link: "#",
+  // },
 ];
 
 export const footerMenu: any = [
