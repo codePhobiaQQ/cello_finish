@@ -45,7 +45,7 @@ const MainSection = () => {
     } else if (width <= 992 && width > 756) {
       setBgImage(bgIpad.src);
     } else if (width <= 756) {
-      setBgImage(bgMob.src);
+      setBgImage(bgIpad.src);
     }
   }, [width]);
 
