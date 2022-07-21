@@ -19,6 +19,7 @@ interface IConcert {
   City: string;
   Place: string;
   Link: string;
+  Time?: string;
 }
 
 interface ConcertsSection {
@@ -39,22 +40,35 @@ const ConcertsSection = () => {
       setCurrentPagination(pagination + 3);
     }
   };
-
-  const [sectionData, setSectionData] = useState<IConcert[]>([] as IConcert[]);
-
+  const [sectionData, setSectionData] = useState<IConcert[]>([
+    {
+      City: "Berge, Germany",
+      Day: "11",
+      Link: "https://www.altmarkfestspiele.de/programm/",
+      Month: "06",
+      Place: "Dorfkirche",
+      Time: "2022-06-11",
+      Year: "2022",
+    },
+  ] as IConcert[]);
   useEffect(() => {
     async function fetchData() {
       const response = await fetchQuery(
         `api/concerts?locale=${lang.toLowerCase()}&populate=*`
       );
       setSectionData(
-        response.data.map((concert: any) => ({
-          ...concert.attributes,
-          Day: concert.attributes.Time.split("-")[2],
-          Month: concert.attributes.Time.split("-")[1],
-          Year: concert.attributes.Time.split("-")[0],
-        }))
+        response.data
+          .map((concert: any) => ({
+            ...concert.attributes,
+            Day: concert.attributes.Time.split("-")[2],
+            Month: concert.attributes.Time.split("-")[1],
+            Year: concert.attributes.Time.split("-")[0],
+          }))
+          .sort((a: IConcert, b: IConcert) =>
+            ("" + a?.Time).localeCompare("" + b?.Time)
+          )
       );
+      console.log(response.data);
       setConcertsAmount(response.data.length);
     }
     fetchData();
