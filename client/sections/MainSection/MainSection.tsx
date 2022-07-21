@@ -1,7 +1,7 @@
 import styles from "./MainSection.module.sass";
 
-import bg from "../../public/assets/img/mainSection/mainBg.jpg";
-import mediumPc from "../../public/assets/img/mainSection/bgPc.jpg";
+import bg from "../../public/assets/img/mainSection/bigMain.jpg";
+import mediumPc from "../../public/assets/img/mainSection/mediumBg.jpg";
 import bgIpad from "../../public/assets/img/mainSection/bgIpad.jpg";
 import bgMob from "../../public/assets/img/mainSection/bgMob.jpg";
 
