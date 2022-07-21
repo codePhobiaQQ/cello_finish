@@ -48,6 +48,7 @@ const BiographySection = () => {
       const response = await fetchQuery(
         `api/main-page-field?locale=${lang.toLowerCase()}&populate=*&populate=BioSection.Image&populate=BioSection.BioFile`
       );
+      console.log(response);
       setSectionData({
         ...response.data.attributes.BioSection,
         BioFile:
@@ -104,9 +105,7 @@ const BiographySection = () => {
               <div className={styles.imageWrapperCello}>
                 <Image src={cello.src} objectFit={"contain"} layout={"fill"} />
               </div>
-              <TextAnimation isLoading={isLoading}>
-                <ReactMarkdown>{sectionData?.Content}</ReactMarkdown>
-              </TextAnimation>
+              <ReactMarkdown children={sectionData?.Content} />
             </motion.div>
             <Viol />
           </div>
