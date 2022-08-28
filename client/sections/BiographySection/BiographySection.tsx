@@ -48,6 +48,7 @@ const BiographySection = () => {
       const response = await fetchQuery(
         `api/main-page-field?locale=${lang.toLowerCase()}&populate=*&populate=BioSection.Image&populate=BioSection.BioFile`
       );
+      console.log(response);
       setSectionData({
         ...response.data.attributes.BioSection,
         BioFile:
@@ -69,34 +70,43 @@ const BiographySection = () => {
       </div>
       <div className="container">
         <div className={styles.biographyWrapper}>
-          <div ref={imageRef} className={styles.imageWrapper}>
-            <img
+          <motion.div
+            animate={imageInView && !isLoading ? "visible" : "hidden"}
+            ref={imageRef}
+            className={styles.imageWrapper}
+          >
+            <motion.img
               width={270}
               height={400}
+              variants={imageVariant}
               src={sectionData?.Image || ivan.src}
               alt="Ivan"
             />
-          </div>
+          </motion.div>
           <div className={styles.textWrapper}>
-            <div ref={imageMobRef} className={styles.imageWrapperMob}>
+            <motion.div
+              ref={imageMobRef}
+              variants={imageVariant}
+              animate={imageMobInView && !isLoading ? "visible" : "hidden"}
+              className={styles.imageWrapperMob}
+            >
               <Image
                 width={270}
                 height={400}
                 src={sectionData?.Image || ivan.src}
                 alt="Ivan"
               />
-            </div>
-            <div
+            </motion.div>
+            <motion.div
+              animate={text1InView && !isLoading ? "visible" : "hidden"}
               ref={text1Ref}
               // variants={textVariant}
             >
               <div className={styles.imageWrapperCello}>
                 <Image src={cello.src} objectFit={"contain"} layout={"fill"} />
               </div>
-              <TextAnimation isLoading={isLoading}>
-                <ReactMarkdown>{sectionData?.Content}</ReactMarkdown>
-              </TextAnimation>
-            </div>
+              <ReactMarkdown children={sectionData?.Content} />
+            </motion.div>
             <Viol />
           </div>
         </div>

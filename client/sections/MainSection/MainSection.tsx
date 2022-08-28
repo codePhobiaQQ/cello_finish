@@ -1,7 +1,7 @@
 import styles from "./MainSection.module.sass";
 
-import bg from "../../public/assets/img/mainSection/mainBg.jpg";
-import mediumPc from "../../public/assets/img/mainSection/bgPc.jpg";
+import bg from "../../public/assets/img/mainSection/bigMain.jpg";
+import mediumPc from "../../public/assets/img/mainSection/mediumBg.jpg";
 import bgIpad from "../../public/assets/img/mainSection/bgIpad.jpg";
 import bgMob from "../../public/assets/img/mainSection/bgMob.jpg";
 import ArrowDown from "../../components/ArrowDown/ArrowDown";
@@ -40,7 +40,7 @@ const MainSection = () => {
     } else if (width <= 992 && width > 756) {
       setBgImage(bgIpad.src);
     } else if (width <= 756) {
-      setBgImage(bgMob.src);
+      setBgImage(bgIpad.src);
     }
   }, [width]);
 
