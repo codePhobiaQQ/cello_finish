@@ -1,3 +1,5 @@
+@import "https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@1&display=swap"
+
 .Menu
   position: fixed
   background-color: #000
@@ -39,7 +41,9 @@
     li.menuItem
       text-align: center
       transition-timing-function: cubic-bezier(0,.24,.32,.99)
-      &:last-child
+      &.RuItem
+        font-family: 'Alumni Sans Pinstripe', sans-serif
+        &:last-child
         margin-bottom: 0
       a
         transition: color .3s ease-in-out

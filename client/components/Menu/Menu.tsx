@@ -60,7 +60,9 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
                 key={"menuItems " + index}
                 variants={listItem}
                 custom={index}
-                className={styles.menuItem}
+                className={`${styles.menuItem} ${
+                  lang == "Ru" ? styles.RuItem : ""
+                }`}
               >
                 <Link href={menuItem.link}>
                   <a>{menuItem[`title${lang}`]}</a>
