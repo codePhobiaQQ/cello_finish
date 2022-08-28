@@ -69,35 +69,24 @@ const BiographySection = () => {
       </div>
       <div className="container">
         <div className={styles.biographyWrapper}>
-          <motion.div
-            animate={imageInView && !isLoading ? "visible" : "hidden"}
-            ref={imageRef}
-            className={styles.imageWrapper}
-          >
-            <motion.img
+          <div ref={imageRef} className={styles.imageWrapper}>
+            <img
               width={270}
               height={400}
-              variants={imageVariant}
               src={sectionData?.Image || ivan.src}
               alt="Ivan"
             />
-          </motion.div>
+          </div>
           <div className={styles.textWrapper}>
-            <motion.div
-              ref={imageMobRef}
-              variants={imageVariant}
-              animate={imageMobInView && !isLoading ? "visible" : "hidden"}
-              className={styles.imageWrapperMob}
-            >
+            <div ref={imageMobRef} className={styles.imageWrapperMob}>
               <Image
                 width={270}
                 height={400}
                 src={sectionData?.Image || ivan.src}
                 alt="Ivan"
               />
-            </motion.div>
-            <motion.div
-              animate={text1InView && !isLoading ? "visible" : "hidden"}
+            </div>
+            <div
               ref={text1Ref}
               // variants={textVariant}
             >
@@ -107,7 +96,7 @@ const BiographySection = () => {
               <TextAnimation isLoading={isLoading}>
                 <ReactMarkdown>{sectionData?.Content}</ReactMarkdown>
               </TextAnimation>
-            </motion.div>
+            </div>
             <Viol />
           </div>
         </div>

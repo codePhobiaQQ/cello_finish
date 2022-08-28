@@ -5,9 +5,6 @@ import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
 import formImg from "../../public/assets/img/formImg.png";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import { motion } from "framer-motion";
-import { formVariant, inputVariant } from "../../motions/formMotions";
-import { imageVariant } from "../../motions/bioMotions";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import axios from "axios";
 import { setThanks } from "../../redux/slices/AppSlice";
@@ -71,12 +68,7 @@ const FormSection = () => {
   return (
     <section id="FormSection" className={styles.FormSection}>
       <div className="container">
-        <motion.div
-          className={styles.formSectionWrapper}
-          ref={formRef}
-          variants={formVariant}
-          animate={formInView ? "visible" : "hidden"}
-        >
+        <div className={styles.formSectionWrapper} ref={formRef}>
           <Formik
             initialValues={{
               name: "",
@@ -94,10 +86,7 @@ const FormSection = () => {
           >
             {({ errors, touched }) => (
               <Form className={styles.formSectionVertical}>
-                <motion.div
-                  variants={inputVariant}
-                  className={styles.inputWrapper}
-                >
+                <div className={styles.inputWrapper}>
                   <label htmlFor="name">{sectionData.NameField}</label>
                   <Field
                     id="name"
@@ -108,12 +97,9 @@ const FormSection = () => {
                     type="string"
                   />
                   <span>select</span>
-                </motion.div>
+                </div>
 
-                <motion.div
-                  variants={inputVariant}
-                  className={styles.inputWrapper}
-                >
+                <div className={styles.inputWrapper}>
                   <label htmlFor="email">{sectionData.EmailField}</label>
                   <Field
                     id="email"
@@ -125,15 +111,10 @@ const FormSection = () => {
                     }
                     type="text"
                   />
-                </motion.div>
+                </div>
 
-                <motion.label variants={inputVariant} htmlFor="name">
-                  {sectionData.MessagePlaceholder}
-                </motion.label>
-                <motion.div
-                  variants={inputVariant}
-                  className={styles.submitWrapper}
-                >
+                <label htmlFor="name">{sectionData.MessagePlaceholder}</label>
+                <div className={styles.submitWrapper}>
                   <Field
                     // className={styles.submitWrapper}
                     as={"textarea"}
@@ -146,7 +127,7 @@ const FormSection = () => {
                     customClass={styles.btn}
                     type={true}
                   />
-                </motion.div>
+                </div>
               </Form>
             )}
           </Formik>
@@ -161,7 +142,7 @@ const FormSection = () => {
               <a href={`mailto:${sectionData.email}`}>{sectionData.email}</a>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
