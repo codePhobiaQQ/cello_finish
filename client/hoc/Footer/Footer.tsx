@@ -86,7 +86,7 @@ export const footerMenu: any = [
   {
     titleRu: "Видео",
     titleEn: "Videos",
-    titleDe: "Das Videos",
+    titleDe: "Videos",
     link: "/videos",
   },
   {
@@ -98,7 +98,7 @@ export const footerMenu: any = [
   {
     titleRu: "Новости",
     titleEn: "News",
-    titleDe: "Nachrichten",
+    titleDe: "Aktuell",
     link: "/news",
   },
   {
