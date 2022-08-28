@@ -6,9 +6,24 @@ interface IVideoPlayer {
   poster?: string;
   label?: string;
   classing?: string;
+  isLoading?: boolean;
 }
 
-const VideoPlayer = ({ videoSrc, poster, label, classing }: IVideoPlayer) => {
+const VideoPlayer = ({
+  videoSrc,
+  poster,
+  label,
+  classing,
+  isLoading = false,
+}: IVideoPlayer) => {
+  if (isLoading) {
+    return (
+      <div className={styles.VideoPlayerWrapper + " VideoPlayerWrapper"}>
+        Loading...
+      </div>
+    );
+  }
+
   return (
     <div className={styles.VideoPlayerWrapper + " VideoPlayerWrapper"}>
       {!!label && <span>{label}</span>}

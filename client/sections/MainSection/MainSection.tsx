@@ -13,15 +13,16 @@ import Image from "next/image";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import fetchQuery from "../../services/ssr";
 import useWindowSize from "../../hooks/useWindowSize";
-// @ts-ignore
-import FontFaceObserver from "fontfaceobserver";
+
+// ---- Animation ---
 import { useRef } from "react";
+import { gsap, TweenLite } from "gsap";
+import { Controller, Scene } from "react-scrollmagic";
 
 interface IMainSection {
   MainTitle: string;
   MainSubtitle: string;
   VideoText: string;
-  // Video: string;
   Preview?: string;
   ConnectText: string;
   VideoLink?: string;
@@ -30,6 +31,7 @@ interface IMainSection {
 const MainSection = () => {
   const [bgImage, setBgImage] = useState<string>(bg.src);
   const lang = useTypedSelector((state) => state.app.language);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { width } = useWindowSize();
 
   useEffect(() => {
@@ -62,6 +64,7 @@ const MainSection = () => {
           response.data.attributes.MainSection?.PreviewImg?.data?.attributes
             ?.url,
       });
+      setIsLoading(false);
     } catch (e) {
       console.log(e);
     }
@@ -74,33 +77,55 @@ const MainSection = () => {
   // ---- Animations -----
 
   const sectionRef = useRef<HTMLElement>(null);
+  const q = gsap.utils.selector(sectionRef);
+
+  useEffect(() => {
+    if (!isLoading) {
+      TweenLite.fromTo(
+        q(".content"),
+        { y: -100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+        }
+      );
+    }
+    // gsap.to(sectionRef.current, { rotation: "+=360" });
+  }, [isLoading]);
 
   return (
     <section ref={sectionRef} className={styles.MainSection + " MainSection"}>
-      <Image src={bgImage} layout={"fill"} priority={true} />
+      <Controller>
+        <Scene pin>
+          <>
+            <Image src={bgImage} layout={"fill"} priority={true} />
 
-      <div className={styles.content + " content"}>
-        <h1>{sectionData?.MainTitle}</h1>
-        <span>{sectionData?.MainSubtitle}</span>
-      </div>
+            <div className={styles.content + " content"}>
+              <h1>{sectionData?.MainTitle}</h1>
+              <span>{sectionData?.MainSubtitle}</span>
+            </div>
 
-      <div className={styles.connect + " connect"}>
-        <Link href="#FormSection">
-          <a>
-            <span>{sectionData?.ConnectText}</span>
-          </a>
-        </Link>
-      </div>
+            <div className={styles.connect + " connect"}>
+              <Link href="#FormSection">
+                <a>
+                  <span>{sectionData?.ConnectText}</span>
+                </a>
+              </Link>
+            </div>
 
-      {width > 756 ? (
-        <VideoPlayer
-          poster={sectionData.Preview}
-          videoSrc={sectionData.VideoLink}
-          label={sectionData.VideoText}
-          classing={"MainSectionsVideo"}
-        />
-      ) : null}
-      {width > 756 ? <ArrowDown /> : null}
+            {width > 756 ? (
+              <VideoPlayer
+                isLoading={isLoading}
+                poster={sectionData.Preview}
+                videoSrc={sectionData.VideoLink}
+                label={sectionData.VideoText}
+                classing={"MainSectionsVideo"}
+              />
+            ) : null}
+            {width > 756 ? <ArrowDown /> : null}
+          </>
+        </Scene>
+      </Controller>
     </section>
   );
 };
