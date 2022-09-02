@@ -9,36 +9,34 @@ export default async function handler(
   console.log(req.body);
 
   const transporter = await nodemailer.createTransport({
-    host: "smtp.yandex.ru",
+    host: "smtp.gmail.com",
     port: 465,
     pool: true,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "info@ivanskanavi.com", // generated ethereal user
-      pass: "rmfdgoghorvmxnen", // generated ethereal password
+      user: "ivanskanavi1@gmail.com", // generated ethereal user
+      pass: "rqivivjcuohjkimz", // generated ethereal password
       // pass: "ofbyivoymzltksgj", // generated ethereal password
     },
   });
+  console.log("log");
 
   const TitleText = {
-    Ru: "TestRu",
-    En: "TestEn",
-    de: "TestDe",
+    Ru: "Спасибо за Ваше письмо!",
+    En: "Thank you for you E-Mail!",
+    De: "Vielen Dank für Ihre E-Mail!",
   };
 
   const clientText = {
     Ru:
-      "<b style='text-align: center'>RuПривет, Исследователь! Поздравляю тебя с выбором своего путешествия!</b>" +
-      "<div style='margin-top: 30px'>Мы живем в век информации, в том числе, информации о способах самопознания. Изобретены десятки\n" +
-      "могут выбрать то, что по душе ему или воспользоваться расчетом на моем сайте по Хшановской А.</div>",
+      "<b style='text-align: center'>Спасибо за подписку!</b>" +
+      "<div style='margin-top: 30px'>Иван Сканави ответит Вам в ближайшее время.</div>",
     En:
-      "<b style='text-align: center'>EnПривет, Исследователь! Поздравляю тебя с выбором своего путешествия!</b>" +
-      "<div style='margin-top: 30px'>Мы живем в век информации, в том числе, информации о способах самопознания. Изобретены десятки\n" +
-      "могут выбрать то, что по душе ему или воспользоваться расчетом на моем сайте по Хшановской А.</div>",
+      "<b style='text-align: center'>Thank you for subscribe!</b>" +
+      "<div style='margin-top: 30px'>Ivan Skanavi will be in touch with you shortly.</div>",
     De:
-      "<b style='text-align: center'>DeПривет, Исследователь! Поздравляю тебя с выбором своего путешествия!</b>" +
-      "<div style='margin-top: 30px'>Мы живем в век информации, в том числе, информации о способах самопознания. Изобретены десятки\n" +
-      "могут выбрать то, что по душе ему или воспользоваться расчетом на моем сайте по Хшановской А.</div>",
+      "<b style='text-align: center'>Vielen Dank für subscribe!</b>" +
+      "<div style='margin-top: 30px'>Ivan Skanavi wird sobald wie möglich auf Ihre Nachricht antworten.</div>",
   };
 
   const info1 = await transporter.sendMail({
@@ -54,7 +52,7 @@ export default async function handler(
     from: "info@ivanskanavi.com", // sender address
     to: "info@ivanskanavi.com", // list of receivers
     subject: "Заявка с сайта ivanskanavi.com", // Subject line
-    html: `<div>${req.body.email} Подписался на обновления</div>`,
+    html: `<div>${req.body.email} подписался на обновления</div>`,
   });
 
   console.log(info1);

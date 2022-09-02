@@ -146,6 +146,7 @@ const Footer = ({ children }: IFooter) => {
       email: inputEmail,
       lang,
     });
+    console.log(response);
   };
 
   return useMemo(() => {
