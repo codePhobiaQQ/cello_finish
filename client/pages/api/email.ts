@@ -26,7 +26,7 @@ export default async function handler(
   const TitleText = {
     Ru: "Спасибо за Ваше письмо!",
     En: "Thank you for you E-Mail!",
-    de: "Vielen Dank für Ihre E-Mail!",
+    De: "Vielen Dank für Ihre E-Mail!",
   };
 
   const clientText = {

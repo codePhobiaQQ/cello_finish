@@ -1,6 +1,7 @@
 import Footer from "../hoc/Footer/Footer";
 import Header from "../hoc/Header/Header";
 import GallerySection from "../sections/GallerySection/GallerySection";
+import FormSection from "../sections/FormSection/FormSection";
 
 const Gallery = (props: any) => {
   console.log(props.GalleryImages);
@@ -8,7 +9,9 @@ const Gallery = (props: any) => {
   return (
     <Header>
       <GallerySection />
-      <Footer></Footer>
+      <Footer>
+        <FormSection />
+      </Footer>
     </Header>
   );
 };
