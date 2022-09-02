@@ -37,10 +37,10 @@ const MainSection = () => {
   useEffect(() => {
     if (width > 1355) {
       setBgImage(bg.src);
-    } else if (width <= 1366 && width > 992) {
+    } else if (width <= 1366 && width > 756) {
       setBgImage(mediumPc.src);
-    } else if (width <= 992 && width > 756) {
-      setBgImage(bgIpad.src);
+      // } else if (width <= 756 && width > 756) {
+      //   setBgImage(bgIpad.src);
     } else if (width <= 756) {
       setBgImage(bgIpad.src);
     }
@@ -98,7 +98,9 @@ const MainSection = () => {
       <Controller>
         <Scene pin>
           <>
-            <Image src={bgImage} layout={"fill"} priority={true} />
+            <div className={styles.backgroundImg}>
+              <Image src={bgImage} width={1920} height={1080} priority={true} />
+            </div>
 
             <div className={styles.content + " content"}>
               <h1>{sectionData?.MainTitle}</h1>

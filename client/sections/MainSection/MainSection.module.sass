@@ -1,8 +1,8 @@
 @import "./styles/mixins/mixins"
 
 .MainSection
-  //background: #000 no-repeat center center / cover
-  background-color: #000
+  background: rgb(5,5,5)
+  background: linear-gradient(90deg, rgba(5,5,5,1) 0%, rgba(8,8,8,1) 50%, rgba(5,5,5,1) 100%)
   background-size: cover
   background-position: center center
   background-repeat: no-repeat
@@ -23,11 +23,15 @@
     max-height: 2000px
     z-index: -2
     will-change: transform
+
+    -webkit-box-shadow: 0px -8px 5px -5px rgba(34, 60, 80, 0.9)
+    -moz-box-shadow: 0px -8px 5px -5px rgba(34, 60, 80, 0.9)
+    box-shadow: 0px -8px 5px -5px rgba(34, 60, 80, 0.9)
     & > div
       width: 100%
       height: 100%
     img
-      object-fit: cover
+      object-fit: contain
       width: 100%
       height: 100%
 
