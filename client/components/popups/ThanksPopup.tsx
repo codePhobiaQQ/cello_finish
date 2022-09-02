@@ -32,7 +32,7 @@ const ThanksPopup = () => {
             className="content"
           >
             <h2>Thank You</h2>
-            <p>In little time our manager connect with you</p>
+            <p>We will be in touch with you shortly</p>
           </motion.div>
         </motion.div>
       )}
