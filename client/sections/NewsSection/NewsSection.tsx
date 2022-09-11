@@ -17,6 +17,7 @@ interface INews {
   Image: string;
   longText: string;
   Link: string;
+  Date: string;
 }
 
 interface NewsSection {
@@ -46,18 +47,30 @@ const NewsSection = () => {
         `api/news?locale=${lang.toLowerCase()}&populate=*`
       );
       setSectionData(
-        response.data.map((newsing: any) => ({
-          ...newsing.attributes,
-          day: newsing.attributes.Date.split("-")[2],
-          month: newsing.attributes.Date.split("-")[1],
-          year: newsing.attributes.Date.split("-")[0],
-          Image: backUrl + newsing.attributes.Image.data.attributes.url,
-        }))
+        response.data
+          .map((newsing: any) => ({
+            ...newsing.attributes,
+            day: newsing.attributes.Date.split("-")[2],
+            month: newsing.attributes.Date.split("-")[1],
+            year: newsing.attributes.Date.split("-")[0],
+            Image: backUrl + newsing.attributes.Image.data.attributes.url,
+          }))
+          .sort((a: INews, b: INews) => {
+            if (a.Date > b.Date) {
+              return -1;
+            }
+            if (a.Date < b.Date) {
+              return 1;
+            }
+            return 0;
+          })
       );
       setNewsAmount(response.data.length);
     }
     fetchData();
   }, [lang]);
+
+  console.log(sectionData);
 
   return (
     <div className={styles.newsSection}>
