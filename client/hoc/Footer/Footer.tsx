@@ -61,7 +61,7 @@ export const sotials: ISotial[] = [
   {
     icon: appleMusic.src,
     active: appleMusicActive.src,
-    link: "#",
+    link: "https://music.apple.com/us/artist/ivan-skanavi/1608897706",
   },
   // {
   //   icon: sber.src,

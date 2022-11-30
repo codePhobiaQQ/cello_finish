@@ -13,6 +13,9 @@ import useWindowWidth from "react-hook-use-window-width";
 import { useEffect, useState } from "react";
 import { listItem, fadeIn, scale } from "../../motions/menuMotion";
 import useTypedSelector from "../../hooks/useTypedSelector";
+import bg from "../../public/assets/img/mainSection/bigMain.jpg";
+import mediumPc from "../../public/assets/img/mainSection/mediumBg.jpg";
+import bgIpad from "../../public/assets/img/mainSection/bgIpad.jpg";
 
 interface IMenu {
   isMenuOpen: boolean;
@@ -20,21 +23,23 @@ interface IMenu {
 }
 
 const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
-  const [bgImage, setBgImage] = useState<string>(menuBg.src);
   const lang = useTypedSelector((state) => state.app.language);
-
   const width = useWindowWidth();
-  useEffect(() => {
-    if (width > 1355) {
-      setBgImage(menuBg.src);
-    } else if (width <= 1366 && width > 1200) {
-      setBgImage(menuBgPc.src);
-    } else if (width <= 1200 && width > 576) {
-      setBgImage(menuBgIpad.src);
-    } else if (width <= 576) {
-      setBgImage(menuBgMob.src);
+
+  const imgType = () => {
+    switch (true) {
+      case width > 1355:
+        return menuBg.src;
+      case width <= 1366 && width > 1200:
+        return menuBgPc.src;
+      case width <= 1200 && width > 576:
+        return menuBgIpad.src;
+      case width <= 576:
+        return menuBgMob.src;
+      default:
+        return menuBg.src;
     }
-  }, [width]);
+  };
 
   const clickMenuHandler = () => {
     setMenuOpen(false);
@@ -51,7 +56,7 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
           className={styles.Menu}
         >
           <motion.div variants={scale} className={styles.bgImage}>
-            <Image src={bgImage} alt="menuBg" layout={"fill"} />
+            <Image src={imgType()} alt="menuBg" layout={"fill"} />
           </motion.div>
           <ul className={styles.menuItems}>
             {footerMenu.map((menuItem: any, index: number) => (

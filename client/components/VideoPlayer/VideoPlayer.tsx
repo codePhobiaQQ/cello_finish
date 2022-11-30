@@ -7,6 +7,7 @@ interface IVideoPlayer {
   label?: string;
   classing?: string;
   isLoading?: boolean;
+  loadVideo: boolean;
 }
 
 const VideoPlayer = ({
@@ -15,8 +16,9 @@ const VideoPlayer = ({
   label,
   classing,
   isLoading = false,
+  loadVideo,
 }: IVideoPlayer) => {
-  if (isLoading) {
+  if (isLoading || !loadVideo) {
     return (
       <div className={styles.VideoPlayerWrapper + " VideoPlayerWrapper"}>
         Loading...

@@ -29,22 +29,23 @@ interface IMainSection {
 }
 
 const MainSection = () => {
-  const [bgImage, setBgImage] = useState<string>(bg.src);
   const lang = useTypedSelector((state) => state.app.language);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [loadVideo, setLoadVideo] = useState<boolean>(false);
   const { width } = useWindowSize();
 
-  useEffect(() => {
-    if (width > 1355) {
-      setBgImage(bg.src);
-    } else if (width <= 1366 && width > 756) {
-      setBgImage(mediumPc.src);
-      // } else if (width <= 756 && width > 756) {
-      //   setBgImage(bgIpad.src);
-    } else if (width <= 756) {
-      setBgImage(bgIpad.src);
+  const imgType = () => {
+    switch (true) {
+      case width > 1355:
+        return bg.src;
+      case width <= 1366 && width > 756:
+        return mediumPc.src;
+      case width <= 756:
+        return bgIpad.src;
+      default:
+        return bgIpad.src;
     }
-  }, [width]);
+  };
 
   const [sectionData, setSectionData] = useState<IMainSection>({
     MainTitle: "Cellist Ivan Skanavi",
@@ -89,8 +90,10 @@ const MainSection = () => {
           opacity: 1,
         }
       );
+      setTimeout(() => {
+        setLoadVideo(true);
+      }, 1500);
     }
-    // gsap.to(sectionRef.current, { rotation: "+=360" });
   }, [isLoading]);
 
   return (
@@ -99,7 +102,12 @@ const MainSection = () => {
         <Scene pin>
           <>
             <div className={styles.backgroundImg}>
-              <Image src={bgImage} width={1920} height={1080} priority={true} />
+              <Image
+                src={imgType()}
+                width={1920}
+                height={1080}
+                priority={true}
+              />
             </div>
 
             <div className={styles.content + " content"}>
@@ -122,6 +130,7 @@ const MainSection = () => {
                 videoSrc={sectionData.VideoLink}
                 label={sectionData.VideoText}
                 classing={"MainSectionsVideo"}
+                loadVideo={loadVideo}
               />
             ) : null}
             {width > 756 ? <ArrowDown /> : null}
