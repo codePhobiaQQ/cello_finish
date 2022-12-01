@@ -70,9 +70,6 @@ const ConcertsSection = () => {
             : date.getDate()
         }`;
 
-      console.log(finalDate, response.data[1].attributes.Time);
-      console.log(finalDate > response.data[1].attributes.Time);
-
       setSectionData(
         response.data
           .map((concert: any) => ({

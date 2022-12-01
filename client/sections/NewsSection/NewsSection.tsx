@@ -70,8 +70,6 @@ const NewsSection = () => {
     fetchData();
   }, [lang]);
 
-  console.log(sectionData);
-
   return (
     <div className={styles.newsSection}>
       <div className="container">
