@@ -15,7 +15,7 @@ export const readMore: any = {
 export const moreButton: any = {
   Ru: "Показать еще",
   En: "Show more",
-  De: "Show more De",
+  De: "Mehr zeigen",
 };
 
 export const politic: any = {
