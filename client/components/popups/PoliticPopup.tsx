@@ -1,6 +1,6 @@
 import Close from "../UI/close";
 import { AnimatePresence, motion } from "framer-motion";
-import { fadeIn } from "../../motions/oftenMotions";
+import { fadeIn } from "./../../motions/oftenMotions";
 import ReactMarkdown from "react-markdown";
 
 interface IPoliticPopup {
