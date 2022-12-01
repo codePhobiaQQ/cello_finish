@@ -23,7 +23,9 @@ const Header = ({ children }: IHeader) => {
         <title>Ivan Skanavi</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className={styles.header}>
+      <div
+        className={`${styles.header} ${isMenuOpen ? styles.transparent : ""}`}
+      >
         <div className={styles.logo} onClick={() => setMenuOpen(false)}>
           <Link href="/">
             <a>
