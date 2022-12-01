@@ -9,7 +9,7 @@ export const buyTiket: any = {
 export const readMore: any = {
   Ru: "Читать дальше",
   En: "Read more",
-  De: "Lesen Sie weiter",
+  De: "Mehr lesen",
 };
 
 export const moreButton: any = {
