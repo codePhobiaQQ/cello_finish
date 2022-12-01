@@ -64,10 +64,14 @@ const ConcertsSection = () => {
         "-" +
         `${date.getMonth() + 1}` +
         "-" +
-        date.getDate();
+        `${
+          String(date.getDate()).length == 1
+            ? "0" + date.getDate()
+            : date.getDate()
+        }`;
 
       console.log(finalDate, response.data[1].attributes.Time);
-      console.log(finalDate > response.data[1].Time);
+      console.log(finalDate > response.data[1].attributes.Time);
 
       setSectionData(
         response.data
@@ -76,7 +80,7 @@ const ConcertsSection = () => {
             Day: concert.attributes.Time.split("-")[2],
             Month: concert.attributes.Time.split("-")[1],
             Year: concert.attributes.Time.split("-")[0],
-            concertDone: finalDate < concert.Time,
+            concertDone: finalDate > concert.attributes.Time,
           }))
           .sort((a: IConcert, b: IConcert) =>
             ("" + a?.Time).localeCompare("" + b?.Time)
@@ -103,7 +107,7 @@ const ConcertsSection = () => {
                 <div
                   key={concert.Day + concert.Link + concert.City + index}
                   className={`${styles.concertElem} ${
-                    concert.concertDone ? "done" : ""
+                    concert.concertDone ? `${styles.done}` : ""
                   }`}
                 >
                   <div className={styles.leftSide}>
