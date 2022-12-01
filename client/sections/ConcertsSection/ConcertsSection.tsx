@@ -20,6 +20,7 @@ interface IConcert {
   Place: string;
   Link: string;
   Time?: string;
+  AllDate: string;
 }
 
 interface ConcertsSection {
@@ -60,6 +61,7 @@ const ConcertsSection = () => {
         response.data
           .map((concert: any) => ({
             ...concert.attributes,
+            AllDate: concert.attributes.Time,
             Day: concert.attributes.Time.split("-")[2],
             Month: concert.attributes.Time.split("-")[1],
             Year: concert.attributes.Time.split("-")[0],
@@ -81,6 +83,11 @@ const ConcertsSection = () => {
           <div className={styles.concertsWrapper}>
             {sectionData
               .slice(0, pagination)
+              .sort(function (a, b) {
+                if (a.AllDate < b.AllDate) return 1;
+                else if (a.AllDate > b.AllDate) return -1;
+                else return 0;
+              })
               .map((concert: any, index: number) => (
                 <div key={uuidv4() + index} className={styles.concertElem}>
                   <div className={styles.leftSide}>
