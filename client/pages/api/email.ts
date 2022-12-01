@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
+import { log } from "util";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const nodemailer = require("nodemailer");
 
@@ -15,11 +16,13 @@ export default async function handler(
     pool: true,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "info@ivanskanavi.com", // generated ethereal user
+      user: "ivanskanavi.com", // generated ethereal user
       pass: "sdmdcxakwazodtuh", // generated ethereal password
       // pass: "ofbyivoymzltksgj", // generated ethereal password
     },
   });
+
+  console.log(transporter);
 
   console.log("log");
 

@@ -3,7 +3,7 @@ export const backUrl = "https://backend-final.ivanskanavi.com";
 export const buyTiket: any = {
   Ru: "Купить билет",
   En: "Buy Ticket",
-  De: "Buy Ticket De",
+  De: "Ticket kaufen",
 };
 
 export const readMore: any = {
