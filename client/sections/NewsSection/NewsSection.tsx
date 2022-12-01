@@ -77,7 +77,6 @@ const NewsSection = () => {
       <div className="container">
         <div className={styles.newsWrapper}>
           {sectionData
-            .slice(0, pagination)
             .map((newsing: any, index: number) => (
               <div key={"newselement" + index} className={styles.newsElem}>
                 <div className={styles.leftSide}>
@@ -115,7 +114,8 @@ const NewsSection = () => {
                   </a>
                 </div>
               </div>
-            ))}
+            ))
+            .slice(0, pagination)}
         </div>
 
         {isMoreVisible && (

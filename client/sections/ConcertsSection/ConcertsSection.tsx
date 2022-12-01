@@ -19,8 +19,8 @@ interface IConcert {
   City: string;
   Place: string;
   Link: string;
-  Time?: string;
-  AllDate: string;
+  Time: string;
+  concertDone: boolean;
 }
 
 interface ConcertsSection {
@@ -57,14 +57,26 @@ const ConcertsSection = () => {
       const response = await fetchQuery(
         `api/concerts?locale=${lang.toLowerCase()}&populate=*`
       );
+
+      const date = new Date();
+      const finalDate =
+        date.getFullYear() +
+        "-" +
+        `${date.getMonth() + 1}` +
+        "-" +
+        date.getDate();
+
+      console.log(finalDate, response.data[1].attributes.Time);
+      console.log(finalDate > response.data[1].Time);
+
       setSectionData(
         response.data
           .map((concert: any) => ({
             ...concert.attributes,
-            AllDate: concert.attributes.Time,
             Day: concert.attributes.Time.split("-")[2],
             Month: concert.attributes.Time.split("-")[1],
             Year: concert.attributes.Time.split("-")[0],
+            concertDone: finalDate < concert.Time,
           }))
           .sort((a: IConcert, b: IConcert) =>
             ("" + a?.Time).localeCompare("" + b?.Time)
@@ -82,14 +94,18 @@ const ConcertsSection = () => {
         <div className={styles.concertsImagesWrapper}>
           <div className={styles.concertsWrapper}>
             {sectionData
-              .slice(0, pagination)
               .sort(function (a, b) {
-                if (a.AllDate < b.AllDate) return 1;
-                else if (a.AllDate > b.AllDate) return -1;
+                if (a.Time < b.Time) return 1;
+                else if (a.Time > b.Time) return -1;
                 else return 0;
               })
               .map((concert: any, index: number) => (
-                <div key={uuidv4() + index} className={styles.concertElem}>
+                <div
+                  key={concert.Day + concert.Link + concert.City + index}
+                  className={`${styles.concertElem} ${
+                    concert.concertDone ? "done" : ""
+                  }`}
+                >
                   <div className={styles.leftSide}>
                     <span className={styles.day}>{concert.Day}</span>
                     <span className={styles.dayMonth}>
@@ -107,7 +123,8 @@ const ConcertsSection = () => {
                     </a>
                   </div>
                 </div>
-              ))}
+              ))
+              .slice(0, pagination)}
           </div>
 
           <div className={styles.imagesWrapper}>
