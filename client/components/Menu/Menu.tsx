@@ -43,7 +43,9 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
   };
 
   return (
-    <div className={`${styles.Menu} ${lang} Menu`}>
+    <div
+      className={`${styles.Menu} ${lang} Menu ${isMenuOpen ? "active" : ""}`}
+    >
       <div className={styles.bgImage}>
         <Image src={imgType()} alt="menuBg" layout={"fill"} />
       </div>
