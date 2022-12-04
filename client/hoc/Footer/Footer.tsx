@@ -236,17 +236,17 @@ const Footer = ({ children }: IFooter) => {
                   {data.email}
                 </a>
               </div>
-              <div className={styles.subscribeWrapper}>
-                <input
-                  value={inputEmail}
-                  onChange={changeInputHandler}
-                  type="email"
-                />
-                <BtnSubscribe
-                  clickHandler={sendEmail}
-                  customClass={"footerSubscribe"}
-                />
-              </div>
+              {/*<div className={styles.subscribeWrapper}>*/}
+              {/*  <input*/}
+              {/*    value={inputEmail}*/}
+              {/*    onChange={changeInputHandler}*/}
+              {/*    type="email"*/}
+              {/*  />*/}
+              {/*  <BtnSubscribe*/}
+              {/*    clickHandler={sendEmail}*/}
+              {/*    customClass={"footerSubscribe"}*/}
+              {/*  />*/}
+              {/*</div>*/}
               <div className={styles.whoMake}>
                 <span>Website development</span>
                 <a href={data.inspirationLink}>
