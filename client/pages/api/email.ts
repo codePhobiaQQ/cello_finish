@@ -16,9 +16,8 @@ export default async function handler(
     pool: true,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "info@invanskanavi.ru", // generated ethereal user
-      pass: "tszhkwzuyvyrjqtn", // generated ethereal password
-      // pass: "ofbyivoymzltksgj", // generated ethereal password
+      user: "ivanskanavi.com@yandex.ru", // generated ethereal user
+      pass: "gpeyubgrpgxkhogb", // generated ethereal password
     },
   });
 
@@ -44,8 +43,10 @@ export default async function handler(
       "<div style='margin-top: 30px'>Ivan Skanavi wird sobald wie möglich auf Ihre Nachricht antworten.</div>",
   };
 
+  console.log("before info 1");
+
   const info1 = await transporter.sendMail({
-    from: "info@ivanskanavi.com",
+    from: "ivanskanavi.com@yandex.ru",
     to: req.body.values.email,
     // @ts-ignore
     subject: TitleText[req.body.lang],
@@ -53,9 +54,11 @@ export default async function handler(
     html: clientText[req.body.lang],
   });
 
+  console.log(info1);
+
   const info2 = await transporter.sendMail({
-    from: "info@ivanskanavi.com", // sender address
-    to: "info@ivanskanavi.com", // list of receivers
+    from: "ivanskanavi.com@yandex.ru", // sender address
+    to: "ivanskanavi.com@yandex.ru", // list of receivers
     subject: "Заявка с сайта ivanskanavi.com", // Subject line
     html:
       `<div>${req.body.values.name} - ${req.body.values.email} оставил заявку на сайте</div>` +

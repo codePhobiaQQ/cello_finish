@@ -15,11 +15,11 @@ const BtnSubscribe = ({ type, customClass, clickHandler }: IBtnSubscribe) => {
   const showBtnText = useCallback(() => {
     switch (lang) {
       case "Ru":
-        return "Подписаться";
+        return "Отправить";
       case "En":
-        return "Subscribe";
+        return "Send";
       case "De":
-        return "SubscribeDE";
+        return "Senden";
     }
   }, [lang]);
 

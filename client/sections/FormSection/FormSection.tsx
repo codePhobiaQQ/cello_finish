@@ -116,14 +116,16 @@ const FormSection = () => {
                 <label htmlFor="name">{sectionData.MessagePlaceholder}</label>
                 <div className={styles.submitWrapper}>
                   <Field
+                    placeholder={"Message"}
                     // className={styles.submitWrapper}
                     as={"textarea"}
+                    pa
                     id="message"
                     autoComplete="off"
                     name="message"
                   />
                   <BtnSubscribe
-                    text={""}
+                    // text={""}
                     customClass={styles.btn}
                     type={true}
                   />
