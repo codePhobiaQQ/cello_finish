@@ -16,7 +16,7 @@ export default async function handler(
     pool: true,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "ivanskanavi.com", // generated ethereal user
+      user: "info@invanskanavi.ru", // generated ethereal user
       pass: "tszhkwzuyvyrjqtn", // generated ethereal password
       // pass: "ofbyivoymzltksgj", // generated ethereal password
     },
