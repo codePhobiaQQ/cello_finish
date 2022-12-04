@@ -16,7 +16,8 @@ export default async function handler(
     pool: true,
     secure: true, // true for 465, false for other ports
     auth: {
-      user: "ivanskanavi.com@yandex.ru", // generated ethereal user
+      user: "ivanskanavi.com@yandex.com", // generated ethereal user
+      // pass: "juk1109@yandex.ru", // generated ethereal password
       pass: "gpeyubgrpgxkhogb", // generated ethereal password
     },
   });
@@ -32,38 +33,34 @@ export default async function handler(
   };
 
   const clientText = {
-    Ru:
-      "<b style='text-align: center'>Спасибо за Ваше письмо!</b>" +
-      "<div style='margin-top: 30px'>Иван Сканави ответит Вам в ближайшее время.</div>",
-    En:
-      "<b style='text-align: center'>Thank you for you E-Mail!</b>" +
-      "<div style='margin-top: 30px'>Ivan Skanavi will be in touch with you shortly</div>",
-    De:
-      "<b style='text-align: center'>Vielen Dank für Ihre E-Mail!</b>" +
-      "<div style='margin-top: 30px'>Ivan Skanavi wird sobald wie möglich auf Ihre Nachricht antworten.</div>",
+    Ru: "Спасибо за Ваше письмо! Иван Сканави ответит Вам в ближайшее время.",
+    En: "Thank you for you E-Mail! Ivan Skanavi will be in touch with you shortly",
+    De: "Vielen Dank für Ihre E-Mail! Ivan Skanavi wird sobald wie möglich auf Ihre Nachricht antworten.",
   };
 
-  console.log("before info 1");
+  // @ts-ignore
+  const resultText = clientText[req.body.lang];
 
-  const info1 = await transporter.sendMail({
-    from: "ivanskanavi.com@yandex.ru",
-    to: req.body.values.email,
-    // @ts-ignore
-    subject: TitleText[req.body.lang],
-    // @ts-ignore
-    html: clientText[req.body.lang],
-  });
-
-  console.log(info1);
+  console.log(resultText);
 
   const info2 = await transporter.sendMail({
-    from: "ivanskanavi.com@yandex.ru", // sender address
-    to: "ivanskanavi.com@yandex.ru", // list of receivers
+    from: "ivanskanavi.com@yandex.com", // sender address
+    to: "ivanskanavi.com@yandex.com", // list of receivers
     subject: "Заявка с сайта ivanskanavi.com", // Subject line
     html:
       `<div>${req.body.values.name} - ${req.body.values.email} оставил заявку на сайте</div>` +
       `<div>Его сообщение:</div>` +
       `<div>${req.body.values.message}</div>`,
+  });
+
+  const info1 = await transporter.sendMail({
+    from: "ivanskanavi.com@yandex.com",
+    to: req.body.values.email,
+    // @ts-ignore
+    subject: TitleText[req.body.lang],
+    // @ts-ignore
+    text: resultText,
+    // html: "test",
   });
 
   console.log(info1);
