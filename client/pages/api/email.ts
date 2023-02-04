@@ -7,8 +7,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	console.log(req.body)
 
 	const transporter = await nodemailer.createTransport({
-		host: 'imap.gmail.com',
-		port: 993,
+		host: 'smtp.gmail.com',
+		port: 465,
 		pool: true,
 		secure: false, // true for 465, false for other ports
 		auth: {
