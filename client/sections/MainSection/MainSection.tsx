@@ -103,6 +103,7 @@ const MainSection = () => {
           <>
             <div className={styles.backgroundImg}>
               <Image
+                alt="main-screen-image"
                 src={imgType()}
                 width={1920}
                 height={1080}
