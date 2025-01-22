@@ -1,20 +1,23 @@
 .sotial
-  .imageWrapper
-    & > div
-      width: 20px
-      height: 20px
-      img
+  .sotialLink
+    position: relative
+
+    .imageWrapper
+      position: absolute
+      top: 0
+      left: 0
+
+      & > div
         width: 20px
         height: 20px
-  a
-    position: relative
-    img
-      &:first-child
+      img, svg
+        width: 20px
+        height: 20px
         position: relative
-        top: 5px
-      &:last-child
-        position: absolute
-        top: 0
-        left: 0
-        z-index: 100
-        opacity: 0
+
+    .colorImg
+      position: absolute
+      top: 0
+      left: 0
+      z-index: 100
+      opacity: 0

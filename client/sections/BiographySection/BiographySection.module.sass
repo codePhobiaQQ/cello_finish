@@ -53,6 +53,7 @@ $responsive: calc(1vh + 1vw)
         img
           position: relative
           width: 270px
+          object-fit: contain
       .textWrapper
         margin-left: 40px
         width: calc(100% - 310px)
@@ -70,9 +71,10 @@ $responsive: calc(1vh + 1vw)
             width: 100%
             height: 100%
             position: relative !important
-            img
-              width: 100%
-              height: 100%
+          img
+            width: 100% !important
+            height: 100% !important
+            position: relative !important
 
         .imageWrapperMob
           display: none
@@ -135,9 +137,9 @@ $responsive: calc(1vh + 1vw)
             & > div
               width: 126px
               height: 189px
-              img
-                width: 126px
-                height: 189px
+            img
+              width: 126px
+              height: 189px
           p
             font-size: 10px
             line-height: 16px

@@ -11,12 +11,13 @@ export interface ISotial {
 const SotialIconFooter = ({ icon, active, link }: ISotial) => {
   return (
     <div className={styles.sotial}>
-      <a href={link} target="_blank">
+      <a className={styles.sotialLink} href={link} target="_blank">
         <div className={styles.imageWrapper}>
-          <Image width={20} height={20} src={icon} />
+          <Image alt={link} width={20} height={20} src={icon} />
         </div>
 
         <motion.img
+          className={styles.colorImg}
           whileHover={{ opacity: 1, transition: { duration: 0.3 } }}
           src={active}
         />

@@ -5,14 +5,11 @@ import Viol from "../../components/svg/viol";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
-import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { imageVariant, textVariant } from "../../motions/bioMotions";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import { backUrl } from "../../vars";
 import { useEffect, useState } from "react";
 import fetchQuery from "../../services/ssr";
-import TextAnimation from "../../hoc/TextAnimation/TextAnimation";
 
 interface IBiographySection {
   Content: string;
@@ -85,6 +82,7 @@ const BiographySection = () => {
                 height={400}
                 src={sectionData?.Image || ivan.src}
                 alt="Ivan"
+                objectFit="contain"
               />
             </div>
             <div
@@ -92,7 +90,7 @@ const BiographySection = () => {
               // variants={textVariant}
             >
               <div className={styles.imageWrapperCello}>
-                <Image src={cello.src} objectFit={"contain"} layout={"fill"} />
+                <Image alt='Cello' src={cello.src} objectFit="contain" layout="fill" />
               </div>
               <ReactMarkdown children={sectionData?.Content} />
             </div>

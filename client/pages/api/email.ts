@@ -10,17 +10,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		host: 'smtp.gmail.com',
 		port: 465,
 		pool: true,
-		secure: false, // true for 465, false for other ports
+		secure: true, // true for 465, false for other ports
 		auth: {
 			user: 'ivanskanavicello@gmail.com', // generated ethereal user
 			// pass: "juk1109@yandex.ru", // generated ethereal password
-			pass: 'Vitalik2007', // generated ethereal password
+			pass: 'jhbo pfhl ekyq olyk', // generated ethereal password
 		},
 	})
 
-	console.log(transporter)
-
-	console.log('log')
+	// console.log(transporter)
+	// console.log('log')
 
 	const TitleText = {
 		Ru: 'Спасибо за Ваше письмо!',
@@ -36,21 +35,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
 	// @ts-ignore
 	const resultText = clientText[req.body.lang]
-
 	console.log(resultText)
 
 	const info2 = await transporter.sendMail({
-		from: 'ivanskanavi.com@yandex.com', // sender address
-		to: 'ivanskanavi.com@yandex.com', // list of receivers
+		from: 'ivanskanavicello@gmail.com', // sender address
+		to: 'ivanskanavicello@gmail.com', // list of receivers
 		subject: 'Заявка с сайта ivanskanavi.com', // Subject line
 		html:
 			`<div>${req.body.values.name} - ${req.body.values.email} оставил заявку на сайте</div>` +
 			`<div>Его сообщение:</div>` +
 			`<div>${req.body.values.message}</div>`,
 	})
+	console.log('info2', info2)
 
 	const info1 = await transporter.sendMail({
-		from: 'ivanskanavi.com@yandex.com',
+		from: 'ivanskanavicello@gmail.com',
 		to: req.body.values.email,
 		// @ts-ignore
 		subject: TitleText[req.body.lang],

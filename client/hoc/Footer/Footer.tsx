@@ -168,7 +168,7 @@ const Footer = ({ children }: IFooter) => {
           <div className={styles.Footer + " Footer"}>
             <div className="pricol">{data.pricol}</div>
             <div className={styles.leftSide}>
-              <Link href="/">
+              <Link legacyBehavior href="/">
                 <a>
                   <div className={styles.imageWrapper}>
                     <Image
@@ -188,7 +188,7 @@ const Footer = ({ children }: IFooter) => {
               <ul>
                 {footerMenu.map((link: any, index: number) => (
                   <li key={uuidv4() + index}>
-                    <Link href={link.link}>
+                    <Link legacyBehavior href={link.link}>
                       <a
                         className={
                           currentLink == link.link ? styles.active : ""

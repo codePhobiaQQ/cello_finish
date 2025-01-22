@@ -27,7 +27,7 @@ const Header = ({ children }: IHeader) => {
         className={`${styles.header} ${isMenuOpen ? styles.transparent : ""}`}
       >
         <div className={styles.logo} onClick={() => setMenuOpen(false)}>
-          <Link href="/">
+          <Link legacyBehavior href="/">
             <a>
               <Logo />
             </a>

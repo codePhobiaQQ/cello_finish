@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import { footerMenu, sotials } from "../../hoc/Footer/Footer";
 import useWindowWidth from "react-hook-use-window-width";
 import useTypedSelector from "../../hooks/useTypedSelector";
+import {useMemo} from "react";
 import bg from "../../public/assets/img/mainSection/bigMain.jpg";
 import mediumPc from "../../public/assets/img/mainSection/mediumBg.jpg";
 import bgIpad from "../../public/assets/img/mainSection/bgIpad.jpg";
@@ -23,20 +24,23 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
   const lang = useTypedSelector((state) => state.app.language);
   const width = useWindowWidth();
 
-  const imgType = () => {
-    switch (true) {
-      case width > 1355:
-        return menuBg.src;
-      case width <= 1366 && width > 1200:
-        return menuBgPc.src;
-      case width <= 1200 && width > 576:
-        return menuBgIpad.src;
-      case width <= 576:
-        return menuBgMob.src;
-      default:
-        return menuBg.src;
+  const imgType = useMemo(() => {
+    if (typeof window === 'undefined' || !width) {
+      return menuBg.src;
     }
-  };
+
+    if (width > 1355) {
+      return menuBg.src;
+    } else if (width <= 1355 && width > 1200) {
+      return menuBgPc.src;
+    } else if (width <= 1200 && width > 576) {
+      return menuBgIpad.src;
+    } else if (width <= 576) {
+      return menuBgMob.src;
+    } else {
+      return menuBg.src;
+    }
+  }, [width])
 
   const clickMenuHandler = () => {
     setMenuOpen(false);
@@ -47,7 +51,7 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
       className={`${styles.Menu} ${lang} Menu ${isMenuOpen ? "active" : ""}`}
     >
       <div className={styles.bgImage}>
-        <Image src={imgType()} alt="menuBg" layout={"fill"} />
+        <Image src={imgType ?? menuBgMob.src} alt="menuBg" layout={"fill"} />
       </div>
       <ul className={styles.menuItems}>
         {footerMenu.map((menuItem: any, index: number) => (
@@ -58,7 +62,7 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
               lang == "Ru" ? styles.RuItem : ""
             }`}
           >
-            <Link href={menuItem.link}>
+            <Link legacyBehavior href={menuItem.link}>
               <a>{menuItem[`title${lang}`]}</a>
             </Link>
           </li>

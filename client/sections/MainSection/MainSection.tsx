@@ -116,7 +116,7 @@ const MainSection = () => {
             </div>
 
             <div className={styles.connect + " connect"}>
-              <Link href="#FormSection">
+              <Link legacyBehavior href="#FormSection">
                 <a>
                   <span>{sectionData?.ConnectText}</span>
                 </a>
