@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import Header from "../hoc/Header/Header";
-import MainSection from "../sections/MainSection/MainSection";
 import Footer from "../hoc/Footer/Footer";
-import BiographySection from "../sections/BiographySection/BiographySection";
-import FormSection from "../sections/FormSection/FormSection";
+// import MainSection from "../sections/MainSection/MainSection";
+// import BiographySection from "../sections/BiographySection/BiographySection";
+// import FormSection from "../sections/FormSection/FormSection";
+import {Placeholder} from "../sections/Placeholder/Placeholder";
 
 const MainPage = (props: any) => {
   useEffect(() => {
@@ -13,9 +14,12 @@ const MainPage = (props: any) => {
   return (
     <Header>
       <Footer>
-        <MainSection />
-        <BiographySection />
-        <FormSection />
+
+        <Placeholder />
+
+        {/*<MainSection />*/}
+        {/*<BiographySection />*/}
+        {/*<FormSection />*/}
       </Footer>
     </Header>
   );

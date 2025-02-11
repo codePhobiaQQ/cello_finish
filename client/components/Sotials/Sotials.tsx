@@ -11,7 +11,7 @@ const Sotials = memo(() => {
   useEffect(() => {
     async function takeData() {
       const response = await fetchQuery(`api/footer-info?populate=*`);
-      setData(response.data.attributes);
+      setData(response?.data?.attributes);
     }
     takeData();
   }, []);

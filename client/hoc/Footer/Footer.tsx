@@ -120,7 +120,7 @@ const Footer = ({ children }: IFooter) => {
         `api/footer-info?locale=${lang.toLowerCase()}&populate=*`
       );
       setData({
-        ...response.data.attributes,
+        ...response?.data?.attributes,
       });
     }
     takeData();
