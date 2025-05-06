@@ -26,13 +26,13 @@ import insp from "./../../public/assets/svg/insp.svg";
 import Link from "next/link";
 import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
 import {useRouter} from "next/router";
-import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+// import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import PoliticPopup from "../../components/popups/PoliticPopup";
 import {useEffect, useMemo, useState} from "react";
 import ProtectPopup from "../../components/popups/ProtectPopup";
 import ThanksPopup from "../../components/popups/ThanksPopup";
-import {backUrl, politic, protect} from "../../vars";
+import {politic, protect} from "../../vars";
 import {setThanks} from "../../redux/slices/AppSlice";
 import axios from "axios";
 import {useDispatch} from "react-redux";
@@ -128,10 +128,11 @@ const Footer = ({children}: IFooter) => {
     useEffect(() => {
         async function takeData() {
             const response = await fetchQuery(
-                `general-data`
+                `general-data`, lang
             );
+            const data = response?.[0]
             setData({
-                ...response?.acf,
+                ...data?.acf,
             });
         }
 

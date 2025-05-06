@@ -1,6 +1,5 @@
 import styles from "./GallerySection.module.sass";
 import React, { useEffect, useRef, useState } from "react";
-import { backUrl } from "../../vars";
 // @ts-ignore
 import Slider from "react-slick";
 import { v4 as uuidv4 } from "uuid";
@@ -8,13 +7,6 @@ import ArrowSlider from "../../components/ArrowSlider/ArrowSlider";
 import Image from "next/image";
 import fetchQuery from "../../services/ssr";
 
-interface ISlide {
-  image: any;
-}
-
-interface IGallerySection {
-  GalleryImages: any[];
-}
 
 const GallerySection = () => {
   const settings = {
@@ -47,10 +39,12 @@ const GallerySection = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetchQuery(`api/galleries?&populate=Image`);
+      const response = await fetchQuery(`gallery`);
+      console.log('response', response);
+
       setSlides(
-        response.data.map(
-          (img: any) => backUrl + img.attributes.Image.data.attributes.url
+        response.map(
+          (img: any) => img.acf.image
         )
       );
     }
