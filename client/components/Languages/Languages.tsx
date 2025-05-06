@@ -1,33 +1,34 @@
 import styles from "./Languages.module.sass";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import { useDispatch } from "react-redux";
-import { langType, setLanguage } from "./../../redux/slices/AppSlice";
+import { setLanguage } from "./../../redux/slices/AppSlice";
+import {Lang} from "../../types/types";
 
 const Languages = () => {
   const dispatch = useDispatch();
   const currentLanguage = useTypedSelector((state) => state.app.language);
 
-  const clickLanguageHandler = (lang: langType) => {
+  const clickLanguageHandler = (lang: Lang) => {
     dispatch(setLanguage(lang));
   };
 
   return (
     <ul className={styles.languages}>
       <li
-        onClick={() => clickLanguageHandler("Ru")}
-        className={currentLanguage == "Ru" ? `${styles.active}` : ""}
+        onClick={() => clickLanguageHandler("ru")}
+        className={currentLanguage == "ru" ? `${styles.active}` : ""}
       >
         Ru
       </li>
       <li
-        onClick={() => clickLanguageHandler("En")}
-        className={currentLanguage == "En" ? styles.active : ""}
+        onClick={() => clickLanguageHandler("en")}
+        className={currentLanguage == "en" ? styles.active : ""}
       >
         En
       </li>
       <li
-        onClick={() => clickLanguageHandler("De")}
-        className={currentLanguage == "De" ? styles.active : ""}
+        onClick={() => clickLanguageHandler("de")}
+        className={currentLanguage == "de" ? styles.active : ""}
       >
         De
       </li>

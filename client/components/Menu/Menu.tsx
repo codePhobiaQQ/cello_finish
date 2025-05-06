@@ -59,7 +59,7 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
             onClick={clickMenuHandler}
             key={"menuItems " + index}
             className={`${styles.menuItem} ${
-              lang == "Ru" ? styles.RuItem : ""
+              lang == "ru" ? styles.RuItem : ""
             }`}
           >
             <Link legacyBehavior href={menuItem.link}>

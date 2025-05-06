@@ -121,6 +121,7 @@ const Footer = ({children}: IFooter) => {
         "politic"?: string
         "protect"?: string
         "pricol"?: number
+        "inspiration_link"?: string
     }>({});
     const dispatch = useDispatch();
 
@@ -263,12 +264,12 @@ const Footer = ({children}: IFooter) => {
                                 />
                             </div>
 
-                            {/*<div className={styles.whoMake}>*/}
-                            {/*    <span>Website development</span>*/}
-                            {/*    <a href={data.inspirationLink}>*/}
-                            {/*        <img src={insp.src} alt="insspiration"/>*/}
-                            {/*    </a>*/}
-                            {/*</div>*/}
+                            <div className={styles.whoMake}>
+                                <span>Website development</span>
+                                <a href={data.instagram}>
+                                    <img src={insp.src} alt="insspiration"/>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

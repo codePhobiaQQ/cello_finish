@@ -1,11 +1,11 @@
 import cls from './Placeholder.module.sass'
 import useTypedSelector from "../../hooks/useTypedSelector";
-import {langType} from "../../redux/slices/AppSlice";
+import {Lang} from "../../types/types";
 
-const text: Record<langType, string> = {
-  'Ru': 'На сайте ведутся технические работы.',
-  'De': 'Die Website wird gewartet.',
-  'En': 'The website is under maintenance.'
+const text: Record<Lang, string> = {
+  'ru': 'На сайте ведутся технические работы.',
+  'de': 'Die Website wird gewartet.',
+  'en': 'The website is under maintenance.'
 };
 
 export const Placeholder = () => {
