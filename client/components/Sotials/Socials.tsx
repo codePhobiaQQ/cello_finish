@@ -5,13 +5,13 @@ import Facebook from "../svg/facebook";
 import { useEffect, useState, memo } from "react";
 import fetchQuery from "../../services/ssr";
 
-const Sotials = memo(() => {
-  const [data, setData] = useState<any>({});
+const Socials = memo(() => {
+  const [data, setData] = useState<{instagram?: string, youtube?: string, facebook?: string}>({});
 
   useEffect(() => {
     async function takeData() {
-      const response = await fetchQuery(`api/footer-info?populate=*`);
-      setData(response?.data?.attributes);
+      const response = await fetchQuery(`general-data`);
+      setData(response?.acf);
     }
     takeData();
   }, []);
@@ -19,17 +19,17 @@ const Sotials = memo(() => {
   return (
     <ul className={styles.sotialsInner}>
       <li>
-        <a href={data.instagram} target="_blank">
+        <a href={data?.instagram} target="_blank">
           <Instagram />
         </a>
       </li>
       <li>
-        <a href={data.youtube} target="_blank">
+        <a href={data?.youtube} target="_blank">
           <Youtube />
         </a>
       </li>
       <li>
-        <a href={data.facebook} target="_blank">
+        <a href={data?.facebook} target="_blank">
           <Facebook />
         </a>
       </li>
@@ -37,4 +37,4 @@ const Sotials = memo(() => {
   );
 });
 
-export default Sotials;
+export default Socials;

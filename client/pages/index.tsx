@@ -6,7 +6,7 @@ import Footer from "../hoc/Footer/Footer";
 // import FormSection from "../sections/FormSection/FormSection";
 import {Placeholder} from "../sections/Placeholder/Placeholder";
 
-const MainPage = (props: any) => {
+const MainPage = () => {
   useEffect(() => {
     history.pushState("", document.title, window.location.pathname);
   }, []);

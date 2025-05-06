@@ -1,4 +1,4 @@
-export const backUrl = "https://backend-final.ivanskanavi.com";
+export const backUrl = process.env.NEXT_PUBLIC_BACKEND_LINK
 
 export const buyTiket: any = {
   Ru: "Купить билет",

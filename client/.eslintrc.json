@@ -29,6 +29,8 @@
         "eslint-disable-next-line": "off",
         "react/react-in-jsx-scope": "off",
         "require-jsdoc": "off",
+        "spaced-comment": "off",
+        "valid-jsdoc": "off",
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/ban-types": "off",
         "@typescript-eslint/no-explicit-any": "off",

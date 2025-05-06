@@ -6,7 +6,7 @@ import Menu from "../../components/Menu/Menu";
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
-import Sotials from "../../components/Sotials/Sotials";
+import Socials from "../../components/Sotials/Socials";
 import Link from "next/link";
 import Logo from "../../components/UI/Logo";
 
@@ -40,7 +40,7 @@ const Header = ({ children }: IHeader) => {
       </div>
       {children}
       <Menu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
-      <Sotials />
+      <Socials />
     </>
   );
 };

@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env BACKEND_LINK=http://localhost:1337/ next dev",
-    "build": "cross-env BACKEND_LINK=http://localhost:1337/ next build",
-    "start": "cross-env NODE_ENV=production next start",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -73,6 +73,6 @@
     "typescript": "5.7.3"
   },
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   }
 }
