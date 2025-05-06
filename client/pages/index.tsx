@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import Header from "../hoc/Header/Header";
 import Footer from "../hoc/Footer/Footer";
-// import MainSection from "../sections/MainSection/MainSection";
-// import BiographySection from "../sections/BiographySection/BiographySection";
-// import FormSection from "../sections/FormSection/FormSection";
-import {Placeholder} from "../sections/Placeholder/Placeholder";
+import MainSection from "../sections/MainSection/MainSection";
+import BiographySection from "../sections/BiographySection/BiographySection";
+import FormSection from "../sections/FormSection/FormSection";
 
 const MainPage = () => {
   useEffect(() => {
@@ -14,12 +13,9 @@ const MainPage = () => {
   return (
     <Header>
       <Footer>
-
-        <Placeholder />
-
-        {/*<MainSection />*/}
-        {/*<BiographySection />*/}
-        {/*<FormSection />*/}
+        <MainSection />
+        <BiographySection />
+        <FormSection />
       </Footer>
     </Header>
   );

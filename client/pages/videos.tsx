@@ -1,17 +1,15 @@
 import React from "react";
 import Footer from "../hoc/Footer/Footer";
 import Header from "../hoc/Header/Header";
-// import FormSection from "../sections/FormSection/FormSection";
-// import VideoSection from "../sections/VideoSection/VideoSection";
-import {Placeholder} from "../sections/Placeholder/Placeholder";
+import FormSection from "../sections/FormSection/FormSection";
+import VideoSection from "../sections/VideoSection/VideoSection";
 
-const Videos = (props: any) => {
+const Videos = () => {
   return (
     <Header>
-      {/*<VideoSection />*/}
+      <VideoSection />
       <Footer>
-        <Placeholder />
-        {/*<FormSection />*/}
+        <FormSection />
       </Footer>
     </Header>
   );

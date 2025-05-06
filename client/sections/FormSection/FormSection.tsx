@@ -11,7 +11,6 @@ import { setThanks } from "../../redux/slices/AppSlice";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import fetchQuery from "../../services/ssr";
-import { backUrl } from "../../vars";
 
 interface IValues {
   name?: string;
@@ -51,15 +50,11 @@ const FormSection = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetchQuery(
-        `api/main-page-field?locale=${lang.toLowerCase()}&populate=*`
-      );
-      const response1 = await fetchQuery(
-        `api/footer-info?locale=${lang.toLowerCase()}&populate=*`
-      );
+      const response = await fetchQuery('general-data', lang);
+      const data = response?.[0]
       setSectionData({
-        ...response.data.attributes.FormSection,
-        email: response1.data.attributes.email,
+        ...data.acf,
+        email: data.acf.email,
       });
     }
     fetchData();

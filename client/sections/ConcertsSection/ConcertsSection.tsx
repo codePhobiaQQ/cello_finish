@@ -1,15 +1,12 @@
 import styles from './ConcertsSection.module.sass'
-
 import image1 from '../../public/assets/concerts/concert1.jpg'
 import image2 from '../../public/assets/concerts/concert2.jpg'
 import image3 from '../../public/assets/concerts/concert3.jpg'
-
 import React, { useEffect, useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import MoreArrow from '../../components/MoreArrow/MoreArrow'
 import ArrowRight from '../../components/ArrowRight/ArrowRight'
 import useTypedSelector from '../../hooks/useTypedSelector'
-import { backUrl, buyTiket, moreButton } from '../../vars'
+import { buyTiket, moreButton } from '../../vars'
 import fetchQuery from '../../services/ssr'
 
 interface IConcert {
@@ -56,27 +53,36 @@ const ConcertsSection = () => {
 
 	useEffect(() => {
 		async function fetchData() {
-			const response = await fetchQuery(`api/concerts?locale=${lang.toLowerCase()}&populate=*`)
+			const response = await fetchQuery('concerts', lang);
+			console.log('response', response);
 
-			const date = new Date()
-			const finalDate =
-				date.getFullYear() + '-' + `${date.getMonth() + 1}` + '-' + `${String(date.getDate()).length == 1 ? '0' + date.getDate() : date.getDate()}`
+			const now = new Date();
 
-			setSectionData(
-				response.data
-					.map((concert: any) => ({
-						...concert.attributes,
-						Day: concert.attributes.Time.split('-')[2],
-						Month: concert.attributes.Time.split('-')[1],
-						Year: concert.attributes.Time.split('-')[0],
-						concertDone: new Date(finalDate) > new Date(concert.attributes.Time),
-					}))
-					.sort((a: IConcert, b: IConcert) => ('' + a?.Time).localeCompare('' + b?.Time))
-			)
-			setConcertsAmount(response.data.length)
+			const concerts = response.map((concert: any) => {
+				const dateString = concert.acf.date; // "2025-05-07 00:00:00"
+				const concertDate = new Date(dateString);
+
+				const [year, month, day] = dateString.split(' ')[0].split('-');
+
+				return {
+					...concert.acf,
+					Day: day,
+					Month: month,
+					Year: year,
+					concertDone: now > concertDate,
+				};
+			});
+
+			const sortedConcerts = concerts.sort((a: any, b: any) =>
+				new Date(a.date).getTime() - new Date(b.date).getTime()
+			);
+
+			setSectionData(sortedConcerts);
+			setConcertsAmount(sortedConcerts.length);
 		}
-		fetchData()
-	}, [lang])
+
+		fetchData();
+	}, [lang]);
 
 	return (
 		<div className={styles.concertsSection}>
@@ -98,11 +104,11 @@ const ConcertsSection = () => {
 										</span>
 									</div>
 									<div className={styles.centerSide}>
-										<span className={styles.city}>{concert.City}</span>
-										<span className={styles.location}>{concert.Place}</span>
+										<span className={styles.city}>{concert.city}</span>
+										<span className={styles.location}>{concert.place}</span>
 									</div>
 									<div className={styles.rightSide}>
-										<a className={styles.buyTiсket} href={concert.Link}>
+										<a target="_blank" className={styles.buyTiсket} href={concert.link}>
 											<span>{buyTiket[lang]}</span>
 											<ArrowRight />
 										</a>

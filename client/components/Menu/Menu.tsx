@@ -11,9 +11,9 @@ import { footerMenu, sotials } from "../../hoc/Footer/Footer";
 import useWindowWidth from "react-hook-use-window-width";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import {useMemo} from "react";
-import bg from "../../public/assets/img/mainSection/bigMain.jpg";
-import mediumPc from "../../public/assets/img/mainSection/mediumBg.jpg";
-import bgIpad from "../../public/assets/img/mainSection/bgIpad.jpg";
+// import bg from "../../public/assets/img/mainSection/bigMain.jpg";
+// import mediumPc from "../../public/assets/img/mainSection/mediumBg.jpg";
+// import bgIpad from "../../public/assets/img/mainSection/bgIpad.jpg";
 
 interface IMenu {
   isMenuOpen: boolean;
@@ -53,6 +53,7 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
       <div className={styles.bgImage}>
         <Image src={imgType ?? menuBgMob.src} alt="menuBg" layout={"fill"} />
       </div>
+
       <ul className={styles.menuItems}>
         {footerMenu.map((menuItem: any, index: number) => (
           <li
@@ -63,7 +64,7 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
             }`}
           >
             <Link legacyBehavior href={menuItem.link}>
-              <a>{menuItem[`title${lang}`]}</a>
+              <a>{menuItem[`title_${lang}`]}</a>
             </Link>
           </li>
         ))}

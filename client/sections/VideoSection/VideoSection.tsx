@@ -38,18 +38,23 @@ const VideoSection = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await fetchQuery(
-        `api/videos?locale=${lang.toLowerCase()}&populate=*`
+        'videos', lang
       );
+      console.log('response', response);
       setSectionData(
-        response.data.map((video: any) => ({
-          ...video.attributes,
-          Time:
-            video.attributes?.Time?.split(":")[0] +
+        response.map((video: any) => ({
+          executors: video.acf.executors,
+          author: video.acf.author,
+          preview: video.acf.preview,
+          name: video.acf.title,
+          link: video.acf.link,
+          time:
+            video.acf?.duration?.split(":")[0] +
             ":" +
-            video.attributes?.Time?.split(":")[1],
+            video.acf?.duration?.split(":")[1],
         }))
       );
-      setSlidesAmount(response.data.length);
+      setSlidesAmount(response.length);
     }
     fetchData();
   }, [lang]);
@@ -61,23 +66,23 @@ const VideoSection = () => {
           <div key={"videoelement" + index} className={styles.videoElem}>
             <VideoPlayer
               classing={"VideoSectionVideo"}
-              videoSrc={slide.VideoLink}
+              videoSrc={slide.link}
+              poster={slide.preview}
             />
             <div className={styles.contentWrapper}>
               <div className={styles.leftSide}>
-                <span>{slide.Author}</span>
-                <span>{slide.Name}</span>
+                <span>{slide.authors}</span>
+                <span>{slide.name}</span>
               </div>
               <div className={styles.rightSide}>
                 <div>
-                  {console.log(slide.Executors)}
-                  {slide.Executors.split("/").map(
+                  {slide?.executors?.split("/").map(
                     (executor: string, indexing: number) => (
                       <span key={"videoelement" + indexing}>{executor}</span>
                     )
                   )}
                 </div>
-                <span>{slide.Time}</span>
+                <span>{slide.time}</span>
               </div>
             </div>
           </div>

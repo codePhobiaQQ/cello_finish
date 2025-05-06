@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {Lang} from "../../types/types";
 
+const LANG_LS_KEY = 'lang'
+
 export interface appState {
   isLoading: boolean;
   language: Lang;
@@ -21,6 +23,7 @@ export const appReducer = createSlice({
       state.isLoading = action.payload;
     },
     setLanguage: (state, action: PayloadAction<Lang>) => {
+      localStorage.setItem(LANG_LS_KEY, action.payload);
       state.language = action.payload;
     },
     setThanks: (state, action: PayloadAction<boolean>) => {

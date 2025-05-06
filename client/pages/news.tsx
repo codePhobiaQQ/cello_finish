@@ -1,17 +1,15 @@
 import React from "react";
 import Footer from "../hoc/Footer/Footer";
 import Header from "../hoc/Header/Header";
-// import FormSection from "../sections/FormSection/FormSection";
-// import NewsSection from "../sections/NewsSection/NewsSection";
-import {Placeholder} from "../sections/Placeholder/Placeholder";
+import FormSection from "../sections/FormSection/FormSection";
+import NewsSection from "../sections/NewsSection/NewsSection";
 
-const News = (props: any) => {
+const News = () => {
   return (
     <Header>
-      {/*<NewsSection />*/}
+      <NewsSection />
       <Footer>
-        <Placeholder/>
-        {/*<FormSection />*/}
+        <FormSection />
       </Footer>
     </Header>
   );

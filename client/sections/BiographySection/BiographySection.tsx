@@ -7,7 +7,6 @@ import Image from "next/image";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
 import { useInView } from "react-intersection-observer";
 import useTypedSelector from "../../hooks/useTypedSelector";
-import { backUrl } from "../../vars";
 import { useEffect, useState } from "react";
 import fetchQuery from "../../services/ssr";
 
@@ -42,19 +41,16 @@ const BiographySection = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetchQuery(
-        `api/main-page-field?locale=${lang.toLowerCase()}&populate=*&populate=BioSection.Image&populate=BioSection.BioFile`
-      );
-      console.log(response);
+      const response = await fetchQuery('biography', lang);
+      const data = response?.[0]
+      console.log('response', response);
       setSectionData({
-        ...response.data.attributes.BioSection,
-        BioFile:
-          backUrl +
-          response.data.attributes.BioSection.BioFile.data.attributes.url,
-        Image:
-          backUrl +
-          response.data.attributes.BioSection.Image.data.attributes.url,
+        ...data.acf,
+        Content: data.acf?.content,
+        BioFile: data.acf?.bio_file,
+        Image: data.acf?.image,
       });
+
       setIsLoading(false);
     }
     fetchData();
@@ -92,7 +88,10 @@ const BiographySection = () => {
               <div className={styles.imageWrapperCello}>
                 <Image alt='Cello' src={cello.src} objectFit="contain" layout="fill" />
               </div>
-              <ReactMarkdown children={sectionData?.Content} />
+
+              <p>
+                {sectionData?.Content}
+              </p>
             </div>
             <Viol />
           </div>
