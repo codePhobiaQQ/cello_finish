@@ -3,17 +3,16 @@ import React, { useEffect, useState } from "react";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import MoreArrow from "../../components/MoreArrow/MoreArrow";
 import useTypedSelector from "../../hooks/useTypedSelector";
-import { backUrl, moreButton } from "../../vars";
+import { moreButton } from "../../vars";
 import fetchQuery from "../../services/ssr";
 
 interface VideoSection {
-  Executors: string;
-  Author: string;
-  PreviewImg: string;
-  // Video?: string;
-  Name: string;
-  Time: string;
-  VideoLink?: string;
+  executors: string;
+  author: string;
+  preview: string;
+  name: string;
+  time: string;
+  link?: string;
 }
 
 const VideoSection = () => {
@@ -42,7 +41,7 @@ const VideoSection = () => {
       );
       console.log('response', response);
       setSectionData(
-        response.map((video: any) => ({
+        response?.map((video: any) => ({
           executors: video.acf.executors,
           author: video.acf.author,
           preview: video.acf.preview,
