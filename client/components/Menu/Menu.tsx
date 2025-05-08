@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 import { footerMenu, sotials } from "../../hoc/Footer/Footer";
 import useWindowWidth from "react-hook-use-window-width";
 import useTypedSelector from "../../hooks/useTypedSelector";
-import {useMemo} from "react";
+import {useEffect, useState} from "react";
 // import bg from "../../public/assets/img/mainSection/bigMain.jpg";
 // import mediumPc from "../../public/assets/img/mainSection/mediumBg.jpg";
 // import bgIpad from "../../public/assets/img/mainSection/bgIpad.jpg";
@@ -24,23 +24,21 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
   const lang = useTypedSelector((state) => state.app.language);
   const width = useWindowWidth();
 
-  const imgType = useMemo(() => {
-    if (typeof window === 'undefined' || !width) {
-      return menuBg.src;
-    }
+  const [imgSrc, setImgSrc] = useState(menuBg.src);
+
+  useEffect(() => {
+    if (!width) return;
 
     if (width > 1355) {
-      return menuBg.src;
+      setImgSrc(menuBg.src);
     } else if (width <= 1355 && width > 1200) {
-      return menuBgPc.src;
+      setImgSrc(menuBgPc.src);
     } else if (width <= 1200 && width > 576) {
-      return menuBgIpad.src;
-    } else if (width <= 576) {
-      return menuBgMob.src;
+      setImgSrc(menuBgIpad.src);
     } else {
-      return menuBg.src;
+      setImgSrc(menuBgMob.src);
     }
-  }, [width])
+  }, [width]);
 
   const clickMenuHandler = () => {
     setMenuOpen(false);
@@ -51,7 +49,7 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
       className={`${styles.Menu} ${lang} Menu ${isMenuOpen ? "active" : ""}`}
     >
       <div className={styles.bgImage}>
-        <Image src={imgType ?? menuBgMob.src} alt="menuBg" layout={"fill"} />
+        <Image src={imgSrc} alt="menuBg" layout={"fill"} />
       </div>
 
       <ul className={styles.menuItems}>

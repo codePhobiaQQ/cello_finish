@@ -2,7 +2,6 @@ import styles from "./BiographySection.module.sass";
 import cello from "../../public/assets/bio/viol.png";
 import ivan from "../../public/assets/img/ivan.jpg";
 import Viol from "../../components/svg/viol";
-import ReactMarkdown from "react-markdown";
 import Image from "next/image";
 import ArrowRight from "../../components/ArrowRight/ArrowRight";
 import { useInView } from "react-intersection-observer";
@@ -45,10 +44,10 @@ const BiographySection = () => {
       const data = response?.[0]
       console.log('response', response);
       setSectionData({
-        ...data.acf,
-        Content: data.acf?.content,
-        BioFile: data.acf?.bio_file,
-        Image: data.acf?.image,
+        ...data?.acf,
+        Content: data?.acf?.content,
+        BioFile: data?.acf?.bio_file,
+        Image: data?.acf?.image,
       });
 
       setIsLoading(false);

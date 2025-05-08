@@ -1,6 +1,3 @@
-// @ts-ignore
-// eslint-disable-next-line no-unused-vars
-let lol: number;
 // const [offsetTop, setOffsetTop] = useState<number>(800);
 // const [sectionHeight, setSectionHeight] = useState<number>(1200);
 

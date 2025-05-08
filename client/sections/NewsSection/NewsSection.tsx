@@ -11,12 +11,12 @@ interface INews {
     day: string;
     month: string;
     year: string;
-    Title: string;
-    Content: string;
-    Image: string;
+    title: string;
+    description: string;
+    image: string;
     longText: string;
-    Link: string;
-    Date: string;
+    link: string;
+    date: string;
 }
 
 interface NewsSection {
@@ -52,14 +52,16 @@ const NewsSection = () => {
                     const [year, month, day] = date.split("-");
 
                     return {
-                        id: item.id,
-                        title: item.acf.title,
-                        description: item.acf.description,
+                        id: item?.id,
+                        title: item.acf?.title,
+                        description: item.acf?.description,
+                        longText: '',
+                        date,
                         day,
                         month,
                         year,
-                        link: item.acf.link,
-                        image: item.acf.image ?? null
+                        link: item.acf?.link,
+                        image: item.acf?.image ?? null
                     };
                 })
                 .sort((a: any, b: any) => {
@@ -71,7 +73,7 @@ const NewsSection = () => {
             setNewsAmount(filteredNews.length);
         }
 
-        fetchData();
+        // fetchData();
     }, [lang]);
 
     return (

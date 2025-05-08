@@ -180,7 +180,7 @@ const Footer = ({children}: IFooter) => {
                 {children}
                 <div className="container" id={"Contacts"}>
                     <div className={styles.Footer + " Footer"}>
-                        <div className="pricol">{data.pricol}</div>
+                        {/*<div className="pricol">{data.pricol}</div>*/}
 
                         <div className={styles.leftSide}>
                             <Link legacyBehavior href="/">

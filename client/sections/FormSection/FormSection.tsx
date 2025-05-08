@@ -53,8 +53,8 @@ const FormSection = () => {
       const response = await fetchQuery('general-data', lang);
       const data = response?.[0]
       setSectionData({
-        ...data.acf,
-        email: data.acf.email,
+        ...data?.acf,
+        email: data?.acf?.email,
       });
     }
     fetchData();
@@ -111,10 +111,10 @@ const FormSection = () => {
                 <label htmlFor="name">{sectionData.MessagePlaceholder}</label>
                 <div className={styles.submitWrapper}>
                   <Field
-                    placeholder={"Message"}
+                    placeholder="Message"
                     // className={styles.submitWrapper}
-                    as={"textarea"}
-                    pa
+                    as="textarea"
+                    // pa
                     id="message"
                     autoComplete="off"
                     name="message"

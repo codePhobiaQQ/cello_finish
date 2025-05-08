@@ -3,12 +3,11 @@ import styles from "./MainSection.module.sass";
 import bg from "../../public/assets/img/mainSection/bigMain.jpg";
 import mediumPc from "../../public/assets/img/mainSection/mediumBg.jpg";
 import bgIpad from "../../public/assets/img/mainSection/bgIpad.jpg";
-import bgMob from "../../public/assets/img/mainSection/bgMob.jpg";
+// import bgMob from "../../public/assets/img/mainSection/bgMob.jpg";
 import ArrowDown from "../../components/ArrowDown/ArrowDown";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { backUrl } from "../../vars";
 import Image from "next/image";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import fetchQuery from "../../services/ssr";
@@ -20,12 +19,11 @@ import { gsap, TweenLite } from "gsap";
 import { Controller, Scene } from "react-scrollmagic";
 
 interface IMainSection {
-  MainTitle: string;
-  MainSubtitle: string;
-  VideoText: string;
-  Preview?: string;
-  ConnectText: string;
-  VideoLink?: string;
+  title: string;
+  video_text: string;
+  video_preview?: string;
+  connect_text: string;
+  video_link?: string;
 }
 
 const MainSection = () => {
@@ -48,22 +46,18 @@ const MainSection = () => {
   };
 
   const [sectionData, setSectionData] = useState<IMainSection>({
-    MainTitle: "Cellist Ivan Skanavi",
-    MainSubtitle: "",
-    ConnectText: "Write a message",
+    title: "Cellist Ivan Skanavi",
+    connect_text: "Write a message",
   } as IMainSection);
 
   const fetchData = useCallback(async () => {
     try {
       const response = await fetchQuery(
-        `api/main-page-field?locale=${lang.toLowerCase()}&populate=*&populate=MainSection.PreviewImg`
+        `main-screen`
       );
+      const data = response?.[0]
       setSectionData({
-        ...response.data.attributes.MainSection,
-        Preview:
-          backUrl +
-          response.data.attributes.MainSection?.PreviewImg?.data?.attributes
-            ?.url,
+        ...data?.acf
       });
       setIsLoading(false);
     } catch (e) {
@@ -112,14 +106,16 @@ const MainSection = () => {
             </div>
 
             <div className={styles.content + " content"}>
-              <h1>{sectionData?.MainTitle}</h1>
-              <span>{sectionData?.MainSubtitle}</span>
+              <h1>{sectionData?.title}</h1>
+              <span>
+                {/*{sectionData?.MainSubtitle}*/}
+              </span>
             </div>
 
             <div className={styles.connect + " connect"}>
               <Link legacyBehavior href="#FormSection">
                 <a>
-                  <span>{sectionData?.ConnectText}</span>
+                  <span>{sectionData?.connect_text}</span>
                 </a>
               </Link>
             </div>
@@ -127,9 +123,9 @@ const MainSection = () => {
             {width > 756 ? (
               <VideoPlayer
                 isLoading={isLoading}
-                poster={sectionData.Preview}
-                videoSrc={sectionData.VideoLink}
-                label={sectionData.VideoText}
+                poster={sectionData.video_preview}
+                videoSrc={sectionData.video_link}
+                label={sectionData.video_text}
                 classing={"MainSectionsVideo"}
                 loadVideo={loadVideo}
               />
