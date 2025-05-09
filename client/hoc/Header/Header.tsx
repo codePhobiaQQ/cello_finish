@@ -1,14 +1,12 @@
 import styles from "./Header.module.sass";
 import Languages from "../../components/Languages/Languages";
 import Hamburger from "../../components/Hamburger/Hamburger";
-import logo from "../../public/assets/svg/Logo.svg";
 import Menu from "../../components/Menu/Menu";
 import Head from "next/head";
-import Image from "next/image";
 import { useState } from "react";
 import Socials from "../../components/Sotials/Socials";
 import Link from "next/link";
-import Logo from "../../components/UI/Logo";
+import {Logo} from "../../components/UI/Logo";
 
 interface IHeader {
   children: React.ReactNode;

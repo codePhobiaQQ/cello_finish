@@ -1,32 +1,18 @@
 import styles from "./Footer.module.sass";
-import LogoFooter from "./../../public/assets/svg/LogoFooter.svg";
+import LogoFooter from "./../../public/assets/svg/LogoFixed.svg";
 import SotialIconFooter, {
     ISotial,
 } from "../../components/SotialIconFooter/SotialIconFooter";
 import {v4 as uuidv4} from "uuid";
-
 import Image from "next/image";
-
 import spotify from "./../../public/assets/svg/sotials/Spotify.svg";
 import spotifyActive from "./../../public/assets/svg/sotials/SpotifyActive.svg";
-
-// import sber from "./../../public/assets/svg/sotials/sber.svg";
-// import sberActive from "./../../public/assets/svg/sotials/sberActive.svg";
-
 import appleMusic from "./../../public/assets/svg/sotials/appleMusic.svg";
 import appleMusicActive from "./../../public/assets/svg/sotials/appleMusicActive.svg";
-
-// import yandexMusic from "./../../public/assets/svg/sotials/yandexMusic.svg";
-// import yandexMusicActive from "./../../public/assets/svg/sotials/yandexMusicActive.svg";
-
-// import vkMusic from "./../../public/assets/svg/sotials/vkMusic.svg";
-// import vkMusicActive from "./../../public/assets/svg/sotials/vkMusicActive.svg";
-
 import insp from "./../../public/assets/svg/insp.svg";
 import Link from "next/link";
 import BtnSubscribe from "../../components/BtnSubscribe/BtnSubscribe";
 import {useRouter} from "next/router";
-// import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import PoliticPopup from "../../components/popups/PoliticPopup";
 import {useEffect, useMemo, useState} from "react";
@@ -48,26 +34,11 @@ export const sotials: ISotial[] = [
         active: spotifyActive.src,
         link: "https://open.spotify.com/artist/5rhCdpyzBYhdzxQL7OglWa?si=X9WS8XzXSzSSLhGsfPz9OA&utm_source=copy-link",
     },
-    // {
-    //   icon: vkMusic.src,
-    //   active: vkMusicActive.src,
-    //   link: "#",
-    // },
-    // {
-    //   icon: yandexMusic.src,
-    //   active: yandexMusicActive.src,
-    //   link: "#",
-    // },
     {
         icon: appleMusic.src,
         active: appleMusicActive.src,
         link: "https://music.apple.com/us/artist/ivan-skanavi/1608897706",
     },
-    // {
-    //   icon: sber.src,
-    //   active: sberActive.src,
-    //   link: "#",
-    // },
 ];
 
 export const footerMenu: any = [
@@ -160,7 +131,6 @@ const Footer = ({children}: IFooter) => {
             email: inputEmail,
             lang,
         });
-        console.log(response);
     };
 
     return useMemo(() => {
@@ -180,8 +150,6 @@ const Footer = ({children}: IFooter) => {
                 {children}
                 <div className="container" id={"Contacts"}>
                     <div className={styles.Footer + " Footer"}>
-                        {/*<div className="pricol">{data.pricol}</div>*/}
-
                         <div className={styles.leftSide}>
                             <Link legacyBehavior href="/">
                                 <a>

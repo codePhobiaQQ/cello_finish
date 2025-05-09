@@ -6,14 +6,12 @@ const languageFunction = (language: string) => {
 };
 
 export const chooseLanguage = (language: string, ru: string | undefined, en: string | undefined, ge: string | undefined) => {
-  if (language == 'Ru') {
-    return ru;
-  } else if (language == 'En') {
+  if (language == 'En') {
     return en;
   } else if (language == 'Ge') {
     return ge;
   } else {
-    return ru;
+    return en;
   }
 }
 

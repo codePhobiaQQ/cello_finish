@@ -1,7 +1,5 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const nodemailer = require('nodemailer')
+import * as nodemailer from 'nodemailer'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	console.log(req.body)
@@ -10,27 +8,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		host: 'smtp.gmail.com',
 		port: 465,
 		pool: true,
-		secure: true, // true for 465, false for other ports
+		secure: true,
 		auth: {
-			user: 'ivanskanavicello@gmail.com', // generated ethereal user
-			// pass: "juk1109@yandex.ru", // generated ethereal password
-			pass: 'jhbo pfhl ekyq olyk', // generated ethereal password
+			user: 'ivanskanavicello@gmail.com',
+			pass: 'jhbo pfhl ekyq olyk',
 		},
 	})
 
-	// console.log(transporter)
-	// console.log('log')
-
 	const TitleText = {
-		Ru: 'Спасибо за Ваше письмо!',
-		En: 'Thank you for you E-Mail!',
-		De: 'Vielen Dank für Ihre E-Mail!',
+		ru: 'Спасибо за Ваше письмо!',
+		en: 'Thank you for you E-Mail!',
+		de: 'Vielen Dank für Ihre E-Mail!',
 	}
 
 	const clientText = {
-		Ru: 'Спасибо за Ваше письмо! Иван Сканави ответит Вам в ближайшее время.',
-		En: 'Thank you for you E-Mail! Ivan Skanavi will be in touch with you shortly',
-		De: 'Vielen Dank für Ihre E-Mail! Ivan Skanavi wird sobald wie möglich auf Ihre Nachricht antworten.',
+		ru: 'Спасибо за Ваше письмо! Иван Сканави ответит Вам в ближайшее время.',
+		en: 'Thank you for you E-Mail! Ivan Skanavi will be in touch with you shortly',
+		de: 'Vielen Dank für Ihre E-Mail! Ivan Skanavi wird sobald wie möglich auf Ihre Nachricht antworten.',
 	}
 
 	// @ts-ignore
@@ -46,6 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			`<div>Его сообщение:</div>` +
 			`<div>${req.body.values.message}</div>`,
 	})
+
 	console.log('info2', info2)
 
 	const info1 = await transporter.sendMail({
@@ -58,8 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		// html: "test",
 	})
 
-	console.log(info1)
-	console.log(info2)
+	console.log('info1', info1)
 
 	res.status(200).json({ data: 'success' })
 }

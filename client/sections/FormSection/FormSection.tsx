@@ -39,7 +39,7 @@ const FormSection = () => {
   const dispatch = useDispatch();
   const lang = useTypedSelector((state) => state.app.language);
 
-  const [formRef, formInView] = useInView({
+  const [formRef] = useInView({
     threshold: 0.5,
     triggerOnce: true,
   });
@@ -52,6 +52,7 @@ const FormSection = () => {
     async function fetchData() {
       const response = await fetchQuery('general-data', lang);
       const data = response?.[0]
+
       setSectionData({
         ...data?.acf,
         email: data?.acf?.email,
@@ -73,7 +74,10 @@ const FormSection = () => {
             validationSchema={SignupSchema}
             onSubmit={async (values: any) => {
               dispatch(setThanks(true));
-              const response = await axios.post("/api/email", {
+
+              console.log('values', values)
+
+              await axios.post("/api/email", {
                 values: values,
                 lang,
               });

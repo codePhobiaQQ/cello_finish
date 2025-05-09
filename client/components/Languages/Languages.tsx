@@ -15,12 +15,6 @@ const Languages = () => {
   return (
     <ul className={styles.languages}>
       <li
-        onClick={() => clickLanguageHandler("ru")}
-        className={currentLanguage == "ru" ? `${styles.active}` : ""}
-      >
-        Ru
-      </li>
-      <li
         onClick={() => clickLanguageHandler("en")}
         className={currentLanguage == "en" ? styles.active : ""}
       >

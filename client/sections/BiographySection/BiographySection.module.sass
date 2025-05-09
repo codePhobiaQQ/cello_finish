@@ -46,6 +46,7 @@ $responsive: calc(1vh + 1vw)
         margin-right: 55px
     .biographyWrapper
       display: flex
+
       .imageWrapper
         width: 270px
         overflow: hidden
@@ -54,6 +55,14 @@ $responsive: calc(1vh + 1vw)
           position: relative
           width: 270px
           object-fit: contain
+
+        &.Ivan
+          img
+            filter: grayscale(100%)
+            transition: filter 0.3s ease
+            &:hover
+              filter: none
+
       .textWrapper
         margin-left: 40px
         width: calc(100% - 310px)

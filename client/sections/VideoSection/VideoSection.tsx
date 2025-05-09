@@ -39,7 +39,6 @@ const VideoSection = () => {
       const response = await fetchQuery(
         'videos', lang
       );
-      console.log('response', response);
       setSectionData(
         response?.map((video: any) => ({
           executors: video.acf.executors,
