@@ -29,6 +29,7 @@ $responsive: calc(1vh + 1vw)
       left: -150px
       -webkit-text-stroke: 1px #232323
       -webkit-text-fill-color: #0C0C0C
+
   :global(.container)
     display: flex
     align-items: center
@@ -47,6 +48,13 @@ $responsive: calc(1vh + 1vw)
     .biographyWrapper
       display: flex
 
+      .Ivan
+        img
+          filter: grayscale(100%)
+          transition: filter 0.3s ease
+          &:hover
+            filter: none
+
       .imageWrapper
         width: 270px
         overflow: hidden
@@ -56,26 +64,22 @@ $responsive: calc(1vh + 1vw)
           width: 270px
           object-fit: contain
 
-        &.Ivan
-          img
-            filter: grayscale(100%)
-            transition: filter 0.3s ease
-            &:hover
-              filter: none
 
       .textWrapper
         margin-left: 40px
         width: calc(100% - 310px)
         position: relative
+
         :global(.pWrap)
           overflow: hidden
           display: inline !important
+
         .imageWrapperCello
           float: right
           width: calc(#{$responsive} * 10)
           height: calc(#{$responsive} * 20)
-          //shape-outside: circle(60%)
           margin: 0 0 20px 20px
+
           & > div
             width: 100%
             height: 100%
@@ -87,14 +91,15 @@ $responsive: calc(1vh + 1vw)
 
         .imageWrapperMob
           display: none
+
         svg
           position: absolute
           bottom: -140px
           right: -50px
-          //width: 394px
           height: 461px
           fill: #232323
           display: none
+
         p
           line-height: 140%
           margin-bottom: 40px
@@ -102,10 +107,7 @@ $responsive: calc(1vh + 1vw)
             margin-top: 0
           &:nth-child(4)
             margin-bottom: 0
-          &:nth-child(2)
-            //width: 70%
-          &:nth-child(3)
-            //width: 65%
+
   @media screen and (max-width: 1200px)
     :global(.container)
       .biographyWrapper

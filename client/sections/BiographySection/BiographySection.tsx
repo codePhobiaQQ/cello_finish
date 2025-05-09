@@ -75,7 +75,7 @@ const BiographySection = () => {
           </div>
 
           <div className={cls.textWrapper}>
-            <div ref={imageMobRef} className={cls.imageWrapperMob}>
+            <div ref={imageMobRef} className={cn(cls.imageWrapperMob, cls.Ivan)}>
               <Image
                 width={270}
                 height={400}

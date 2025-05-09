@@ -22,8 +22,14 @@ interface IMainSection {
   title: string;
   video_text: string;
   video_preview?: string;
+
   connect_text: string;
+
   video_link?: string;
+  bg_image?: string
+  bg_image_medium?: string
+  bg_image_ipad?: string
+  bg_image_mob?: string
 }
 
 const MainSection = () => {
@@ -32,40 +38,43 @@ const MainSection = () => {
   const [loadVideo, setLoadVideo] = useState<boolean>(false);
   const { width } = useWindowSize();
 
-  const imgType = () => {
-    switch (true) {
-      case width > 1355:
-        return bg.src;
-      case width <= 1366 && width > 756:
-        return mediumPc.src;
-      case width <= 756:
-        return bgIpad.src;
-      default:
-        return bgIpad.src;
-    }
-  };
-
   const [sectionData, setSectionData] = useState<IMainSection>({
     title: "Cellist Ivan Skanavi",
     connect_text: "Write a message",
   } as IMainSection);
 
-  const fetchData = useCallback(async () => {
-    try {
-      const response = await fetchQuery(
-        `main-screen`
-      );
-      const data = response?.[0]
-      setSectionData({
-        ...data?.acf
-      });
-      setIsLoading(false);
-    } catch (e) {
-      console.log(e);
+
+  const imgType = () => {
+    switch (true) {
+      case width > 1355:
+        return sectionData?.bg_image ?? bg.src;
+      case width <= 1366 && width > 756:
+        return sectionData?.bg_image_medium ?? mediumPc.src;
+      case width <= 756:
+        return sectionData?.bg_image_ipad ?? bgIpad.src;
+      default:
+        return sectionData?.bg_image_mob ?? bgIpad.src;
     }
-  }, [lang]);
+  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchQuery(
+            `main-screen`, lang
+        );
+        const data = response?.[0]
+
+        setSectionData({
+          ...data?.acf
+        });
+
+        setIsLoading(false);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
     fetchData();
   }, [lang]);
 
