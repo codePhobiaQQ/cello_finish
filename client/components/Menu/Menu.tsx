@@ -11,9 +11,6 @@ import { footerMenu, sotials } from "../../hoc/Footer/Footer";
 import useWindowWidth from "react-hook-use-window-width";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import {useEffect, useState} from "react";
-// import bg from "../../public/assets/img/mainSection/bigMain.jpg";
-// import mediumPc from "../../public/assets/img/mainSection/mediumBg.jpg";
-// import bgIpad from "../../public/assets/img/mainSection/bgIpad.jpg";
 
 interface IMenu {
   isMenuOpen: boolean;
@@ -57,9 +54,7 @@ const Menu = ({ isMenuOpen, setMenuOpen }: IMenu) => {
           <li
             onClick={clickMenuHandler}
             key={"menuItems " + index}
-            className={`${styles.menuItem} ${
-              lang == "ru" ? styles.RuItem : ""
-            }`}
+            className={`${styles.menuItem}`}
           >
             <Link legacyBehavior href={menuItem.link}>
               <a>{menuItem[`title_${lang}`]}</a>

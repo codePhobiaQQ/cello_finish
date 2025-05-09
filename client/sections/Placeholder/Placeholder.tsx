@@ -3,7 +3,6 @@ import useTypedSelector from "../../hooks/useTypedSelector";
 import {Lang} from "../../types/types";
 
 const text: Record<Lang, string> = {
-  'ru': 'На сайте ведутся технические работы.',
   'de': 'Die Website wird gewartet.',
   'en': 'The website is under maintenance.'
 };
