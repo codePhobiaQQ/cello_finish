@@ -10,6 +10,11 @@ interface IVideoPlayer {
   loadVideo?: boolean;
 }
 
+function extractVideoId(url: string): string | null {
+  const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+  return match ? match[1] : null;
+}
+
 const VideoPlayer = ({
   videoSrc,
   poster,
@@ -26,10 +31,17 @@ const VideoPlayer = ({
     );
   }
 
+  const videoId = videoSrc ? extractVideoId(videoSrc) : null;
+
   return (
     <div className={styles.VideoPlayerWrapper + " VideoPlayerWrapper"}>
-      {!!label && <span>{label}</span>}
-      <YouTube className={classing} videoId={videoSrc} />
+      {Boolean(label) && <span>{label}</span>}
+
+      {videoId ? (
+          <YouTube className={classing} videoId={videoId} />
+      ) : (
+          <span>Invalid video URL</span>
+      )}
     </div>
   );
 };

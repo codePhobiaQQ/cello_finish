@@ -1,13 +1,11 @@
 import styles from "./MainSection.module.sass";
-
 import bg from "../../public/assets/img/mainSection/bigMain.jpg";
 import mediumPc from "../../public/assets/img/mainSection/mediumBg.jpg";
 import bgIpad from "../../public/assets/img/mainSection/bgIpad.jpg";
-// import bgMob from "../../public/assets/img/mainSection/bgMob.jpg";
 import ArrowDown from "../../components/ArrowDown/ArrowDown";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import useTypedSelector from "../../hooks/useTypedSelector";
 import fetchQuery from "../../services/ssr";
