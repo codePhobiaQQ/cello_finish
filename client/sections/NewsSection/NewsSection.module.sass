@@ -49,11 +49,13 @@
         justify-content: space-between
         //width: 890px
         line-height: 1.2em
+        gap: 1.5em
         .imgSide
           order: 1
           img
             width: 210px
             height: 117px
+            object-fit: contain
         :global(.rightImg)
           order: 3
         .content
@@ -141,18 +143,15 @@
               font-size: 9px
               line-height: 1.1em
 
-
-
-
-
   .rightSide
     cursor: pointer
     :global(.moreWrap)
       display: flex
       align-items: center
       margin: 71px auto 0
-      justify-content: space-between
+      justify-content: center
       width: 210px
+
       &:hover
         :global(.moreArrow)
           display: flex
@@ -179,7 +178,7 @@
     display: flex
     align-items: center
     margin: 71px auto 0
-    justify-content: space-between
+    justify-content: center
     cursor: pointer
     width: 210px
     &:hover

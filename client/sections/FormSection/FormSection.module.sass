@@ -4,6 +4,10 @@ $responsive: calc(1vh + 1vw)
   height: inherit
   padding: 150px 0
   min-height: 100vh
+
+  @media screen and (max-width: 768px)
+    min-height: inherit !important
+
   :global(.container)
     height: 100%
   .formSectionWrapper

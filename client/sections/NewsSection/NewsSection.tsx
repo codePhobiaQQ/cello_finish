@@ -72,8 +72,7 @@ const NewsSection = () => {
             setSectionData(filteredNews);
             setNewsAmount(filteredNews.length);
         }
-
-        // fetchData();
+        fetchData();
     }, [lang]);
 
     return (
