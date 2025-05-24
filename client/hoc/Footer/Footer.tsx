@@ -123,7 +123,7 @@ const Footer = () => {
 
     const sendEmail = async () => {
         dispatch(setThanks(true));
-        const response = await axios.post("/api/sender", {
+        await axios.post("/api/sender", {
             email: inputEmail,
             lang,
         });
