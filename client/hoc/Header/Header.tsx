@@ -8,11 +8,7 @@ import Socials from "../../components/Sotials/Socials";
 import Link from "next/link";
 import {Logo} from "../../components/UI/Logo";
 
-interface IHeader {
-  children: React.ReactNode;
-}
-
-const Header = ({ children }: IHeader) => {
+const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
 
   return (
@@ -36,7 +32,7 @@ const Header = ({ children }: IHeader) => {
           <Hamburger isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
         </div>
       </div>
-      {children}
+
       <Menu isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen} />
       <Socials />
     </>

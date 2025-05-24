@@ -5,14 +5,14 @@ import ConcertsSection from "../sections/ConcertsSection/ConcertsSection";
 import FormSection from "../sections/FormSection/FormSection";
 
 const Concerts = () => {
-  return (
-    <Header>
-      <ConcertsSection />
-      <Footer>
-        <FormSection />
-      </Footer>
-    </Header>
-  );
+    return (
+        <>
+            <Header/>
+            <ConcertsSection/>
+            <FormSection/>
+            <Footer/>
+        </>
+    );
 };
 
 export default Concerts;

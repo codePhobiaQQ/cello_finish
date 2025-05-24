@@ -4,16 +4,17 @@ import GallerySection from "../sections/GallerySection/GallerySection";
 import FormSection from "../sections/FormSection/FormSection";
 
 const Gallery = (props: any) => {
-  console.log(props.GalleryImages);
+    console.log(props.GalleryImages);
 
-  return (
-    <Header>
-      <GallerySection />
-      <Footer>
-        <FormSection />
-      </Footer>
-    </Header>
-  );
+    return (
+        <>
+            <Header/>
+            <GallerySection/>
+            <FormSection/>
+            <Footer/>
+        </>
+    )
+        ;
 };
 
 export default Gallery;

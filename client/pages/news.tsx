@@ -5,14 +5,14 @@ import FormSection from "../sections/FormSection/FormSection";
 import NewsSection from "../sections/NewsSection/NewsSection";
 
 const News = () => {
-  return (
-    <Header>
-      <NewsSection />
-      <Footer>
-        <FormSection />
-      </Footer>
-    </Header>
-  );
+    return (
+        <>
+            <Header/>
+            <NewsSection/>
+            <FormSection/>
+            <Footer/>
+        </>
+    );
 };
 
 export default News;

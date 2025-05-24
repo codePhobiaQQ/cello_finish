@@ -5,14 +5,14 @@ import FormSection from "../sections/FormSection/FormSection";
 import VideoSection from "../sections/VideoSection/VideoSection";
 
 const Videos = () => {
-  return (
-    <Header>
-      <VideoSection />
-      <Footer>
-        <FormSection />
-      </Footer>
-    </Header>
-  );
+    return (
+        <>
+            <Header/>
+            <VideoSection/>
+            <FormSection/>
+            <Footer/>
+        </>
+    );
 };
 
 export default Videos;

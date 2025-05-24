@@ -24,10 +24,6 @@ import axios from "axios";
 import {useDispatch} from "react-redux";
 import fetchQuery from "../../services/ssr";
 
-interface IFooter {
-    children?: React.ReactNode;
-}
-
 export const sotials: ISotial[] = [
     {
         icon: spotify.src,
@@ -80,7 +76,7 @@ export const footerMenu: any = [
     },
 ];
 
-const Footer = ({children}: IFooter) => {
+const Footer = () => {
     const lang = useTypedSelector((state) => state.app.language);
     const [data, setData] = useState<{
         "spotify_link"?: string
@@ -147,7 +143,7 @@ const Footer = ({children}: IFooter) => {
                     text={data.protect}
                 />
                 <ThanksPopup/>
-                {children}
+
                 <div className="container" id={"Contacts"}>
                     <div className={styles.Footer + " Footer"}>
                         <div className={styles.leftSide}>
